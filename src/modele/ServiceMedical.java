@@ -36,6 +36,7 @@ public class ServiceMedical {
 	public String getBudget() {
 		return budget;
 	}
+
 	public void setBudget(String budget) {
 		this.budget = budget;
 	}
