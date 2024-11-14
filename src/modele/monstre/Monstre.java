@@ -27,12 +27,15 @@ public class Monstre {
 	public short getPoids() {
 		return poids;
 	}
+	
 	public void setPoids(short poids) {
 		this.poids = poids;
 	}
+
 	public short getTaille() {
 		return taille;
 	}
+
 	public void setTaille(short taille) {
 		this.taille = taille;
 	}
@@ -42,9 +45,11 @@ public class Monstre {
 	public void setAge(int age) {
 		this.age = age;
 	}
+
 	public byte getIndicateurMoral() {
 		return indicateurMoral;
 	}
+
 	public void setIndicateurMoral(byte indicateurMoral) {
 		this.indicateurMoral = indicateurMoral;
 	}
@@ -52,6 +57,7 @@ public class Monstre {
 	public ArrayList<Maladie> getListeMaladie() {
 		return listeMaladie;
 	}
+
 	public void setListeMaladie(ArrayList<Maladie> listeMaladie) {
 		this.listeMaladie = listeMaladie;
 	}
@@ -60,9 +66,8 @@ public class Monstre {
 	}
 	
 	public String hurler() {
-		return "AAAAAAAAAAAA";
+		return "OSKOUUUUUUR";
 	}
-	
 	
 
 }
