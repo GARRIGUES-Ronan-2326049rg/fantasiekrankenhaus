@@ -1,4 +1,6 @@
 package modele;
+import modele.monstre.Monstre;
+
 import java.util.ArrayList;
 
 public class ServiceMedical {

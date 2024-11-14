@@ -1,4 +1,7 @@
-package modele;
+package modele.monstre;
+import modele.Medecin;
+import modele.ServiceMedical;
+
 import java.util.ArrayList;
 
 public class Hopital {

@@ -1,4 +1,6 @@
-package modele;
+package modele.monstre;
+import modele.Maladie;
+
 import java.util.ArrayList;
 
 public class Monstre {
