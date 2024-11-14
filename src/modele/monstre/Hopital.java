@@ -1,6 +1,6 @@
 package modele.monstre;
 import modele.Medecin;
-import modele.ServiceMedical;
+import modele.service.ServiceMedical;
 
 import java.util.ArrayList;
 

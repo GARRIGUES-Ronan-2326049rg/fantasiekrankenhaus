@@ -1,4 +1,4 @@
-import modele.Monstre;
+import modele.monstre.*;
 import modele.Maladie;
 import java.util.ArrayList;
 

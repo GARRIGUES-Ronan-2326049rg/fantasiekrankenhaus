@@ -1,4 +1,4 @@
-package modele;
+package modele.service;
 import modele.monstre.Monstre;
 
 import java.util.ArrayList;
