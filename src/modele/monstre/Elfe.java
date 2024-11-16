@@ -7,4 +7,7 @@ public class Elfe extends Monstre{
 
     }
 
+    public Elfe(String nom) {
+        super(nom);
+    }
 }

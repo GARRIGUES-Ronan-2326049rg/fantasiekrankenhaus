@@ -1,6 +1,6 @@
 package modele.service;
 
-public class CentreQuarantaine extends ServiceMedical{
+public class CentreQuarantaine extends ServiceMedical {
     private int isolation;
 
     public CentreQuarantaine(String nom, int superficie, String budget) {
@@ -10,12 +10,13 @@ public class CentreQuarantaine extends ServiceMedical{
     public int getIsolation() {
         return this.isolation;
     }
+
     public void setIsolation(int isolation) {
         this.isolation = isolation;
     }
 
-    @Override
     public String getBudget() {
-        return "Budget = " +super.getBudget() + ", Isolation = " + this.isolation;
+        String var10000 = super.getBudget();
+        return "Budget = " + var10000 + ", Isolation = " + this.isolation;
     }
 }
