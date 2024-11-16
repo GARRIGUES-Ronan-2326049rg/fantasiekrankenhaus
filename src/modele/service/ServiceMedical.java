@@ -19,7 +19,11 @@ public class ServiceMedical {
 		this.nombreCreature = getListeCreature().size();
 
 	}
-	
+
+	public ServiceMedical() {
+
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -51,6 +55,5 @@ public class ServiceMedical {
 	public void setBudget(String budget) {
 		this.budget = budget;
 	}
-	
-	
+
 }

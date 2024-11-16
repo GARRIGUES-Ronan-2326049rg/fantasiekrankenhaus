@@ -8,6 +8,10 @@ public class Crypte extends ServiceMedical{
         super(nom, superficie, budget);
     }
 
+    public Crypte() {
+
+    }
+
     public int getTemperature() {
         return temperature;
     }

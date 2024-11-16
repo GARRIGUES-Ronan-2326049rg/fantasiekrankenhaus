@@ -4,6 +4,7 @@ import modele.Maladie;
 import java.util.ArrayList;
 
 public class Monstre {
+	private String type;
 	private String nom;
 	private int pv = 100;
 	private char sexe;
@@ -13,15 +14,25 @@ public class Monstre {
 	private byte indicateurMoral = 100; // Représenté par un pourcentage
 	private ArrayList<Maladie> listeMaladie = new ArrayList<>();
 
-	public Monstre(String nom, char sexe, short poids, short taille, int age) {
+	public Monstre(String type, String nom, char sexe, short poids, short taille, int age, int indicateurMoral) {
+		this.type = type;
 		this.nom = nom;
 		this.sexe = sexe;
 		this.poids = poids;
 		this.taille = taille;
 		this.age = age;
-		//this.listeMaladie.add();
+		this.indicateurMoral = 100;
+	  //this.listeMaladie.add();
 	}
-	
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -85,6 +96,9 @@ public class Monstre {
 	public String hurler() {
 		return "OSKOUUUUUUR";
 	}
-	
+
+	public String toString() {
+		return "Monstre [nom=" + nom + ", pv=" + pv + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age + ", indicateurMoral=" + indicateurMoral + ", listeMaladie=" + listeMaladie + "]";
+	}
 
 }
