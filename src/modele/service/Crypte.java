@@ -4,7 +4,11 @@ public class Crypte extends ServiceMedical{
     public int ventilation;
     public int temperature;
 
-    public int getTempérature() {
+    public Crypte(String nom, int superficie, String budget) {
+        super(nom, superficie, budget);
+    }
+
+    public int getTemperature() {
         return temperature;
     }
 
@@ -12,7 +16,7 @@ public class Crypte extends ServiceMedical{
         return ventilation;
     }
 
-    public void setTempérature(int temperature) {
+    public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
 

@@ -1,30 +1,20 @@
+import controller.HopitalController;
+import controller.JoueurController;
 import modele.monstre.*;
-import modele.Maladie;
-import java.util.ArrayList;
+import modele.*;
+import modele.service.*;
 
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
+       Hopital hopital = new Hopital();
+       hopital.initialisationMedecin();
+       hopital.initialisationService();
 
-        Monstre Ronan = new Monstre();
+       JoueurController joueur = new JoueurController();
+       HopitalController hopitalController = new HopitalController();
 
-        Ronan.setNom("Bob");
-
-        Ronan.setSexe('M');
-
-        Ronan.setPoids((short) 100);
-
-        Ronan.setTaille((short) 200);
-
-        Ronan.setAge(10);
-
-        Ronan.setIndicateurMoral((byte) 100);
-
-        Ronan.setListeMaladie(new ArrayList<Maladie>());
-
-        Ronan.attendre();
-
-        System.out.println(Ronan.hurler());
     }
 }

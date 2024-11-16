@@ -6,10 +6,19 @@ import java.util.ArrayList;
 public class ServiceMedical {
 	private String nom;
 	private int superficie;
-	final int maxCreature = 0;
+	final int maxCreature = 10;
 	private int nombreCreature;
 	private ArrayList<Monstre> listeCreature;
 	private String budget;
+
+	public ServiceMedical(String nom, int superficie, String budget) {
+		this.nom = nom;
+		this.superficie = superficie;
+		this.budget = budget;
+		this.listeCreature = new ArrayList<>();
+		this.nombreCreature = getListeCreature().size();
+
+	}
 	
 	public String getNom() {
 		return nom;
