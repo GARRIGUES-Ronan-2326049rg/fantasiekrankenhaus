@@ -9,7 +9,7 @@ public class JoueurView {
                 "Votre mission est de gérer un hôpital unique en son genre, où les patients sont... des monstres !\n" +
                 "Ces créatures, bien qu'effrayantes, ont besoin de vos soins pour se rétablir et éviter la catastrophe.\n" +
                 "Organisez les services, soignez les monstres et gérez les situations d'urgence avec sagesse.\n" +
-                "Rappelez-vous : chaque décision compte et chaque monstre a sa propre spécificité. Bonne chance, Directeur !";
+                "Rappelez-vous : chaque décision compte et chaque monstre a sa propre spécificité. Bonne chance, Directeur !\n";
     }
 
     public void afficheMonstre(Monstre monstre){
