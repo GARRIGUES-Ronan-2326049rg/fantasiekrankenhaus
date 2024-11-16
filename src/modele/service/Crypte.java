@@ -4,8 +4,8 @@ public class Crypte extends ServiceMedical {
     public int ventilation;
     public int temperature;
 
-    public Crypte(String nom, int superficie, String budget) {
-        super(nom, superficie, budget);
+    public Crypte(String nom, int superficie, String budget, int max) {
+        super(nom, superficie, budget, max);
     }
 
     public int getTempérature() {

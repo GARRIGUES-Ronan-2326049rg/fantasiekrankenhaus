@@ -3,8 +3,8 @@ package modele.service;
 public class CentreQuarantaine extends ServiceMedical {
     private int isolation;
 
-    public CentreQuarantaine(String nom, int superficie, String budget) {
-        super(nom, superficie, budget);
+    public CentreQuarantaine(String nom, int superficie, String budget, int max) {
+        super(nom, superficie, budget, max);
     }
 
     public int getIsolation() {

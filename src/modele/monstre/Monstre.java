@@ -16,6 +16,7 @@ public class Monstre {
 
 	public Monstre(String nom) {
 		this.nom = nom;
+		this.listeMaladie = new ArrayList<>();
 	}
 	
 	public String getNom() {
