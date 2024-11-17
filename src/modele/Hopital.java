@@ -70,7 +70,13 @@ public class Hopital {
 		Crypte crypte = new Crypte("Crypte", 870, "mediocre");
 		listeService.add(crypte);
 		CentreQuarantaine centreQuarantaine = new CentreQuarantaine("Centre 40", 439, "Faible");
+	}
 
+	public void nouvelleJournee(){
+		// Remise à niveau des actions des médecins
+		for (int i = 0; i < getListeMedecin().size(); ++i) {
+			getListeMedecin().get(i).setActionPossible(true);
+		}
 
 	}
 
