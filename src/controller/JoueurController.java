@@ -10,7 +10,7 @@ public class JoueurController {
         System.out.println(view.presentationJeu());
     }
 
-    public void afficheMonstre(){
+    public void afficheMonstre(Monstre monstre1){
         Monstre monstre = MonstreFactory.creerMonstreAleatoire();
         JoueurView view = new JoueurView();
         view.afficheMonstre(monstre);

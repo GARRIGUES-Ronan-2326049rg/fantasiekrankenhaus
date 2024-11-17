@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Monstre 2 : " + monstre2);
         System.out.println("Monstre 3 : " + monstre3);
 
-        joueur.afficheMonstre();
+        joueur.afficheMonstre(monstre1);
     }
 }
 

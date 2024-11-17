@@ -9,7 +9,7 @@ import java.util.Random;
 public class MonstreFactory {
 
     private static final String[] noms = {
-            "Gork", "Mork", "Zagreb", "Thranduil", "Balrog", "Fenrir", "Dracula", "Ragnar", "Smeagol", "Azog"
+            "Gork", "Mork", "Zagreb", "Thranduil", "Balrog", "Fenrir", "Dracula", "Ragnar", "Smeagol", "Azog", "Atreus"
     };
 
     private static final String[] types = {
