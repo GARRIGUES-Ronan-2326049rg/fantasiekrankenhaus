@@ -9,8 +9,9 @@ import modele.monstre.Monstre;
 public class ServiceMedical {
 	private String nom;
 	private int superficie;
-	final int maxCreature;
+	private int maxCreature;
 	private int nombreCreature;
+	private int tauxPropagation = 0;
 	private ArrayList<Monstre> listeCreature;
 	private String budget;
 
@@ -101,13 +102,25 @@ public class ServiceMedical {
 		}
 	}
 
-
-	public void variationCapacité(){
-		//TODO
+	public void variationBudget(){
+		if(this.budget.equals("Inexistant")){
+            this.maxCreature /= 4;
+			this.tauxPropagation *=4;
+		} else if (this.budget.equals("Médiocre")) {
+			this.maxCreature /= 3;
+			this.tauxPropagation *=3;
+		} else if (this.budget.equals("Insuffisant")) {
+			this.maxCreature /= 2;
+			this.tauxPropagation *=2;
+		} else if (this.budget.equals("Faible")) {
+			this.maxCreature /= 1;
+			this.tauxPropagation *= 1;
+		}
+		// Les valeurs seront à changer ultérieurement.
 	}
 
 	/**
-	 * Fonction de test pour les services.
+	 * Main de test (plus utilisée pour le moment).
 	 * */
 	public static void main(String[] args) {
 		ServiceMedical service = new ServiceMedical("test", 20,   "faible", 10);
