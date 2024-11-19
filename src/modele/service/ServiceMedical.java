@@ -64,6 +64,14 @@ public class ServiceMedical {
 		this.budget = budget;
 	}
 
+	/**
+	 * @version 1.0
+	 *
+	 * @param patient
+	 *
+	 * Prends un objet de type Monstre et l'ajoute, s'il n'y est pas, dans la liste des patients si elle est vide ou si elle n'est pas complète.
+	 * Si elle n'est pas complète, la fonction utilise un object Random pour savori si elle ajoute ou non ce patient.
+	 */
 	public void ajouterPatient(Monstre patient) {
 		if (!this.listeCreature.contains(patient)) {
 			if (this.nombreCreature == 0) {
@@ -79,6 +87,13 @@ public class ServiceMedical {
 		}
 	}
 
+	/**
+	 * @version 1.0
+	 *
+	 * @param patient
+	 *
+	 * Prends un objet de type Monstre et le retire de la liste des patients s'il est présent et qu'il ne possède plus de maladies.
+	 */
 	public void retirerPatient(Monstre patient) {
 		if (this.listeCreature.contains(patient) && patient.getListeMaladie().isEmpty()) {
 			this.listeCreature.remove(patient);
@@ -86,10 +101,13 @@ public class ServiceMedical {
 		}
 	}
 
+
+	public void variationCapacité(){
+		//TODO
+	}
+
 	/**
-	 *
 	 * Fonction de test pour les services.
-	 *
 	 * */
 	public static void main(String[] args) {
 		ServiceMedical service = new ServiceMedical("test", 20,   "faible", 10);
