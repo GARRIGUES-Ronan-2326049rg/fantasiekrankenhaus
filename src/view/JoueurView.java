@@ -12,8 +12,8 @@ public class JoueurView {
                 "Rappelez-vous : chaque décision compte et chaque monstre a sa propre spécificité. Bonne chance, Directeur !\n";
     }
 
-    public void afficheMonstre(Monstre monstre){
-        System.out.println("Le monstre est un : " + monstre.getType() + " et s'appelle : " + monstre.getNom());
-    }
+//    public void afficheMonstre(Monstre monstre){
+//        System.out.println("Le monstre est un : " + monstre.getType() + " et s'appelle : " + monstre.getNom());
+//    }
 
 }

@@ -37,26 +37,42 @@ public class MonstreFactory {
                 moral
         );
 
-        // donne une ou plusieurs maladies aléatoires
-        List<Maladie> maladies = ListeMaladies.getMaladies();
-        int nombreMaladies = random.nextInt(3) + 1; // Chaque monstre peut avoir entre 1 et 3 maladies
+        // Ajoute des maladies aléatoires
+        ajouterMaladiesAleatoires(monstre);
+        return monstre;
+    }
+
+    // Méthode privée pour ajouter des maladies aléatoires à un monstre
+    private static void ajouterMaladiesAleatoires(Monstre monstre) {
+        List<Maladie> maladiesDisponibles = ListeMaladies.getMaladies(); // Liste des maladies
+        int nombreMaladies = random.nextInt(2) + 1; // Entre 1 et 3 maladies
 
         for (int i = 0; i < nombreMaladies; i++) {
-            Maladie maladieAleatoire = maladies.get(random.nextInt(maladies.size()));
+            Maladie maladieAleatoire;
+            boolean maladieAjoutee;
 
-            // Ajuste le niveau actuel de la maladie de façon aléatoire
+            do {
+                maladieAleatoire = maladiesDisponibles.get(random.nextInt(maladiesDisponibles.size()));
+                Maladie finalMaladieAleatoire = maladieAleatoire;
+                maladieAjoutee = monstre.getListeMaladie().stream()
+                        .anyMatch(m -> m.getNomComplet().equals(finalMaladieAleatoire.getNomComplet()));
+            } while (maladieAjoutee); // Réessaye si la maladie est déjà présente
+
+            // Génère un niveau initial pour la maladie
             int niveauInitial = random.nextInt(maladieAleatoire.getNiveauMax() - 1) + 1;
+
+            // Crée une copie de la maladie avec le niveau
             Maladie maladieAvecNiveau = new Maladie(
                     maladieAleatoire.getNomComplet(),
                     maladieAleatoire.getNomAbrege(),
-                    maladieAleatoire.getNiveauActuel(),
+                    niveauInitial,
                     maladieAleatoire.getNiveauMax()
             );
 
-            // Ajouter la maladie au monstre
+            // Ajoute la maladie au monstre
             monstre.tomberMalade(maladieAvecNiveau);
-        }
+            }
 
-        return monstre;
+            return;
+        }
     }
-}

@@ -11,8 +11,10 @@ public class Monstre {
 	private short poids;
 	private short taille;
 	private int age;
-	private byte indicateurMoral = 100; // Représenté par un pourcentage
+	private byte indicateurMoral = 100;
 	private ArrayList<Maladie> listeMaladie = new ArrayList<>();
+	private boolean estMort = false;
+
 
 	public Monstre(String type, String nom, char sexe, short poids, short taille, int age, int indicateurMoral) {
 		this.type = type;
@@ -22,7 +24,6 @@ public class Monstre {
 		this.taille = taille;
 		this.age = age;
 		this.indicateurMoral = 100;
-	  //this.listeMaladie.add();
 	}
 
 	public String getType() {
@@ -82,6 +83,10 @@ public class Monstre {
 		this.pv = pv;
 	}
 
+	public boolean estMort() {
+		return this.estMort;
+	}
+
 	public void attendre() {
 		this.indicateurMoral -= 5;
 		if (this.indicateurMoral < 10) {
@@ -95,6 +100,51 @@ public class Monstre {
 
 	public String hurler() {
 		return "OSKOUUUUUUR";
+	}
+
+	// Évolution des maladies à chaque tour
+	public void evoluerMaladies() {
+		for (Maladie maladie : listeMaladie) {
+			// Augmente le niveau actuel de la maladie
+			int nouveauNiveau = Math.min(maladie.getNiveauMax(), maladie.getNiveauActuel() + 1);
+			maladie.setNiveauActuel(nouveauNiveau);
+
+			System.out.println("La maladie " + maladie.getNomComplet() + " a augmenté à " + nouveauNiveau + "/" + maladie.getNiveauMax());
+		}
+		// Vérifie si le monstre doit mourir après l'évolution
+		verifierMort();
+	}
+
+	// Vérifie si le monstre doit mourir
+	private void verifierMort() {
+		for (Maladie maladie : listeMaladie) {
+			if (maladie.getNiveauActuel() == maladie.getNiveauMax()) {
+				mourir(); // Le monstre meurt si une maladie atteint le niveau maximum
+				break;
+			}
+		}
+	}
+
+	// Action de mourir
+	private void mourir() {
+		this.estMort = true;
+		System.out.println("Le monstre " + this.nom + " est mort à cause de ses maladies !");
+	}
+
+	// Soigner une maladie spécifique
+	public void soignerMaladie(String nomMaladie) {
+		for (int i = 0; i < listeMaladie.size(); i++) {
+			Maladie maladie = listeMaladie.get(i);
+
+			if (maladie.getNomComplet().equalsIgnoreCase(nomMaladie)) {
+				// Retire la maladie de la liste
+				listeMaladie.remove(i);
+				System.out.println("La maladie " + maladie.getNomComplet() + " a été complètement soignée !");
+				return;
+			}
+		}
+
+		System.out.println("Aucune maladie correspondante trouvée pour " + nomMaladie + ".");
 	}
 
 	public String toString() {

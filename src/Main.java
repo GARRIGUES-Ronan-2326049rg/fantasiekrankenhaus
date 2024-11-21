@@ -17,16 +17,23 @@ public class Main {
 
 
         Monstre monstre1 = MonstreFactory.creerMonstreAleatoire();
-        Monstre monstre2 = MonstreFactory.creerMonstreAleatoire();
-        Monstre monstre3 = MonstreFactory.creerMonstreAleatoire();
 
 
         joueur.afficheRegle();
         System.out.println("Monstre 1 : " + monstre1);
-        System.out.println("Monstre 2 : " + monstre2);
-        System.out.println("Monstre 3 : " + monstre3);
 
-        joueur.afficheMonstre(monstre1);
+        monstre1.evoluerMaladies();
+        if (monstre1.estMort()) {
+            System.out.println("Le monstre est mort");
+        }
+
+        while (!monstre1.estMort()) {
+            joueur.soignerUneMaladie(monstre1);
+            monstre1.evoluerMaladies();
+            if (monstre1.estMort()) {
+                System.out.println("Le monstre est mort");
+            }
+        }
     }
 }
 
