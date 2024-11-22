@@ -14,13 +14,6 @@ public class JoueurView {
                 "Ces créatures, bien qu'effrayantes, ont besoin de vos soins pour se rétablir et éviter la catastrophe.\n" +
                 "Organisez les services, soignez les monstres et gérez les situations d'urgence avec sagesse.\n" +
                 "Rappelez-vous : chaque décision compte et chaque monstre a sa propre spécificité. Bonne chance, Directeur !\n";
-    public void presentationJeu(){
-        System.out.println( "Olalala, ne serai ce pas un nouveau dirigeant de service ??" +
-                "Qui souhaite reprendre en main cette hopital de monstre" +
-                "Il est fou, mais remarque il fou l'être " +
-                "Bienvenue, dans ce jeu vous devrais soigner le plus de patient possible et éviter tout problème" +
-                "bon courage");
-
     }
 
     public void demandeChoix(){
