@@ -13,7 +13,7 @@ public class Main {
         Ronan.setTaille((short)200);
         Ronan.setAge(10);
         Ronan.setIndicateurMoral((byte)100);
-        Ronan.setListeMaladie(new ArrayList());
+        Ronan.setListeMaladie(new ArrayList<>());
         Ronan.attendre();
         System.out.println(Ronan.hurler());
     }
