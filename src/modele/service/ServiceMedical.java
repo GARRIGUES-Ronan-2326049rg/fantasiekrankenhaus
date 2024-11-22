@@ -1,6 +1,7 @@
 package modele.service;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 import modele.Maladie;
@@ -135,50 +136,55 @@ public class ServiceMedical {
 	 * @version 1.0
 	 * */
 	public void variationBudget(){
-		if(this.budget.equals("Inexistant")){
-			if(this.budgetPred.equals("Faible")){
-				this.maxCreature /=8;
-				this.tauxPropagation *=8;
-			}else if(this.budgetPred.equals("Insuffisant")){
-				this.maxCreature /= 4;
-				this.tauxPropagation *=4;
-			}else if(this.budgetPred.equals("Médiocre")){
-				this.maxCreature /= 2;
-				this.tauxPropagation *=2;
-			}
-		} else if (this.budget.equals("Médiocre")) {
-			if(this.budgetPred.equals("Faible")){
-				this.maxCreature /= 4;
-				this.tauxPropagation *=4;
-			}else if(this.budgetPred.equals("Insuffisant")){
-				this.maxCreature /= 2;
-				this.tauxPropagation *=2;
-			}else if(this.budgetPred.equals("Inexistant")){
-				this.maxCreature *= 2;
-				this.tauxPropagation /=2;
-			}
-		} else if (this.budget.equals("Insuffisant")) {
-			if(this.budgetPred.equals("Faible")){
-				this.maxCreature /= 2;
-				this.tauxPropagation *=2;
-			}else if(this.budgetPred.equals("Médiocre")){
-				this.maxCreature *= 2;
-				this.tauxPropagation /=2;
-			}else if(this.budgetPred.equals("Inexistant")){
-				this.maxCreature *= 4;
-				this.tauxPropagation /=4;
-			}
-		} else if (this.budget.equals("Faible")) {
-			if(this.budgetPred.equals("Insuffisant")){
-				this.maxCreature *= 2;
-				this.tauxPropagation /=2;
-			}else if(this.budgetPred.equals("Médiocre")){
-				this.maxCreature *= 4;
-				this.tauxPropagation /=4;
-			}else if(this.budgetPred.equals("Inexistant")){
-				this.maxCreature *= 8;
-				this.tauxPropagation /=8;
-			}
-		}
+        switch (this.budget.toLowerCase()) {
+            case "Inexistant" -> {
+                if (this.budgetPred.equals("Faible")) {
+                    this.maxCreature /= 8;
+                    this.tauxPropagation *= 8;
+                } else if (this.budgetPred.equals("Insuffisant")) {
+                    this.maxCreature /= 4;
+                    this.tauxPropagation *= 4;
+                } else if (this.budgetPred.equals("Médiocre")) {
+                    this.maxCreature /= 2;
+                    this.tauxPropagation *= 2;
+                }
+            }
+            case "Médiocre" -> {
+                if (this.budgetPred.equals("Faible")) {
+                    this.maxCreature /= 4;
+                    this.tauxPropagation *= 4;
+                } else if (this.budgetPred.equals("Insuffisant")) {
+                    this.maxCreature /= 2;
+                    this.tauxPropagation *= 2;
+                } else if (this.budgetPred.equals("Inexistant")) {
+                    this.maxCreature *= 2;
+                    this.tauxPropagation /= 2;
+                }
+            }
+            case "Insuffisant" -> {
+                if (this.budgetPred.equals("Faible")) {
+                    this.maxCreature /= 2;
+                    this.tauxPropagation *= 2;
+                } else if (this.budgetPred.equals("Médiocre")) {
+                    this.maxCreature *= 2;
+                    this.tauxPropagation /= 2;
+                } else if (this.budgetPred.equals("Inexistant")) {
+                    this.maxCreature *= 4;
+                    this.tauxPropagation /= 4;
+                }
+            }
+            case "Faible" -> {
+                if (this.budgetPred.equals("Insuffisant")) {
+                    this.maxCreature *= 2;
+                    this.tauxPropagation /= 2;
+                } else if (this.budgetPred.equals("Médiocre")) {
+                    this.maxCreature *= 4;
+                    this.tauxPropagation /= 4;
+                } else if (this.budgetPred.equals("Inexistant")) {
+                    this.maxCreature *= 8;
+                    this.tauxPropagation /= 8;
+                }
+            }
+        }
 	}
 }
