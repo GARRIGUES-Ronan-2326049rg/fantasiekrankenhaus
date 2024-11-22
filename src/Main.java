@@ -7,14 +7,24 @@ import modele.service.*;
 import java.util.ArrayList;
 
 public class Main {
+    private boolean enJeu = true;
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
        Hopital hopital = new Hopital();
        hopital.initialisationMedecin();
        hopital.initialisationService();
+       int jour = 1;
 
        JoueurController joueur = new JoueurController();
        HopitalController hopitalController = new HopitalController();
+       joueur.afficheRegle();
+
+       while (enJeu) {
+
+
+
+
+       }
 
     }
 }
