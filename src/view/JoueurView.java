@@ -35,8 +35,8 @@ public class JoueurView {
         System.out.println("Pour ce médecin voulez vous : \n" +
                 "Examiner un service ? Ne retire pas d'action. Tapez Examiner\n" +
                 "Soigner un patient ? Tapez Soigner\n" +
-                "Réviser le budget ? Tapez Réviser\n" +
-                "Transférer le patient ? Tapez Tranférer\n");
+                "Réviser le budget ? Tapez Reviser\n" +
+                "Transférer le patient ? Tapez Tranferer\n");
     }
 
 }

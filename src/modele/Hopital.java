@@ -47,6 +47,7 @@ public class Hopital {
 		Medecin medecin5 = new Medecin("Dr Harleen Quinzel", 'F', (byte) 19);
 		listeMedecin.add(medecin5);
 		Medecin medecin6 = new Medecin("Dr Samantha Grimm", 'F', (byte) 30);
+		listeMedecin.add(medecin6);
 
 	}
 

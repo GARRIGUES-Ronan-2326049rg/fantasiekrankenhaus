@@ -20,10 +20,10 @@ public class JoueurController {
         return scan.nextLine();
     }
 
-    public String choixTourChoixMedecin(ArrayList<Medecin> listeMedecin){
+    public int choixTourChoixMedecin(ArrayList<Medecin> listeMedecin){
         this.view.demandeChoixMedecin(listeMedecin);
         Scanner scan = new Scanner(System.in);
-        return scan.nextLine();
+        return scan.nextInt();
     }
 
     public String demandeAction(){
