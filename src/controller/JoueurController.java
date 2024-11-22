@@ -4,6 +4,9 @@ import modele.monstre.MonstreFactory;
 import view.JoueurView;
 import java.util.Scanner;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class JoueurController {
 
    private Scanner sc = new Scanner(System.in);
@@ -11,6 +14,16 @@ public class JoueurController {
     public void afficheRegle(){
         JoueurView view = new JoueurView();
         System.out.println(view.presentationJeu());
+    JoueurView view = new JoueurView();
+
+    public void afficheRegle(){
+        this.view.presentationJeu();
+    }
+
+    public String choixTour(){
+        this.view.demandeChoix();
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
     }
 
 
@@ -33,6 +46,20 @@ public class JoueurController {
             System.out.println("Entrée invalide. Veuillez entrer un numéro.");
             return;
         }
+
+    public int choixTourChoixMedecin(ArrayList<Medecin> listeMedecin){
+        this.view.demandeChoixMedecin(listeMedecin);
+        Scanner scan = new Scanner(System.in);
+        return scan.nextInt();
+    }
+
+    public String demandeAction(){
+        this.view.demandeAction();
+        Scanner scan = new Scanner(System.in);
+        return scan.nextLine();
+    }
+
+
 
         if (choix == 0) {
             System.out.println("Vous avez décidé de ne pas soigner de maladie pour ce tour.");

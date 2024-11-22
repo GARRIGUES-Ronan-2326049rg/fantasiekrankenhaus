@@ -1,5 +1,10 @@
 package modele;
 import modele.monstre.*;
+import modele.*;
+import modele.service.ServiceMedical;
+
+import java.security.Provider;
+import java.util.Random;
 
 public class Medecin {
 	private String nom;
@@ -40,8 +45,33 @@ public class Medecin {
 		return actionPossible;
 	}
 
-	public void transfererPatient(Monstre monstre){
+	public void transfererPatient(Monstre monstre, ServiceMedical serviceDep, ServiceMedical serviceArr){
 
-		actionPossible = false;
+		if(serviceDep.getListeCreature().contains(monstre) && !serviceArr.getListeCreature().contains(monstre)){
+			serviceArr.getListeCreature().add(monstre);
+			serviceDep.getListeCreature().remove(monstre);
+			actionPossible = false;
+		}
+
 	}
+
+	public void examineService(ServiceMedical service){
+		//todo
+	}
+
+	public void soignePatient(Monstre monstre){
+		if (!monstre.getListeMaladie().isEmpty()){
+			Random nombre = new Random();
+			monstre.getListeMaladie().remove(nombre.nextInt(monstre.getListeMaladie().size()));
+			if (monstre.getListeMaladie().isEmpty()){
+				// Supprimer le patient
+			}
+			actionPossible = false;
+		}
+	}
+
+	public void reviseBudget(ServiceMedical service){
+		// Todo
+	}
+
 }
