@@ -5,57 +5,112 @@ import modele.*;
 import modele.service.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
-    private static boolean enJeu = true;
+    private static final boolean enJeu = true;
 
     public static void main(String[] args) {
        Hopital hopital = new Hopital();
        hopital.initialisationMedecin();
        hopital.initialisationService();
-       int jour = 1;
+       JoueurController joueurControlleur = new JoueurController();
 
-       JoueurController joueur = new JoueurController();
-       HopitalController hopitalController = new HopitalController();
-       joueur.afficheRegle();
+       Scanner sc = new Scanner(System.in);
 
-       while (enJeu) {
-           System.out.println("Vous êtes au jour : " + jour);
+        // Génération d'un monstre aléatoire
+        Monstre monstre = MonstreFactory.creerMonstreAleatoire();
+        joueurControlleur.afficheRegle();
+        System.out.println(monstre);
 
-           // Partie sur le jeu du joueur
+        int tours = 0;
 
-           String choixTour = joueur.choixTour();
-           if (choixTour.equals("fin")) { enJeu = false;}
-           else if (choixTour.equals("agir")){
-               int choixTourMedecin = joueur.choixTourChoixMedecin(hopital.getListeMedecin());
-               Medecin medecinTour = hopital.getListeMedecin().get(choixTourMedecin);
-               String action = joueur.demandeAction();
+        while (true) {
+            tours++;
+            System.out.println("\n--- Tour " + tours + " ---");
+            System.out.println("État actuel du monstre :");
+            System.out.println(monstre);
 
-               switch (action) {
-                   case "Examiner":
-                       //
-                       break;
-                   case "Soigner":
+            // Vérification de la mort du monstre
+            if (monstre.estMort()) {
+                System.out.println("Le monstre " + monstre.getNom() + " est mort. Fin de la partie !");
+                break;
+            }
 
-                       break;
+            // Options pour le joueur
+            System.out.println("Que voulez-vous faire ?");
+            System.out.println("1. Soigner une maladie");
+            System.out.println("2. Attendre un tour (aucune action)");
+            System.out.println("3. Quitter le jeu");
 
-                   case "Réviser":
-                       break;
+            int choix;
+            try {
+                choix = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrée invalide. Veuillez entrer un numéro entre 1 et 3.");
+                continue;
+            }
 
-                   case "Transferer":
+            switch (choix) {
+                case 1:
+                    // Soigner une maladie avec 70 % de chance de succès
+                    JoueurController.soignerUneMaladie(monstre);
+                    break;
+                case 2:
+                    // Attente, les maladies évoluent
+                    monstre.evoluerMaladies();
+                    monstre.attendre();
+                    break;
+                case 3:
+                    System.out.println("Merci d'avoir joué ! À bientôt.");
+                    return;
+                default:
+                    System.out.println("Choix invalide. Veuillez entrer un numéro entre 1 et 3.");
+            }
+        }
 
-                       break;
-               }
+        sc.close();
+    }
 
 
-           }
-           else{
-               System.out.println("Incorrect choix");
-           }
+
+//       while (enJeu) {
+//           System.out.println("Vous êtes au jour : " + jour);
+//
+//           // Partie sur le jeu du joueur
+//
+//           String choixTour = joueur.choixTour();
+//           if (choixTour.equals("fin")) { enJeu = false;}
+//           else if (choixTour.equals("agir")){
+//               int choixTourMedecin = joueur.choixTourChoixMedecin(hopital.getListeMedecin());
+//               Medecin medecinTour = hopital.getListeMedecin().get(choixTourMedecin);
+//               String action = joueur.demandeAction();
+//
+//               switch (action) {
+//                   case "Examiner":
+//                       //
+//                       break;
+//                   case "Soigner":
+//
+//                       break;
+//
+//                   case "Réviser":
+//                       break;
+//
+//                   case "Transferer":
+//
+//                       break;
+//               }
+//
+//
+//           }
+//           else{
+//               System.out.println("Incorrect choix");
+//           }
+
+
 
 
 
        }
 
-    }
-}

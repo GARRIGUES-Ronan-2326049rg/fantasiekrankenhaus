@@ -19,7 +19,7 @@ public class JoueurView {
     public void demandeChoix(){
         System.out.println( "Voulez vous :\n" +
                 "Agir sur les médecins : 'agir'\n" +
-                "Finir le jeu ? : 'fin'\n");
+                "Finir le jeu ? : 'finir'\n");
     }
 
     public void demandeChoixMedecin(ArrayList<Medecin> listeMedecin){
