@@ -1,13 +1,47 @@
 package controller;
-
-import view.HopitalView;
+import modele.monstre.Monstre;
+import modele.monstre.MonstreFactory;
 import view.JoueurView;
+import java.util.Scanner;
 
 public class JoueurController {
 
+   private Scanner sc = new Scanner(System.in);
+
     public void afficheRegle(){
         JoueurView view = new JoueurView();
-        view.presentationJeu();
+        System.out.println(view.presentationJeu());
     }
 
+
+    public void soignerUneMaladie(Monstre monstre) {
+        if (monstre.getListeMaladie().isEmpty()) {
+            System.out.println("Le monstre " + monstre.getNom() + " n'a pas de maladies à soigner.");
+            return;
+        }
+
+        System.out.println("Voici la liste des maladies du monstre " + monstre.getNom() + " :");
+        for (int i = 0; i < monstre.getListeMaladie().size(); i++) {
+            System.out.println((i + 1) + ". " + monstre.getListeMaladie().get(i));
+        }
+
+        System.out.println("Choisissez un numéro pour soigner une maladie ou entrez 0 pour passer :");
+        int choix;
+        try {
+            choix = Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Entrée invalide. Veuillez entrer un numéro.");
+            return;
+        }
+
+        if (choix == 0) {
+            System.out.println("Vous avez décidé de ne pas soigner de maladie pour ce tour.");
+        } else if (choix > 0 && choix <= monstre.getListeMaladie().size()) {
+            String nomMaladie = monstre.getListeMaladie().get(choix - 1).getNomComplet();
+            monstre.soignerMaladie(nomMaladie);
+        } else {
+            System.out.println("Numéro invalide. Aucun soin effectué.");
+        }
+
+}
 }

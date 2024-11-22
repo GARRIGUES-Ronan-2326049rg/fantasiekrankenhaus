@@ -1,22 +1,26 @@
 package modele.service;
 
-public class Crypte extends ServiceMedical {
-    private int ventilation;
-    private int temperature;
+public class Crypte extends ServiceMedical{
+    public int ventilation;
+    public int temperature;
 
-    public Crypte(String nom, int superficie, String budget, int max) {
-        super(nom, superficie, budget, max);
+    public Crypte(String nom, int superficie, String budget) {
+        super(nom, superficie, budget);
     }
 
-    public int getTempérature() {
-        return this.temperature;
+    public Crypte() {
+
+    }
+
+    public int getTemperature() {
+        return temperature;
     }
 
     public int getVentilation() {
-        return this.ventilation;
+        return ventilation;
     }
 
-    public void setTempérature(int temperature) {
+    public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
 
@@ -26,7 +30,7 @@ public class Crypte extends ServiceMedical {
 
     @Override
     public String getBudget() {
-        return super.getBudget() + ", Ventilation = " + this.ventilation + ", Température = " + this.temperature;
+        return "Budget = " +super.getBudget() + ", Ventilation = "+ventilation
+                + ", Température = "+temperature;
     }
-
 }
