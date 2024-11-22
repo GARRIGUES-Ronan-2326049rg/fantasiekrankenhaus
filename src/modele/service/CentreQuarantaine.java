@@ -15,8 +15,9 @@ public class CentreQuarantaine extends ServiceMedical {
         this.isolation = isolation;
     }
 
+    @Override
     public String getBudget() {
-        String var10000 = super.getBudget();
-        return "Budget = " + var10000 + ", Isolation = " + this.isolation;
+        return super.getBudget() + ", Isolation = " + this.isolation;
     }
+
 }

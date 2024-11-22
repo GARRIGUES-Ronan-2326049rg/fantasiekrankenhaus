@@ -1,8 +1,8 @@
 package modele.service;
 
 public class Crypte extends ServiceMedical {
-    public int ventilation;
-    public int temperature;
+    private int ventilation;
+    private int temperature;
 
     public Crypte(String nom, int superficie, String budget, int max) {
         super(nom, superficie, budget, max);
@@ -24,8 +24,9 @@ public class Crypte extends ServiceMedical {
         this.ventilation = ventilation;
     }
 
+    @Override
     public String getBudget() {
-        String var10000 = super.getBudget();
-        return "Budget = " + var10000 + ", Ventilation = " + this.ventilation + ", Température = " + this.temperature;
+        return super.getBudget() + ", Ventilation = " + this.ventilation + ", Température = " + this.temperature;
     }
+
 }

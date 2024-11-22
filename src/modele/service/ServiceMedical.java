@@ -11,9 +11,10 @@ public class ServiceMedical {
 	private int superficie;
 	private int maxCreature;
 	private int nombreCreature;
-	private int tauxPropagation = 0;
+	private int tauxPropagation = 1;
 	private ArrayList<Monstre> listeCreature;
 	private String budget;
+	private String budgetPred;
 
 	public ServiceMedical(String nom, int superficie, String budget, int max) {
 		this.nom = nom;
@@ -48,6 +49,14 @@ public class ServiceMedical {
 		this.nombreCreature = nombreCreature;
 	}
 
+	public int getMaxCreature() {
+		return maxCreature;
+	}
+
+	public void setMaxCreature(int maxCreature) {
+		this.maxCreature = maxCreature;
+	}
+
 	public ArrayList<Monstre> getListeCreature() {
 		return this.listeCreature;
 	}
@@ -62,7 +71,24 @@ public class ServiceMedical {
 	}
 
 	public void setBudget(String budget) {
+		this.budgetPred = this.budget;
 		this.budget = budget;
+	}
+
+	public String getBudgetPred() {
+		return budgetPred;
+	}
+
+	public void setBudgetPred(String budgetPred) {
+		this.budgetPred = budgetPred;
+	}
+
+	public int getTauxPropagation() {
+		return tauxPropagation;
+	}
+
+	public void setTauxPropagation(int tauxPropagation) {
+		this.tauxPropagation = tauxPropagation;
 	}
 
 	/**
@@ -102,21 +128,58 @@ public class ServiceMedical {
 		}
 	}
 
+	/**
+	 * Modifie le nombre maximum de créatures et le taux de propagation des maladies en
+	 * fonction de l'évolution du budget du service.
+	 *
+	 * @version 1.0
+	 * */
 	public void variationBudget(){
 		if(this.budget.equals("Inexistant")){
-            this.maxCreature /= 4;
-			this.tauxPropagation *=4;
+			if(this.budgetPred.equals("Faible")){
+				this.maxCreature /=8;
+				this.tauxPropagation *=8;
+			}else if(this.budgetPred.equals("Insuffisant")){
+				this.maxCreature /= 4;
+				this.tauxPropagation *=4;
+			}else if(this.budgetPred.equals("Médiocre")){
+				this.maxCreature /= 2;
+				this.tauxPropagation *=2;
+			}
 		} else if (this.budget.equals("Médiocre")) {
-			this.maxCreature /= 3;
-			this.tauxPropagation *=3;
+			if(this.budgetPred.equals("Faible")){
+				this.maxCreature /= 4;
+				this.tauxPropagation *=4;
+			}else if(this.budgetPred.equals("Insuffisant")){
+				this.maxCreature /= 2;
+				this.tauxPropagation *=2;
+			}else if(this.budgetPred.equals("Inexistant")){
+				this.maxCreature *= 2;
+				this.tauxPropagation /=2;
+			}
 		} else if (this.budget.equals("Insuffisant")) {
-			this.maxCreature /= 2;
-			this.tauxPropagation *=2;
+			if(this.budgetPred.equals("Faible")){
+				this.maxCreature /= 2;
+				this.tauxPropagation *=2;
+			}else if(this.budgetPred.equals("Médiocre")){
+				this.maxCreature *= 2;
+				this.tauxPropagation /=2;
+			}else if(this.budgetPred.equals("Inexistant")){
+				this.maxCreature *= 4;
+				this.tauxPropagation /=4;
+			}
 		} else if (this.budget.equals("Faible")) {
-			this.maxCreature /= 1;
-			this.tauxPropagation *= 1;
+			if(this.budgetPred.equals("Insuffisant")){
+				this.maxCreature *= 2;
+				this.tauxPropagation /=2;
+			}else if(this.budgetPred.equals("Médiocre")){
+				this.maxCreature *= 4;
+				this.tauxPropagation /=4;
+			}else if(this.budgetPred.equals("Inexistant")){
+				this.maxCreature *= 8;
+				this.tauxPropagation /=8;
+			}
 		}
-		// Les valeurs seront à changer ultérieurement.
 	}
 
 	/**
