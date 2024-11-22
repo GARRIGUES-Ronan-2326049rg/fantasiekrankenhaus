@@ -57,34 +57,34 @@ public class Hopital {
 	}
 
 	public void initialisationService(){
-		ServiceMedical serviceVampire = new ServiceMedical("Vampire", 1000, "Insuffisant");
+		ServiceMedical serviceVampire = new ServiceMedical("Vampire", 1000, "Insuffisant", 100);
 		listeService.add(serviceVampire);
 
-		ServiceMedical serviceOrque = new ServiceMedical("Orque", 2000, "Faible");
+		ServiceMedical serviceOrque = new ServiceMedical("Orque", 2000, "Faible", 100);
 		listeService.add(serviceOrque);
 
-		ServiceMedical serviceLycanthrope = new ServiceMedical("Lycanthrope", 1500, "Insuffisant");
+		ServiceMedical serviceLycanthrope = new ServiceMedical("Lycanthrope", 1500, "Insuffisant", 100);
 		listeService.add(serviceLycanthrope);
 
-		ServiceMedical serviceElfe = new ServiceMedical("Elfe",900, "Faible");
+		ServiceMedical serviceElfe = new ServiceMedical("Elfe",900, "Faible", 100);
 		listeService.add(serviceElfe);
 
-		ServiceMedical serviceNain = new ServiceMedical("Nain", 100, "Insuffisant");
+		ServiceMedical serviceNain = new ServiceMedical("Nain", 100, "Insuffisant", 100);
 		listeService.add(serviceNain);
 
-		ServiceMedical serviceZombie = new ServiceMedical("Zombie", 1500, "Mediocre");
+		ServiceMedical serviceZombie = new ServiceMedical("Zombie", 1500, "Mediocre", 100);
 		listeService.add(serviceZombie);
 
-		ServiceMedical serviceReptilien = new ServiceMedical("Reptilien", 700, "Insuffisant");
+		ServiceMedical serviceReptilien = new ServiceMedical("Reptilien", 700, "Insuffisant", 100);
 		listeService.add(serviceReptilien);
 
-		ServiceMedical serviceHommeBete = new ServiceMedical("Homme bete", 1700, "Inexistant");
+		ServiceMedical serviceHommeBete = new ServiceMedical("Homme bete", 1700, "Inexistant", 100);
 		listeService.add(serviceHommeBete);
 
-		Crypte crypte = new Crypte("Crypte", 870, "mediocre");
+		Crypte crypte = new Crypte("Crypte", 870, "mediocre", 100);
 		listeService.add(crypte);
 
-		CentreQuarantaine centreQuarantaine = new CentreQuarantaine("Centre 40", 439, "Faible");
+		CentreQuarantaine centreQuarantaine = new CentreQuarantaine("Centre 40", 439, "Faible", 100);
 	}
 
 	public void nouvelleJournee(){

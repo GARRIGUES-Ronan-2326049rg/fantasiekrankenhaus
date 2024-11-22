@@ -7,10 +7,6 @@ public class CentreQuarantaine extends ServiceMedical {
         super(nom, superficie, budget, max);
     }
 
-    public CentreQuarantaine() {
-
-    }
-
     public int getIsolation() {
         return this.isolation;
     }
