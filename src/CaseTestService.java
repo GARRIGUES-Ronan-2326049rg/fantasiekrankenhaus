@@ -3,9 +3,11 @@ import modele.monstre.Monstre;
 import modele.service.CentreQuarantaine;
 import modele.service.Crypte;
 import modele.service.ServiceMedical;
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CaseTestService {
     private ServiceMedical service;
@@ -40,14 +42,14 @@ public class CaseTestService {
 
     @Test
     void testListVide() {
-        Assertions.assertTrue(this.service.getListeCreature().isEmpty());
+        assertTrue(this.service.getListeCreature().isEmpty());
     }
 
     @Test
     void testAjouterPatientSiListeVide() {
         if (this.service.getListeCreature().isEmpty()) {
             this.service.ajouterPatient(new Monstre("machin", "machin", 'm',(short) 0, (short) 0, 0, 0));
-            Assertions.assertTrue(this.service.getListeCreature().size() == 1);
+            assertTrue(this.service.getListeCreature().size() == 1);
         }
 
     }
@@ -63,7 +65,7 @@ public class CaseTestService {
             }
         }
 
-        Assertions.assertTrue(this.service.getListeCreature().size() == 2);
+        assertTrue(this.service.getListeCreature().size() == 2);
     }
 
     @Test
@@ -71,7 +73,7 @@ public class CaseTestService {
         this.service.setListeCreature(this.listeMaxMonstre);
         Monstre monstre = new Monstre("toto", "toto", 'm', (short) 0, (short) 0, 0, 0);
         this.service.ajouterPatient(monstre);
-        Assertions.assertTrue(!this.service.getListeCreature().contains(monstre));
+        assertTrue(!this.service.getListeCreature().contains(monstre));
     }
 
     @Test
@@ -80,19 +82,18 @@ public class CaseTestService {
         this.listeMonstre.add(monstre);
         this.service.setListeCreature(this.listeMonstre);
         this.service.retirerPatient(monstre);
-        Assertions.assertTrue(!this.service.getListeCreature().contains(monstre));
+        assertTrue(!this.service.getListeCreature().contains(monstre));
     }
 
     @Test
-    void testAncienBudget() {
-        this.service.setBudget("Inexistant");
-        Assertions.assertTrue(this.service.getBudgetPred().equals("Faible"));
+    void testAncienBudget(){
+        service.setBudget("Inexistant");
+        assertTrue(service.getBudgetPred().equals("Faible"));
     }
-
     @Test
-    void testVariationBudget() {
-        this.service.setBudget("Inexistant");
-        this.service.variationBudget();
-        Assertions.assertTrue(this.service.getTauxPropagation() == 8 && this.service.getMaxCreature() == 1);
+    void testVariationBudget(){
+        service.setBudget("Inexistant");
+        service.variationBudget();
+        assertTrue(service.getTauxPropagation() == 8 && service.getMaxCreature() == 10/8);
     }
 }
