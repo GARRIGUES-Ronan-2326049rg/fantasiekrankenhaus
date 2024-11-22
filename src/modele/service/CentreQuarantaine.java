@@ -1,10 +1,11 @@
 package modele.service;
 
 public class CentreQuarantaine extends ServiceMedical {
-    private int isolation;
+    private int isolation; //Simule un pourcentage.
 
     public CentreQuarantaine(String nom, int superficie, String budget, int max) {
         super(nom, superficie, budget, max);
+        isolation = 100;
     }
 
     public int getIsolation() {
@@ -17,7 +18,7 @@ public class CentreQuarantaine extends ServiceMedical {
 
     @Override
     public String getBudget() {
-        return super.getBudget() + ", Isolation = " + this.isolation;
+        return super.getBudget() + ", Isolation = " + this.isolation + "%";
     }
 
 }

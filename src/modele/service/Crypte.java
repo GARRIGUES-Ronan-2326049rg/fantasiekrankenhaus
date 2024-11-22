@@ -1,14 +1,16 @@
 package modele.service;
 
 public class Crypte extends ServiceMedical {
-    private int ventilation;
-    private int temperature;
+    private int ventilation; //Simule un pourcentage.
+    private int temperature; // En °C.
 
     public Crypte(String nom, int superficie, String budget, int max) {
         super(nom, superficie, budget, max);
+        this.ventilation = 100;
+        this.temperature = 15;
     }
 
-    public int getTempérature() {
+    public int getTemperature() {
         return this.temperature;
     }
 
@@ -16,7 +18,7 @@ public class Crypte extends ServiceMedical {
         return this.ventilation;
     }
 
-    public void setTempérature(int temperature) {
+    public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
 
@@ -26,6 +28,6 @@ public class Crypte extends ServiceMedical {
 
     @Override
     public String getBudget() {
-        return super.getBudget() + ", Ventilation = " + this.ventilation + ", Température = " + this.temperature;
+        return super.getBudget() + ", Ventilation = " + this.ventilation + "%, Température = " + this.temperature + "%";
     }
 }
