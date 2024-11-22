@@ -11,6 +11,6 @@ public class Elfe extends Monstre{
     }
 
     public Elfe(String nom) {
-        super(nom);
+        super("Elfe", "Legolas", 'M', (short) 50, (short) 180, 100, (byte) 100);
     }
 }

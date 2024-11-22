@@ -7,9 +7,9 @@ import modele.service.*;
 import java.util.ArrayList;
 
 public class Main {
-    private boolean enJeu = true;
+    private static boolean enJeu = true;
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
        Hopital hopital = new Hopital();
        hopital.initialisationMedecin();
        hopital.initialisationService();
@@ -25,7 +25,7 @@ public class Main {
            // Partie sur le jeu du joueur
 
            String choixTour = joueur.choixTour();
-           if (choixTour.equals("fin")) { this.enJeu = false;}
+           if (choixTour.equals("fin")) { enJeu = false;}
            else if (choixTour.equals("agir")){
                int choixTourMedecin = joueur.choixTourChoixMedecin(hopital.getListeMedecin());
                Medecin medecinTour = hopital.getListeMedecin().get(choixTourMedecin);
