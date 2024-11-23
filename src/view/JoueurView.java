@@ -3,6 +3,7 @@ package view;
 import modele.monstre.Monstre;
 
 import modele.Medecin;
+import modele.service.ServiceMedical;
 
 import java.util.ArrayList;
 
@@ -40,4 +41,22 @@ public class JoueurView {
                 "Transférer le patient ? Tapez Tranferer\n");
     }
 
+    public void choisirService(ArrayList<ServiceMedical> listeService) {
+        System.out.println("Sur quel service voulait vous intervenir ? Tapez son nom \n");
+        for (ServiceMedical serviceMedical : listeService) {
+            System.out.println(serviceMedical.getNom() + "\n");
+        }
+
+    }
+
+    public void choisirMonstre(ArrayList<Monstre> listeCreature) {
+        System.out.println("Sur quel monstre voulait vous intervenir ? Tapez son nom \n");
+        for (Monstre monstre : listeCreature) {
+            System.out.println(monstre.getNom() + "\n");
+        }
+    }
+
+    public void demandeBudget() {
+        System.out.println("Quel budget : ");
+    }
 }
