@@ -13,12 +13,25 @@ public class CentreQuarantaine extends ServiceMedical {
     }
 
     public void setIsolation(int isolation) {
-        this.isolation = isolation;
+        if(isolation <= 100) this.isolation = isolation;
+    }
+
+    public void reparerIsolation(){
+        if(this.isolation <= 75 && !super.getBudget().equals("Inexistant")){
+            this.isolation += 25;
+            if(super.getBudget().equals("Faible")){
+                setBudget("Insuffisant");
+            }else if(super.getBudget().equals("Insuffisant")){
+                setBudget("Médiocre");
+            }else if(super.getBudget().equals("Médiocre")){
+                setBudget("Inexistant");
+            }
+        }
     }
 
     @Override
     public String getBudget() {
-        return super.getBudget() + ", Isolation = " + this.isolation + "%";
+        return "Budget = " + super.getBudget() + ", Isolation = " + this.isolation + "%";
     }
 
 }

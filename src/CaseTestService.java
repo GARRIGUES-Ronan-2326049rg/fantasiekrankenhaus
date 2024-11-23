@@ -96,4 +96,24 @@ public class CaseTestService {
         service.variationBudget();
         assertTrue(service.getTauxPropagation() == 8 && service.getMaxCreature() == 10/8);
     }
+
+    @Test
+    void testReparerIsolation(){
+        centreQuarantaine.setIsolation(50);
+        centreQuarantaine.reparerIsolation();
+        assertTrue(centreQuarantaine.getBudget().equals("Budget = Insuffisant, Isolation = 75%")
+                && centreQuarantaine.getIsolation() == 75);
+    }
+
+    @Test
+    void testVariationBudgetCrypteSiTempInf10(){
+        crypte.setVentilation(50);
+        crypte.reparerVentilation();
+
+        crypte.setTemperature(10);
+        crypte.variationBudget();
+        assertTrue(crypte.getVentilation() == 75 && crypte.getMaxCreature() == 10/2
+                    && crypte.getTauxPropagation() == 2*2);
+    }
+
 }
