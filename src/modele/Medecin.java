@@ -56,7 +56,7 @@ public class Medecin {
 	}
 
 	public void examineService(ServiceMedical service){
-		//todo
+		actionPossible = false;
 	}
 
 	public void soignePatient(Monstre monstre){
@@ -70,8 +70,9 @@ public class Medecin {
 		}
 	}
 
-	public void reviseBudget(ServiceMedical service){
-		// Todo
+	public void reviseBudget(ServiceMedical service, String valeur){
+		//service.setBudget(valeur);
+		actionPossible = false;
 	}
 
 }

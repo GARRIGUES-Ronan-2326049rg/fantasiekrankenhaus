@@ -2,6 +2,7 @@ package modele.monstre;
 import modele.Maladie;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Monstre {
 	private String type;
@@ -104,15 +105,32 @@ public class Monstre {
 
 	// Évolution des maladies à chaque tour
 	public void evoluerMaladies() {
-		for (Maladie maladie : listeMaladie) {
-			// Augmente le niveau actuel de la maladie
-			int nouveauNiveau = Math.min(maladie.getNiveauMax(), maladie.getNiveauActuel() + 1);
-			maladie.setNiveauActuel(nouveauNiveau);
+		Random random = new Random();
 
-			System.out.println("La maladie " + maladie.getNomComplet() + " a augmenté à " + nouveauNiveau + "/" + maladie.getNiveauMax());
+		if (listeMaladie.isEmpty()) {
+			// Si le monstre est guéri, il y a 10% de chance qu'il attrape de nouvelles maladies
+			int chance = random.nextInt(100); // Nombre entre 0 et 99
+			if (chance < 10) { // 10% de chance
+				System.out.println(nom + " a été guéri mais contracte de nouvelles maladies !");
+				MonstreFactory.ajouterMaladiesAleatoires(this);
+			} else {
+				System.out.println(nom + " est en pleine forme et reste en bonne santé !");
+			}
+			return;
 		}
-		// Vérifie si le monstre doit mourir après l'évolution
-		verifierMort();
+
+		// Les maladies progressent si elles existent
+		System.out.println("Les maladies de " + nom + " évoluent...");
+		for (Maladie maladie : listeMaladie) {
+			maladie.setNiveauActuel(maladie.getNiveauActuel() + 1);
+
+			// Si une maladie atteint son niveau max, le monstre meurt
+			if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
+				System.out.println(nom + " est mort à cause de " + maladie.getNomComplet() + ".");
+				this.pv = 0;
+				break;
+			}
+		}
 	}
 
 	// Vérifie si le monstre doit mourir

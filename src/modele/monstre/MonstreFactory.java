@@ -18,6 +18,7 @@ public class MonstreFactory {
 
     private static final Random random = new Random();
 
+
     // Méthode pour créer un monstre aléatoire
     public static Monstre creerMonstreAleatoire() {
         char sexe = random.nextBoolean() ? 'M' : 'F'; // Sexe random
@@ -43,7 +44,7 @@ public class MonstreFactory {
     }
 
     // Méthode privée pour ajouter des maladies aléatoires à un monstre
-    private static void ajouterMaladiesAleatoires(Monstre monstre) {
+    static void ajouterMaladiesAleatoires(Monstre monstre) {
         List<Maladie> maladiesDisponibles = ListeMaladies.getMaladies(); // Liste des maladies
         int nombreMaladies = random.nextInt(2) + 1; // Entre 1 et 3 maladies
 
