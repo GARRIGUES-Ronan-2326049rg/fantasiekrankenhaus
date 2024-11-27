@@ -56,21 +56,25 @@ public class HopitalController {
             System.out.println("Médecin invalide.");
             return;
         }
+
         Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin - 1);
-        String action = joueur.demandeAction();
-        switch (action.toLowerCase()) {
-            case "soigner":
-                soigner(medecinChoisi);
-                break;
-            case "budget":
-                reviserBudget(medecinChoisi);
-                break;
-            case "transfert":
-                transfererPatient(medecinChoisi);
-                break;
-            default:
-                System.out.println("Action invalide.");
+        while (medecinChoisi.getActionPossible() != 0) {
+            String action = joueur.demandeAction();
+            switch (action.toLowerCase()) {
+                case "soigner":
+                    soigner(medecinChoisi);
+                    break;
+                case "budget":
+                    reviserBudget(medecinChoisi);
+                    break;
+                case "transfert":
+                    transfererPatient(medecinChoisi);
+                    break;
+                default:
+                    System.out.println("Action invalide.");
+            }
         }
+
     }
 
     private void soigner(Medecin medecin) {

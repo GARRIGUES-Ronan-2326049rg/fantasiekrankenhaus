@@ -10,7 +10,7 @@ public class Medecin {
 	private String nom;
 	private char sexe;
 	private byte age;
-	private boolean actionPossible = true;
+	private int actionPossible = 2;
 
     public Medecin(String nom, char sexe, byte age) {
         this.nom = nom;
@@ -37,11 +37,11 @@ public class Medecin {
 		this.age = age;
 	}
 
-	public void setActionPossible(boolean actionPossible) {
+	public void setActionPossible(int actionPossible) {
 		this.actionPossible = actionPossible;
 	}
 
-	public boolean isActionPossible() {
+	public int getActionPossible() {
 		return actionPossible;
 	}
 
@@ -50,13 +50,13 @@ public class Medecin {
 		if(serviceDep.getListeCreature().contains(monstre) && !serviceArr.getListeCreature().contains(monstre)){
 			serviceArr.getListeCreature().add(monstre);
 			serviceDep.getListeCreature().remove(monstre);
-			actionPossible = false;
+			--actionPossible;
 		}
 
 	}
 
 	public void examineService(ServiceMedical service){
-		actionPossible = false;
+		--actionPossible;
 	}
 
 	public void soignePatient(Monstre monstre){
@@ -66,13 +66,13 @@ public class Medecin {
 			if (monstre.getListeMaladie().isEmpty()){
 				// Supprimer le patient
 			}
-			actionPossible = false;
+			--actionPossible;
 		}
 	}
 
 	public void reviseBudget(ServiceMedical service, String valeur){
 		//service.setBudget(valeur);
-		actionPossible = false;
+		--actionPossible;
 	}
 
 }

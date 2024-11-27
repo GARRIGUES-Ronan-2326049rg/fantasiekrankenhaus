@@ -125,7 +125,7 @@ public class Hopital {
 	public void nouvelleJournee(){
 		// Remise à niveau des actions des médecins
 		for (int i = 0; i < getListeMedecin().size(); ++i) {
-			getListeMedecin().get(i).setActionPossible(true);
+			getListeMedecin().get(i).setActionPossible(2);
 		}
 
 	}

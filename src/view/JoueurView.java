@@ -26,7 +26,7 @@ public class JoueurView {
     public void demandeChoixMedecin(ArrayList<Medecin> listeMedecin){
         StringBuilder message = new StringBuilder("Voici la liste des medecins pouvant encore effectuer des actions.");
         for (int i = 0; i < listeMedecin.size(); ++i){
-            if( listeMedecin.get(i).isActionPossible()){
+            if(listeMedecin.get(i).getActionPossible() > 0){
                 message.append("\n").append(listeMedecin.get(i).getNom()).append(" : tapez ").append(String.valueOf(i));
             }
         }
