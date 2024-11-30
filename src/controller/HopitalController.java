@@ -66,22 +66,24 @@ public class HopitalController {
             }
 
             Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin);
-            String action = joueur.demandeAction();
-            switch (action.toLowerCase()) {
-                case "soigner":
-                    soigner(medecinChoisi);
-                    break;
-                case "budget":
-                    reviserBudget(medecinChoisi);
-                    break;
-                case "transfert":
-                    transfererPatient(medecinChoisi);
-                    break;
-                case "examiner":
-                    examiner(medecinChoisi);
-                    break;
-                default:
-                    System.out.println("Action invalide.");
+            if (medecinChoisi.getActionPossible() > 0){
+                String action = joueur.demandeAction();
+                switch (action.toLowerCase()) {
+                    case "soigner":
+                        soigner(medecinChoisi);
+                        break;
+                    case "reviser":
+                        reviserBudget(medecinChoisi);
+                        break;
+                    case "transfert":
+                        transfererPatient(medecinChoisi);
+                        break;
+                    case "examiner":
+                        examiner(medecinChoisi);
+                        break;
+                    default:
+                        System.out.println("Action invalide.");
+                }
             }
             }
         hopital.nouvelleJournee();
@@ -99,7 +101,7 @@ public class HopitalController {
         if (service != null) {
             Monstre patient = joueur.choisirPatient(service.getListeCreature());
             if (patient != null) {
-                medecin.soignePatient(patient);
+                medecin.soignePatient(patient, service);
             } else {
                 System.out.println("Aucun patient sélectionné.");
             }
@@ -112,7 +114,7 @@ public class HopitalController {
         ServiceMedical service = joueur.choisirService(hopital.getListeService());
         if (service != null) {
             String nouveauBudget = joueur.demanderBudget();
-            service.setBudget(nouveauBudget);
+            medecin.reviseBudget(service, nouveauBudget);
             service.variationBudget();
             System.out.println("Budget mis à jour.");
         }

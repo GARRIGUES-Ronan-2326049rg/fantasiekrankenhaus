@@ -1,8 +1,6 @@
 package modele.service;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 
 import modele.Maladie;
 import modele.monstre.Monstre;
@@ -17,6 +15,9 @@ public class ServiceMedical {
 	private String budget;
 	private String budgetPred;
 
+	private Map<String, Double> coefficientsBudget;
+
+
 	public ServiceMedical(String nom, int superficie, String budget, int max) {
 		this.nom = nom;
 		this.superficie = superficie;
@@ -24,6 +25,15 @@ public class ServiceMedical {
 		this.listeCreature = new ArrayList<>();
 		this.nombreCreature = 0;
 		this.maxCreature = max;
+
+		this.coefficientsBudget = new HashMap<>();
+		this.coefficientsBudget.put("Inexistant", 0.2);
+		this.coefficientsBudget.put("Faible", 0.25);
+		this.coefficientsBudget.put("Médiocre", 0.40);
+		this.coefficientsBudget.put("Insuffisant", 0.5);
+		this.coefficientsBudget.put("Suffisant", 0.8);
+		this.coefficientsBudget.put("Bon", 0.9);
+		this.coefficientsBudget.put("Parfait", 1.4);
 	}
 
 	public String getNom() {
@@ -227,8 +237,5 @@ public class ServiceMedical {
 
 		return sb.toString();
 	}
-
-
-
 
 }

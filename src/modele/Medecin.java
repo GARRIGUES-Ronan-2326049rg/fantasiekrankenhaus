@@ -1,4 +1,5 @@
 package modele;
+import controller.Proba;
 import modele.monstre.*;
 import modele.*;
 import modele.service.ServiceMedical;
@@ -63,11 +64,9 @@ public class Medecin {
 			System.out.println(service.getListeCreature().get(i) + "\n");
 		}
 		System.out.println("Voici les imformations global du service : " + service.toString());
-
-		--actionPossible;
 	}
 
-	public void soignePatient(Monstre monstre) {
+	public void soignePatient(Monstre monstre, ServiceMedical service) {
 		Scanner sc = new Scanner(System.in);
 
 		String RESET = "\u001B[0m";
@@ -86,7 +85,9 @@ public class Medecin {
 			System.out.println((i + 1) + ". " + YELLOW + monstre.getListeMaladie().get(i) + RESET);
 		}
 
-		int chanceDeReussite = 30 + new Random().nextInt(31);
+		Proba p = new Proba();
+		Maladie maladieImportante = monstre.getMaxMaladie();
+		int chanceDeReussite = (int) (p.calculProba(service.getBudget(), (double) maladieImportante.getNiveauActuel() /maladieImportante.getNiveauMax())*100);
 		System.out.println("🩺 Tentative de soin avec " + GREEN + chanceDeReussite + "%" + RESET + " de chance de réussite.");
 		System.out.println("Choisissez un numéro pour soigner une maladie ou entrez 0 pour passer :");
 		int choix;
@@ -118,7 +119,7 @@ public class Medecin {
 
 
 	public void reviseBudget(ServiceMedical service, String valeur){
-		//service.setBudget(valeur);
+		service.setBudget(valeur);
 		--actionPossible;
 	}
 
