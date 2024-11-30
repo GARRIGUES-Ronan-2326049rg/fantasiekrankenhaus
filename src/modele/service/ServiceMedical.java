@@ -1,8 +1,6 @@
 package modele.service;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 
 import modele.Maladie;
 import modele.monstre.Monstre;
@@ -17,6 +15,9 @@ public class ServiceMedical {
 	private String budget;
 	private String budgetPred;
 
+	private Map<String, Double> coefficientsBudget;
+
+
 	public ServiceMedical(String nom, int superficie, String budget, int max) {
 		this.nom = nom;
 		this.superficie = superficie;
@@ -24,6 +25,15 @@ public class ServiceMedical {
 		this.listeCreature = new ArrayList<>();
 		this.nombreCreature = 0;
 		this.maxCreature = max;
+
+		this.coefficientsBudget = new HashMap<>();
+		this.coefficientsBudget.put("Inexistant", 0.2);
+		this.coefficientsBudget.put("Faible", 0.25);
+		this.coefficientsBudget.put("Médiocre", 0.40);
+		this.coefficientsBudget.put("Insuffisant", 0.5);
+		this.coefficientsBudget.put("Suffisant", 0.8);
+		this.coefficientsBudget.put("Bon", 0.9);
+		this.coefficientsBudget.put("Parfait", 1.4);
 	}
 
 	public String getNom() {
@@ -182,4 +192,50 @@ public class ServiceMedical {
             }
         }
 	}
+
+	public void trierPatientsParMaladie() {
+		this.listeCreature.sort((monstre1, monstre2) -> {
+			double gravite1 = monstre1.getListeMaladie().stream()
+					.mapToDouble(m -> (double) m.getNiveauActuel() / m.getNiveauMax())
+					.max()
+					.orElse(0);
+
+			double gravite2 = monstre2.getListeMaladie().stream()
+					.mapToDouble(m -> (double) m.getNiveauActuel() / m.getNiveauMax())
+					.max()
+					.orElse(0);
+
+			return Double.compare(gravite2, gravite1); // Tri décroissant
+		});
+	}
+
+
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\u001B[35m🏥 Service Médical : \u001B[0m").append(nom).append("\n");
+		sb.append("    • Superficie : \u001B[36m").append(superficie).append(" m²\u001B[0m\n");
+		sb.append("    • Capacité : \u001B[36m").append(nombreCreature).append("/").append(maxCreature).append(" créatures\u001B[0m\n");
+		sb.append("    • Taux de Propagation : \u001B[33m").append(tauxPropagation).append("x\u001B[0m\n");
+		sb.append("    • Budget Actuel : \u001B[32m").append(budget).append("\u001B[0m\n");
+		if (budgetPred != null) {
+			sb.append("    • Budget Précédent : \u001B[32m").append(budgetPred).append("\u001B[0m\n");
+		}
+
+		if (!listeCreature.isEmpty()) {
+			sb.append("\n🧟‍♂️ Liste des créatures en soin :\n");
+			for (Monstre monstre : listeCreature) {
+				sb.append("      - \u001B[34m").append(monstre.getNom())
+						.append("\u001B[0m (Âge : \u001B[36m").append(monstre.getAge())
+						.append("\u001B[0m, Moral : \u001B[33m").append(monstre.getIndicateurMoral())
+						.append("%\u001B[0m)\n");
+			}
+		} else {
+			sb.append("\n✅ \u001B[32mAucun monstre en soin actuellement !\u001B[0m\n");
+		}
+
+		return sb.toString();
+	}
+
 }

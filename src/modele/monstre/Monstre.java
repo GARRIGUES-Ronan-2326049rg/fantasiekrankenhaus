@@ -1,13 +1,11 @@
 package modele.monstre;
 import modele.Maladie;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Monstre {
 	private String type;
 	private String nom;
-	private int pv = 100;
 	private char sexe;
 	private short poids;
 	private short taille;
@@ -77,12 +75,6 @@ public class Monstre {
 	public void setListeMaladie(ArrayList<Maladie> listeMaladie) {
 		this.listeMaladie = listeMaladie;
 	}
-	public int getPv(){
-		return pv;
-	}
-	public void setPv(int pv){
-		this.pv = pv;
-	}
 
 	public boolean estMort() {
 		return this.estMort;
@@ -127,7 +119,6 @@ public class Monstre {
 			// Si une maladie atteint son niveau max, le monstre meurt
 			if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
 				System.out.println(nom + " est mort à cause de " + maladie.getNomComplet() + ".");
-				this.pv = 0;
 				break;
 			}
 		}
@@ -165,8 +156,39 @@ public class Monstre {
 		System.out.println("Aucune maladie correspondante trouvée pour " + nomMaladie + ".");
 	}
 
+	@Override
 	public String toString() {
-		return "Monstre [nom=" + nom + ", pv=" + pv + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age + ", indicateurMoral=" + indicateurMoral + ", listeMaladie=" + listeMaladie + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("\u001B[34m🔮 Monstre : \u001B[0m").append(nom).append("\n");
+		sb.append("    • Sexe : ").append(sexe == 'M' ? "\u001B[32mMâle\u001B[0m" : "\u001B[31mFemelle\u001B[0m").append("\n");
+		sb.append("    • Poids : \u001B[36m").append(poids).append(" kg\u001B[0m\n");
+		sb.append("    • Taille : \u001B[36m").append(taille).append(" cm\u001B[0m\n");
+		sb.append("    • Âge : \u001B[36m").append(age).append(" ans\u001B[0m\n");
+		sb.append("    • Moral : \u001B[33m").append(indicateurMoral).append("%\u001B[0m\n");
+
+		if (!listeMaladie.isEmpty()) {
+			sb.append("⚠️ Maladies :\n");
+			for (Maladie maladie : listeMaladie) {
+				sb.append("      - \u001B[35m").append(maladie.getNomComplet())
+						.append("\u001B[0m (Gravité : \u001B[33m").append(maladie.getNiveauActuel())
+						.append("/").append(maladie.getNiveauMax()).append("\u001B[0m)\n");
+			}
+		} else {
+			sb.append("✅ \u001B[32mCe monstre est en pleine santé !\u001B[0m\n");
+		}
+
+		return sb.toString();
 	}
 
+
+	public Maladie getMaxMaladie() {
+		Maladie maladie = getListeMaladie().getFirst();
+		for (int i = 0; i < getListeMaladie().size(); ++i) {
+			if(getListeMaladie().get(i).getNiveauActuel()/maladie.getNiveauMax() > getListeMaladie().get(i).getNiveauActuel()/maladie.getNiveauMax()){
+				maladie = getListeMaladie().get(i);
+			}
+		}
+		System.out.println(maladie.getNiveauActuel()/maladie.getNiveauMax());
+		return maladie;
+	}
 }

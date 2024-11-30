@@ -14,7 +14,14 @@ public class MonstreFactory {
             "Galactrusse", "Frankestrouc", "Jululusse", "Arnaunurding", "Cyrilouxano", "Sorenbapt", "Emedeuxpierre", "Hestelle", "Zackus", "Drackitlos",
             "Thébaro", "Tittit", "Kirolex", "Colayko", "Medhidonc", "Youyou", "Evianzaks", "Thomatopesto", "Leheffe", "Skibididimitri", "Soregrory", "Bibou",
             "Troulaloupe", "Zekromas", "Salabot", "Nashtaul", "Enderlouis", "Cedrifox", "Tahino", "Nevot", "Hadjene", "Davina", "Wagatas", "Casali", "Shirotozor",
-            "Cursetieu", "Kevinus", "Arthurus" , "Poupidis", "Jouinax", "Salalou", "Maksadoude", "Flouvix", "Prostas", "Couloute", "Anninis", "Gouillou", "Soufiannoc"
+            "Cursetieu", "Kevinus", "Arthurus" , "Poupidis", "Jouinax", "Salalou", "Maksadoude", "Flouvix", "Prostas", "Couloute", "Anninis", "Gouillou", "Soufiannoc",
+            "Agathor", "Ronark", "Lauragore", "Lowelith", "Solanox", "Yohar", "Matteor","Dracula", "Frankenstein", "Cthulhu", "Jaws", "Shrek", "Medusa", "Wendigo",
+            "Chucky", "Behemoth", "Hydra", "Sasquatch", "Zombie", "Phantom", "Cerberus", "Gorgon", "Chimera", "Kong",
+            "Slimer", "Beetlejuice", "Werewolf", "Harpy", "Banshee", "Manticore", "Roc", "Ogre", "Basilisk", "Leprechaun", "Nessie",
+            "Scarecrow", "Krampus", "Mothman", "Doppelgänger", "Chupacabra", "Basilisk", "Wraith", "Nymph", "Ghast", "Quetzalcoatl", "Tatzelwurm", "Bunyip", "Manitou", "Incubus", "Succubus",
+            "Mogwai", "Kitsune", "Aswang", "Jotun", "Hobbit", "Skinwalker", "Tiamat", "Yuki-onna", "Charybdis", "Ymir", "Zoltar", "Salamander", "Fenrir", "Pixie", "Poltergeist", "Shapeshifter",
+            "Gargoyle", "Kappa", "Grendel", "Charybdis", "Draugr", "Siren", "Manticore",
+            "Imp", "Mummy", "Naga", "Lamia", "Pooka", "Cyclops", "Golem", "Basilisk", "Wight"
     };
 
     private static final String[] types = {

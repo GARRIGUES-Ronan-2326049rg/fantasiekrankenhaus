@@ -29,7 +29,8 @@ public class HopitalController {
                     break;
                 case "fin":
                     jeuEnCours = false;
-                    System.out.println("FIN DU JEU");
+                    System.out.println("FIN DU JEU\n");
+                    System.out.println("Récap");
                     break;
                 default:
                     System.out.println("Choix invalide. Réessayez.");
@@ -51,30 +52,48 @@ public class HopitalController {
     }
 
     private void agir() {
-        int choixMedecin = joueur.choixTourChoixMedecin(hopital.getListeMedecin());
-        if (choixMedecin < 0 || choixMedecin > hopital.getListeMedecin().size()) {
-            System.out.println("Médecin invalide.");
-            return;
-        }
 
-        Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin - 1);
-        while (medecinChoisi.getActionPossible() != 0) {
-            String action = joueur.demandeAction();
-            switch (action.toLowerCase()) {
-                case "soigner":
-                    soigner(medecinChoisi);
-                    break;
-                case "budget":
-                    reviserBudget(medecinChoisi);
-                    break;
-                case "transfert":
-                    transfererPatient(medecinChoisi);
-                    break;
-                default:
-                    System.out.println("Action invalide.");
+        while (hopital.resteAction()){
+            int choixMedecin = joueur.choixTourChoixMedecin(hopital.getListeMedecin());
+            if (choixMedecin == 99) {
+                System.out.println("Fin de tours");
+                hopital.nouvelleJournee();
+                return;
             }
-        }
+            else if (choixMedecin > hopital.getListeMedecin().size()) {
+                System.out.println("Médecin invalide.");
+                return;
+            }
 
+            Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin);
+            if (medecinChoisi.getActionPossible() > 0){
+                String action = joueur.demandeAction();
+                switch (action.toLowerCase()) {
+                    case "soigner":
+                        soigner(medecinChoisi);
+                        break;
+                    case "reviser":
+                        reviserBudget(medecinChoisi);
+                        break;
+                    case "transfert":
+                        transfererPatient(medecinChoisi);
+                        break;
+                    case "examiner":
+                        examiner(medecinChoisi);
+                        break;
+                    default:
+                        System.out.println("Action invalide.");
+                }
+            }
+            }
+        hopital.nouvelleJournee();
+    }
+
+    private void examiner(Medecin medecin) {
+        ServiceMedical service = joueur.choisirService(hopital.getListeService());
+        if (service != null) {
+            medecin.examineService(service);
+        }
     }
 
     private void soigner(Medecin medecin) {
@@ -82,7 +101,7 @@ public class HopitalController {
         if (service != null) {
             Monstre patient = joueur.choisirPatient(service.getListeCreature());
             if (patient != null) {
-                medecin.soignePatient(patient);
+                medecin.soignePatient(patient, service);
             } else {
                 System.out.println("Aucun patient sélectionné.");
             }
@@ -95,7 +114,7 @@ public class HopitalController {
         ServiceMedical service = joueur.choisirService(hopital.getListeService());
         if (service != null) {
             String nouveauBudget = joueur.demanderBudget();
-            service.setBudget(nouveauBudget);
+            medecin.reviseBudget(service, nouveauBudget);
             service.variationBudget();
             System.out.println("Budget mis à jour.");
         }
