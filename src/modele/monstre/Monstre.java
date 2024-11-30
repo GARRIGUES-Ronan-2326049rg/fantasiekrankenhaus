@@ -160,26 +160,28 @@ public class Monstre {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("🔮 Monstre : ").append(nom).append("\n");
-		sb.append("    • Sexe : ").append(sexe == 'M' ? "Mâle" : "Femelle").append("\n");
-		sb.append("    • Poids : ").append(poids).append(" kg\n");
-		sb.append("    • Taille : ").append(taille).append(" cm\n");
-		sb.append("    • Âge : ").append(age).append(" ans\n");
-		sb.append("    • Moral : ").append(indicateurMoral).append("%\n");
+		sb.append("\u001B[34m🔮 Monstre : \u001B[0m").append(nom).append("\n");
+		sb.append("    • Sexe : ").append(sexe == 'M' ? "\u001B[32mMâle\u001B[0m" : "\u001B[31mFemelle\u001B[0m").append("\n");
+		sb.append("    • Poids : \u001B[36m").append(poids).append(" kg\u001B[0m\n");
+		sb.append("    • Taille : \u001B[36m").append(taille).append(" cm\u001B[0m\n");
+		sb.append("    • Âge : \u001B[36m").append(age).append(" ans\u001B[0m\n");
+		sb.append("    • Moral : \u001B[33m").append(indicateurMoral).append("%\u001B[0m\n");
 
 		if (!listeMaladie.isEmpty()) {
 			sb.append("⚠️ Maladies :\n");
 			for (Maladie maladie : listeMaladie) {
-				sb.append("      - ").append(maladie.getNomComplet())
-						.append(" (Gravité : ").append(maladie.getNiveauActuel())
-						.append("/").append(maladie.getNiveauMax()).append(")\n");
+				sb.append("      - \u001B[35m").append(maladie.getNomComplet())
+						.append("\u001B[0m (Gravité : \u001B[33m").append(maladie.getNiveauActuel())
+						.append("/").append(maladie.getNiveauMax()).append("\u001B[0m)\n");
 			}
 		} else {
-			sb.append("✅ Ce monstre est en pleine santé !\n");
+			sb.append("✅ \u001B[32mCe monstre est en pleine santé !\u001B[0m\n");
 		}
 
 		return sb.toString();
 	}
+
+
 
 
 }

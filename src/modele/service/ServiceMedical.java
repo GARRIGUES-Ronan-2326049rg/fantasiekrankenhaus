@@ -204,29 +204,31 @@ public class ServiceMedical {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("🏥 Service Médical : ").append(nom).append("\n");
-		sb.append("    • Superficie : ").append(superficie).append(" m²\n");
-		sb.append("    • Capacité : ").append(nombreCreature).append("/").append(maxCreature).append(" créatures\n");
-		sb.append("    • Taux de Propagation : ").append(tauxPropagation).append("x\n");
-		sb.append("    • Budget Actuel : ").append(budget).append("\n");
+		sb.append("\u001B[35m🏥 Service Médical : \u001B[0m").append(nom).append("\n");
+		sb.append("    • Superficie : \u001B[36m").append(superficie).append(" m²\u001B[0m\n");
+		sb.append("    • Capacité : \u001B[36m").append(nombreCreature).append("/").append(maxCreature).append(" créatures\u001B[0m\n");
+		sb.append("    • Taux de Propagation : \u001B[33m").append(tauxPropagation).append("x\u001B[0m\n");
+		sb.append("    • Budget Actuel : \u001B[32m").append(budget).append("\u001B[0m\n");
 		if (budgetPred != null) {
-			sb.append("    • Budget Précédent : ").append(budgetPred).append("\n");
+			sb.append("    • Budget Précédent : \u001B[32m").append(budgetPred).append("\u001B[0m\n");
 		}
 
 		if (!listeCreature.isEmpty()) {
 			sb.append("\n🧟‍♂️ Liste des créatures en soin :\n");
 			for (Monstre monstre : listeCreature) {
-				sb.append("      - ").append(monstre.getNom())
-						.append(" (Âge : ").append(monstre.getAge())
-						.append(", Moral : ").append(monstre.getIndicateurMoral())
-						.append("%)\n");
+				sb.append("      - \u001B[34m").append(monstre.getNom())
+						.append("\u001B[0m (Âge : \u001B[36m").append(monstre.getAge())
+						.append("\u001B[0m, Moral : \u001B[33m").append(monstre.getIndicateurMoral())
+						.append("%\u001B[0m)\n");
 			}
 		} else {
-			sb.append("\n✅ Aucun monstre en soin actuellement !\n");
+			sb.append("\n✅ \u001B[32mAucun monstre en soin actuellement !\u001B[0m\n");
 		}
 
 		return sb.toString();
 	}
+
+
 
 
 }
