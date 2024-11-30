@@ -38,7 +38,7 @@ public class JoueurView {
                         .append(listeMedecin.get(i).getActionPossible()).append(RESET).append(")\n");
             }
         }
-        System.out.println(message);
+        System.out.println(message + "  99 - Passer à la journée suivante.\n");
     }
 
     public void demandeAction() {
@@ -46,8 +46,7 @@ public class JoueurView {
                 "  🧐 " + GREEN + "Examiner un service" + RESET + " (ne consomme pas d'action) : tapez 'Examiner'\n" +
                 "  🩺 " + YELLOW + "Soigner un patient" + RESET + " : tapez 'Soigner'\n" +
                 "  💰 " + CYAN + "Réviser le budget" + RESET + " : tapez 'Reviser'\n" +
-                "  🔄 " + MAGENTA + "Transférer un patient" + RESET + " : tapez 'Transferer'\n" +
-                "      " + MAGENTA + "Sortir menu" + RESET + " : tapez 'Sortir'\n");
+                "  🔄 " + MAGENTA + "Transférer un patient" + RESET + " : tapez 'Transferer'\n");
     }
 
     public void choisirService(ArrayList<ServiceMedical> listeService) {

@@ -30,7 +30,8 @@ public class HopitalController {
                     break;
                 case "finir":
                     jeuEnCours = false;
-                    System.out.println("FIN DU JEU");
+                    System.out.println("FIN DU JEU\n");
+                    System.out.println("Récap");
                     break;
                 default:
                     System.out.println("Choix invalide. Réessayez.");
@@ -51,14 +52,20 @@ public class HopitalController {
     }
 
     private void agir() {
-        int choixMedecin = joueur.choixTourChoixMedecin(hopital.getListeMedecin());
-        if (choixMedecin < 0 || choixMedecin > hopital.getListeMedecin().size()) {
-            System.out.println("Médecin invalide.");
-            return;
-        }
 
-        Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin);
-        while (medecinChoisi.getActionPossible() != 0) {
+        while (hopital.resteAction()){
+            int choixMedecin = joueur.choixTourChoixMedecin(hopital.getListeMedecin());
+            if (choixMedecin == 99) {
+                System.out.println("Fin de tours");
+                hopital.nouvelleJournee();
+                return;
+            }
+            else if (choixMedecin > hopital.getListeMedecin().size()) {
+                System.out.println("Médecin invalide.");
+                return;
+            }
+
+            Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin);
             String action = joueur.demandeAction();
             switch (action.toLowerCase()) {
                 case "soigner":
@@ -76,7 +83,8 @@ public class HopitalController {
                 default:
                     System.out.println("Action invalide.");
             }
-        }
+            }
+        hopital.nouvelleJournee();
     }
 
     private void examiner(Medecin medecin) {
