@@ -1,6 +1,5 @@
 package modele.monstre;
 import modele.Maladie;
-
 import java.util.ArrayList;
 import java.util.Random;
 

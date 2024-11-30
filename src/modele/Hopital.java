@@ -130,5 +130,14 @@ public class Hopital {
 
 	}
 
+	public boolean resteAction(){
+		for (int i = 0; i < getListeMedecin().size(); ++i) {
+			if (getListeMedecin().get(i).getActionPossible() > 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 }
