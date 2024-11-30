@@ -86,6 +86,9 @@ public class Monstre {
 		if (this.indicateurMoral < 10) {
 			System.out.println(this.hurler());
 		}
+		if (this.indicateurMoral < 0) {
+			this.indicateurMoral = 0;
+		}
 	}
 
 	public void tomberMalade(Maladie maladie){
