@@ -56,6 +56,13 @@ public class Medecin {
 	}
 
 	public void examineService(ServiceMedical service){
+		service.trierPatientsParMaladie();
+		System.out.println("Voici la liste des monstres et de leur caractérstisque.");
+		for(int i = 0; i < service.getListeCreature().size(); ++i){
+			System.out.println(service.getListeCreature().get(i) + "\n");
+		}
+		System.out.println("Voici les imformations global du service : " + service.toString());
+
 		--actionPossible;
 	}
 

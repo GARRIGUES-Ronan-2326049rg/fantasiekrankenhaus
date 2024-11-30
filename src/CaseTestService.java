@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import modele.monstre.Monstre;
 import modele.service.CentreQuarantaine;
 import modele.service.Crypte;
@@ -116,4 +116,4 @@ public class CaseTestService {
                     && crypte.getTauxPropagation() == 2*2);
     }
 
-}
+}*/

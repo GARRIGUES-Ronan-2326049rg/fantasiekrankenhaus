@@ -57,7 +57,7 @@ public class HopitalController {
             return;
         }
 
-        Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin - 1);
+        Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin);
         while (medecinChoisi.getActionPossible() != 0) {
             String action = joueur.demandeAction();
             switch (action.toLowerCase()) {
@@ -70,11 +70,20 @@ public class HopitalController {
                 case "transfert":
                     transfererPatient(medecinChoisi);
                     break;
+                case "examiner":
+                    examiner(medecinChoisi);
+                    break;
                 default:
                     System.out.println("Action invalide.");
             }
         }
+    }
 
+    private void examiner(Medecin medecin) {
+        ServiceMedical service = joueur.choisirService(hopital.getListeService());
+        if (service != null) {
+            medecin.examineService(service);
+        }
     }
 
     private void soigner(Medecin medecin) {
