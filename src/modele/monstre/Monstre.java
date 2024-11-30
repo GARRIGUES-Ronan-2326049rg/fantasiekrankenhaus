@@ -104,10 +104,10 @@ public class Monstre {
 		Random random = new Random();
 
 		if (listeMaladie.isEmpty()) {
-			// Si le monstre est guéri, il y a 10% de chance qu'il attrape de nouvelles maladies
+			// Si le monstre n'a pas de maladies, il y a une chance d'en attraper
 			int chance = random.nextInt(100); // Nombre entre 0 et 99
 			if (chance < 10) { // 10% de chance
-				System.out.println(nom + " a été guéri mais contracte de nouvelles maladies !");
+				System.out.println(nom + " est en pleine forme, mais contracte de nouvelles maladies !");
 				MonstreFactory.ajouterMaladiesAleatoires(this);
 			} else {
 				System.out.println(nom + " est en pleine forme et reste en bonne santé !");
@@ -115,7 +115,7 @@ public class Monstre {
 			return;
 		}
 
-		// Les maladies progressent si elles existent
+		// Progression des maladies existantes
 		System.out.println("Les maladies de " + nom + " évoluent...");
 		for (Maladie maladie : listeMaladie) {
 			maladie.setNiveauActuel(maladie.getNiveauActuel() + 1);
@@ -127,6 +127,7 @@ public class Monstre {
 			}
 		}
 	}
+
 
 	// Vérifie si le monstre doit mourir
 	private void verifierMort() {

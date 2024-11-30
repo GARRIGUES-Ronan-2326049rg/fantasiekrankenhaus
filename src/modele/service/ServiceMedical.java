@@ -1,6 +1,7 @@
 package modele.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 import java.util.Random;
 
@@ -129,6 +130,31 @@ public class ServiceMedical {
 		}
 	}
 
+
+
+	public void gererMaladies() {
+		Random random = new Random();
+		int nombreMaladiesAEvoluer = 2 + random.nextInt(2); // 2 ou 3 monstres aléatoirement
+		ArrayList<Monstre> monstresAEvoluer = new ArrayList<>(listeCreature);
+
+		// Mélanger les monstres pour une sélection aléatoire
+		Collections.shuffle(monstresAEvoluer, random);
+
+		for (int i = 0; i < Math.min(nombreMaladiesAEvoluer, monstresAEvoluer.size()); i++) {
+			Monstre monstre = monstresAEvoluer.get(i);
+			monstre.evoluerMaladies();
+		}
+
+		// Pour les monstres restants qui n'ont pas évolué, baisse le moral
+		for (int i = nombreMaladiesAEvoluer; i < monstresAEvoluer.size(); i++) {
+			Monstre monstre = monstresAEvoluer.get(i);
+			monstre.attendre(); // Diminue leur moral si leur maladie n'évolue pas
+		}
+	}
+
+
+
+
 	/**
 	 * Modifie le nombre maximum de créatures et le taux de propagation des maladies en
 	 * fonction de l'évolution du budget du service.
@@ -217,7 +243,7 @@ public class ServiceMedical {
 			sb.append("\n🧟‍♂️ Liste des créatures en soin :\n");
 			for (Monstre monstre : listeCreature) {
 				sb.append("      - \u001B[34m").append(monstre.getNom())
-						.append("\u001B[0m (Âge : \u001B[36m").append(monstre.getAge())
+						.append("\u001B[0m (Maladies : \u001B[36m").append(monstre.getListeMaladie())
 						.append("\u001B[0m, Moral : \u001B[33m").append(monstre.getIndicateurMoral())
 						.append("%\u001B[0m)\n");
 			}

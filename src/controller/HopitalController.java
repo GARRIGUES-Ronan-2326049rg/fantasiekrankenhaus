@@ -26,15 +26,15 @@ public class HopitalController {
             switch (choix.toLowerCase()) {
                 case "agir":
                     agir();
+                    effectuerActionsServices();
                     break;
-                case "fin":
+                case "finir":
                     jeuEnCours = false;
                     System.out.println("FIN DU JEU");
                     break;
                 default:
                     System.out.println("Choix invalide. Réessayez.");
             }
-            effectuerActionsServices();
         }
     }
 
