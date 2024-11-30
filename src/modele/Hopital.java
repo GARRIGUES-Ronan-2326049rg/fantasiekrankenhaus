@@ -1,4 +1,6 @@
 package modele;
+import modele.monstre.Monstre;
+import modele.monstre.MonstreFactory;
 import modele.service.CentreQuarantaine;
 import modele.service.Crypte;
 import modele.service.ServiceMedical;
@@ -57,42 +59,76 @@ public class Hopital {
 	}
 
 	public void initialisationService(){
-		ServiceMedical serviceVampire = new ServiceMedical("Vampire", 1000, "Insuffisant");
+		ServiceMedical serviceVampire = new ServiceMedical("Vampire", 1000, "Insuffisant", 100);
 		listeService.add(serviceVampire);
 
-		ServiceMedical serviceOrque = new ServiceMedical("Orque", 2000, "Faible");
+		ServiceMedical serviceOrque = new ServiceMedical("Orque", 2000, "Faible", 100);
 		listeService.add(serviceOrque);
 
-		ServiceMedical serviceLycanthrope = new ServiceMedical("Lycanthrope", 1500, "Insuffisant");
+		ServiceMedical serviceLycanthrope = new ServiceMedical("Lycanthrope", 1500, "Insuffisant", 100);
 		listeService.add(serviceLycanthrope);
 
-		ServiceMedical serviceElfe = new ServiceMedical("Elfe",900, "Faible");
+		ServiceMedical serviceElfe = new ServiceMedical("Elfe",900, "Faible", 100);
 		listeService.add(serviceElfe);
 
-		ServiceMedical serviceNain = new ServiceMedical("Nain", 100, "Insuffisant");
+		ServiceMedical serviceNain = new ServiceMedical("Nain", 100, "Insuffisant", 100);
 		listeService.add(serviceNain);
 
-		ServiceMedical serviceZombie = new ServiceMedical("Zombie", 1500, "Mediocre");
+		ServiceMedical serviceZombie = new ServiceMedical("Zombie", 1500, "Mediocre", 100);
 		listeService.add(serviceZombie);
 
-		ServiceMedical serviceReptilien = new ServiceMedical("Reptilien", 700, "Insuffisant");
+		ServiceMedical serviceReptilien = new ServiceMedical("Reptilien", 700, "Insuffisant", 100);
 		listeService.add(serviceReptilien);
 
-		ServiceMedical serviceHommeBete = new ServiceMedical("Homme bete", 1700, "Inexistant");
+		ServiceMedical serviceHommeBete = new ServiceMedical("HommeBete", 1700, "Inexistant", 100);
 		listeService.add(serviceHommeBete);
 
-		Crypte crypte = new Crypte("Crypte", 870, "mediocre");
+		Crypte crypte = new Crypte("Crypte", 870, "mediocre", 100);
 		listeService.add(crypte);
 
-		CentreQuarantaine centreQuarantaine = new CentreQuarantaine("Centre 40", 439, "Faible");
+		CentreQuarantaine centreQuarantaine = new CentreQuarantaine("Centre 40", 439, "Faible", 100);
+		listeService.add(centreQuarantaine);
+	}
+
+	public void initialisationMonstre(int nombre, ArrayList<ServiceMedical> listeService) {
+		for (int i = 0; i < nombre; i++) {
+			Monstre monstre = MonstreFactory.creerMonstreAleatoire();
+			switch (monstre.getType()){
+				case "Vampire":
+					listeService.getFirst().ajouterPatient(monstre);
+					break;
+				case "Orque":
+					listeService.get(1).ajouterPatient(monstre);
+					break;
+				case "Lycanthrope":
+					listeService.get(2).ajouterPatient(monstre);
+					break;
+				case "Elfe":
+					listeService.get(3).ajouterPatient(monstre);
+					break;
+				case "Nain":
+					listeService.get(4).ajouterPatient(monstre);
+					break;
+				case "Zombie":
+					listeService.get(5).ajouterPatient(monstre);
+					break;
+				case "Reptilien":
+					listeService.get(6).ajouterPatient(monstre);
+					break;
+				case "HommeBete":
+					listeService.get(7).ajouterPatient(monstre);
+					break;
+			}
+		}
 	}
 
 	public void nouvelleJournee(){
 		// Remise à niveau des actions des médecins
 		for (int i = 0; i < getListeMedecin().size(); ++i) {
-			getListeMedecin().get(i).setActionPossible(true);
+			getListeMedecin().get(i).setActionPossible(2);
 		}
 
 	}
+
 
 }

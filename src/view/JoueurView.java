@@ -3,6 +3,7 @@ package view;
 import modele.monstre.Monstre;
 
 import modele.Medecin;
+import modele.service.ServiceMedical;
 
 import java.util.ArrayList;
 
@@ -19,13 +20,13 @@ public class JoueurView {
     public void demandeChoix(){
         System.out.println( "Voulez vous :\n" +
                 "Agir sur les médecins : 'agir'\n" +
-                "Finir le jeu ? : 'fin'\n");
+                "Finir le jeu ? : 'finir'\n");
     }
 
     public void demandeChoixMedecin(ArrayList<Medecin> listeMedecin){
         StringBuilder message = new StringBuilder("Voici la liste des medecins pouvant encore effectuer des actions.");
         for (int i = 0; i < listeMedecin.size(); ++i){
-            if( listeMedecin.get(i).isActionPossible()){
+            if(listeMedecin.get(i).getActionPossible() > 0){
                 message.append("\n").append(listeMedecin.get(i).getNom()).append(" : tapez ").append(String.valueOf(i));
             }
         }
@@ -40,4 +41,22 @@ public class JoueurView {
                 "Transférer le patient ? Tapez Tranferer\n");
     }
 
+    public void choisirService(ArrayList<ServiceMedical> listeService) {
+        System.out.println("Sur quel service voulait vous intervenir ? Tapez son nom \n");
+        for (ServiceMedical serviceMedical : listeService) {
+            System.out.println(serviceMedical.getNom() + "\n");
+        }
+
+    }
+
+    public void choisirMonstre(ArrayList<Monstre> listeCreature) {
+        System.out.println("Sur quel monstre voulait vous intervenir ? Tapez son nom \n");
+        for (Monstre monstre : listeCreature) {
+            System.out.println(monstre.getNom() + "\n");
+        }
+    }
+
+    public void demandeBudget() {
+        System.out.println("Quel budget : ");
+    }
 }
