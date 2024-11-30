@@ -182,4 +182,51 @@ public class ServiceMedical {
             }
         }
 	}
+
+	public void trierPatientsParMaladie() {
+		this.listeCreature.sort((monstre1, monstre2) -> {
+			double gravite1 = monstre1.getListeMaladie().stream()
+					.mapToDouble(m -> (double) m.getNiveauActuel() / m.getNiveauMax())
+					.max()
+					.orElse(0);
+
+			double gravite2 = monstre2.getListeMaladie().stream()
+					.mapToDouble(m -> (double) m.getNiveauActuel() / m.getNiveauMax())
+					.max()
+					.orElse(0);
+
+			return Double.compare(gravite2, gravite1); // Tri décroissant
+		});
+	}
+
+
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("🏥 Service Médical : ").append(nom).append("\n");
+		sb.append("    • Superficie : ").append(superficie).append(" m²\n");
+		sb.append("    • Capacité : ").append(nombreCreature).append("/").append(maxCreature).append(" créatures\n");
+		sb.append("    • Taux de Propagation : ").append(tauxPropagation).append("x\n");
+		sb.append("    • Budget Actuel : ").append(budget).append("\n");
+		if (budgetPred != null) {
+			sb.append("    • Budget Précédent : ").append(budgetPred).append("\n");
+		}
+
+		if (!listeCreature.isEmpty()) {
+			sb.append("\n🧟‍♂️ Liste des créatures en soin :\n");
+			for (Monstre monstre : listeCreature) {
+				sb.append("      - ").append(monstre.getNom())
+						.append(" (Âge : ").append(monstre.getAge())
+						.append(", Moral : ").append(monstre.getIndicateurMoral())
+						.append("%)\n");
+			}
+		} else {
+			sb.append("\n✅ Aucun monstre en soin actuellement !\n");
+		}
+
+		return sb.toString();
+	}
+
+
 }

@@ -7,7 +7,6 @@ import java.util.Random;
 public class Monstre {
 	private String type;
 	private String nom;
-	private int pv = 100;
 	private char sexe;
 	private short poids;
 	private short taille;
@@ -77,12 +76,6 @@ public class Monstre {
 	public void setListeMaladie(ArrayList<Maladie> listeMaladie) {
 		this.listeMaladie = listeMaladie;
 	}
-	public int getPv(){
-		return pv;
-	}
-	public void setPv(int pv){
-		this.pv = pv;
-	}
 
 	public boolean estMort() {
 		return this.estMort;
@@ -127,7 +120,6 @@ public class Monstre {
 			// Si une maladie atteint son niveau max, le monstre meurt
 			if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
 				System.out.println(nom + " est mort à cause de " + maladie.getNomComplet() + ".");
-				this.pv = 0;
 				break;
 			}
 		}
@@ -165,8 +157,29 @@ public class Monstre {
 		System.out.println("Aucune maladie correspondante trouvée pour " + nomMaladie + ".");
 	}
 
+	@Override
 	public String toString() {
-		return "Monstre [nom=" + nom + ", pv=" + pv + ", sexe=" + sexe + ", poids=" + poids + ", taille=" + taille + ", age=" + age + ", indicateurMoral=" + indicateurMoral + ", listeMaladie=" + listeMaladie + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("🔮 Monstre : ").append(nom).append("\n");
+		sb.append("    • Sexe : ").append(sexe == 'M' ? "Mâle" : "Femelle").append("\n");
+		sb.append("    • Poids : ").append(poids).append(" kg\n");
+		sb.append("    • Taille : ").append(taille).append(" cm\n");
+		sb.append("    • Âge : ").append(age).append(" ans\n");
+		sb.append("    • Moral : ").append(indicateurMoral).append("%\n");
+
+		if (!listeMaladie.isEmpty()) {
+			sb.append("⚠️ Maladies :\n");
+			for (Maladie maladie : listeMaladie) {
+				sb.append("      - ").append(maladie.getNomComplet())
+						.append(" (Gravité : ").append(maladie.getNiveauActuel())
+						.append("/").append(maladie.getNiveauMax()).append(")\n");
+			}
+		} else {
+			sb.append("✅ Ce monstre est en pleine santé !\n");
+		}
+
+		return sb.toString();
 	}
+
 
 }
