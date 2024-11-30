@@ -188,6 +188,7 @@ public class Monstre {
 				maladie = getListeMaladie().get(i);
 			}
 		}
+		System.out.println(maladie.getNiveauActuel()/maladie.getNiveauMax());
 		return maladie;
 	}
 }

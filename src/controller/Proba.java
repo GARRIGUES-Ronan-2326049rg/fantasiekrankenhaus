@@ -30,6 +30,6 @@ public class Proba {
                 break;
         }
 
-        return p*(1-r);
+        return p*(1-(r-0.1));
     }
 }
