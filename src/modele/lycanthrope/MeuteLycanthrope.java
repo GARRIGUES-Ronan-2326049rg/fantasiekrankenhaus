@@ -184,4 +184,25 @@ public class MeuteLycanthrope {
                     "Jeune", alphabetGrec.charAt(random.nextInt(alphabetGrec.length())), nomMeute));
         }
     }
+
+    public String caractéristiqueMeute() {
+        return "La meute " + this.nomMeute + " a pour caractéristiques : \n"
+                + "Mâle α : " + this.maleAlpha.getNom() + "\n"
+                + "Femelle α : " + this.femelleAlpha.getNom() + "\n"
+                + "Nombre de membres : " + this.listeMembres.size() +"\n";
+    }
+
+    public String carateristiquesMembre(){
+        String texte = "La meute " + this.nomMeute + " est constitué de : \n";
+        for(Lycanthrope membre : listeMembres){
+            texte = texte + membre.afficherCaracteristiques();
+        }
+        return texte;
+    }
+
+    public String caracteristiquesCoupleAlpha(){
+        return "Le couple α est constitué des lycanthropes suivants : \n" + maleAlpha.afficherCaracteristiques()
+                + femelleAlpha.afficherCaracteristiques();
+    }
+
 }
