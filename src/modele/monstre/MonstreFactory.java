@@ -16,12 +16,12 @@ public class MonstreFactory {
             "Troulaloupe", "Zekromas", "Salabot", "Nashtaul", "Enderlouis", "Cedrifox", "Tahino", "Nevot", "Hadjene", "Davina", "Wagatas", "Casali", "Shirotozor",
             "Cursetieu", "Kevinus", "Arthurus" , "Poupidis", "Jouinax", "Salalou", "Maksadoude", "Flouvix", "Prostas", "Couloute", "Anninis", "Gouillou", "Soufiannoc",
             "Agathor", "Ronark", "Lauragore", "Lowelith", "Solanox", "Yohar", "Matteor","Dracula", "Frankenstein", "Cthulhu", "Jaws", "Shrek", "Medusa", "Wendigo",
-            "Chucky", "Behemoth", "Hydra", "Sasquatch", "Zombie", "Phantom", "Cerberus", "Gorgon", "Chimera", "Kong",
-            "Slimer", "Beetlejuice", "Werewolf", "Harpy", "Banshee", "Manticore", "Roc", "Ogre", "Basilisk", "Leprechaun", "Nessie",
-            "Scarecrow", "Krampus", "Mothman", "Doppelgänger", "Chupacabra", "Basilisk", "Wraith", "Nymph", "Ghast", "Quetzalcoatl", "Tatzelwurm", "Bunyip", "Manitou", "Incubus", "Succubus",
-            "Mogwai", "Kitsune", "Aswang", "Jotun", "Hobbit", "Skinwalker", "Tiamat", "Yuki-onna", "Charybdis", "Ymir", "Zoltar", "Salamander", "Fenrir", "Pixie", "Poltergeist", "Shapeshifter",
-            "Gargoyle", "Kappa", "Grendel", "Charybdis", "Draugr", "Siren", "Manticore",
-            "Imp", "Mummy", "Naga", "Lamia", "Pooka", "Cyclops", "Golem", "Basilisk", "Wight"
+            "Chucky", "Behemoth", "Hydra", "Sasquatch", "Zombie", "Phantom", "Cerberus", "Gorgon", "Chimera", "Kong", "Manitou", "Incubus", "Succubus",
+            "Slimer", "Beetlejuice", "Werewolf", "Harpy", "Banshee", "Manticore", "Roc", "Ogre", "Basilisk", "Leprechaun", "Nessie","Pixie", "Poltergeist",
+            "Scarecrow", "Krampus", "Mothman", "Doppelgänger", "Chupacabra", "Basilisk", "Wraith", "Nymph", "Ghast", "Quetzalcoatl", "Tatzelwurm", "Bunyip",
+            "Mogwai", "Kitsune", "Aswang", "Jotun", "Hobbit", "Skinwalker", "Tiamat", "Yuki-onna", "Charybdis", "Ymir", "Zoltar", "Salamander", "Fenrir",
+            "Gargoyle", "Kappa", "Grendel", "Charybdis", "Draugr", "Siren", "Manticore", "Poppy","Kaido", "Shapeshifter",
+            "Imp", "Mummy", "Naga", "Lamia", "Pooka", "Cyclops", "Golem", "Basilisk", "Wight","Aizen","Madara","Gorudofazza"
     };
 
     private static final String[] types = {
@@ -34,14 +34,23 @@ public class MonstreFactory {
     // Méthode pour créer un monstre aléatoire
     public static Monstre creerMonstreAleatoire() {
         char sexe = random.nextBoolean() ? 'M' : 'F'; // Sexe random
+        int typeIndex = random.nextInt(types.length); // Choix du type
+        String type = types[typeIndex]; // Type sélectionné
+
+        short taille;
+        if (type.equals("Nain")) {
+            taille = (short) (70 + random.nextInt(61)); // Taille pour les nains entre 90 et 150 cm
+        } else {
+            taille = (short) (140 + random.nextInt(60)); // Taille entre 100 et 200 cm pour les autres
+        }
+
         short poids = (short) (30 + random.nextInt(150)); // Poids entre 30 et 180 kg
-        short taille = (short) (100 + random.nextInt(100)); // Taille entre 100 et 200 cm
         int age = random.nextInt(500); // Âge aléatoire entre 0 et 500 ans
         int moral = 50 + random.nextInt(51); // Moral entre 50 et 100
 
         // Crée un nouveau monstre
         Monstre monstre = new Monstre(
-                types[random.nextInt(types.length)],
+                type,
                 noms[random.nextInt(noms.length)],
                 sexe,
                 poids,
