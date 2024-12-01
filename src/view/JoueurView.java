@@ -28,7 +28,7 @@ public class JoueurView {
         return CYAN + "Bienvenue, " + MAGENTA + "Directeur de l'Hôpital des Monstres" + RESET + " !\n" +
                 "Votre mission : gérer un hôpital unique où les patients sont des créatures fantastiques.\n" +
                 GREEN + "Organisez vos services, soignez vos patients et évitez les catastrophes !\n" + RESET +
-                "Chaque décision compte. Bonne chance !\n";
+                "Chaque décision compte.\n" + RED + "Bonne chance !\n";
     }
 
     /**

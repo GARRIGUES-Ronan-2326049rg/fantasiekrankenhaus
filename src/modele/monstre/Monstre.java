@@ -1,5 +1,7 @@
 package modele.monstre;
 import modele.Maladie;
+import sounds.AudioPlayer;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,9 +12,16 @@ public class Monstre {
 	private short poids;
 	private short taille;
 	private int age;
-	private byte indicateurMoral = 100;
+	private int indicateurMoral = 100;
 	private ArrayList<Maladie> listeMaladie = new ArrayList<>();
 	private boolean estMort = false;
+
+
+	private static final String RESET = "\u001B[0m";
+	private static final String GREEN = "\u001B[32m";
+	private static final String RED = "\u001B[31m";
+
+
 
 
 	public Monstre(String type, String nom, char sexe, short poids, short taille, int age, int indicateurMoral) {
@@ -64,7 +73,7 @@ public class Monstre {
 		this.age = age;
 	}
 	public byte getIndicateurMoral() {
-		return indicateurMoral;
+		return (byte) indicateurMoral;
 	}
 	public void setIndicateurMoral(byte indicateurMoral) {
 		this.indicateurMoral = indicateurMoral;
@@ -80,30 +89,22 @@ public class Monstre {
 		return this.estMort;
 	}
 
-	public void attendre() {
-		this.indicateurMoral -= 5;
-		if (this.indicateurMoral < 10) {
-			System.out.println(this.hurler());
-		}
-	}
+
 
 	public void tomberMalade(Maladie maladie){
 		this.listeMaladie.add(maladie);
 	}
 
-	public String hurler() {
-		return "OSKOUUUUUUR";
-	}
 
-	// Évolution des maladies à chaque tour
+
 	public void evoluerMaladies() {
 		Random random = new Random();
 
 		if (listeMaladie.isEmpty()) {
-			// Si le monstre est guéri, il y a 10% de chance qu'il attrape de nouvelles maladies
+			// Si le monstre n'a pas de maladies, il y a une chance d'en attraper
 			int chance = random.nextInt(100); // Nombre entre 0 et 99
 			if (chance < 10) { // 10% de chance
-				System.out.println(nom + " a été guéri mais contracte de nouvelles maladies !");
+				System.out.println(nom + " est en pleine forme, mais contracte de nouvelles maladies !");
 				MonstreFactory.ajouterMaladiesAleatoires(this);
 			} else {
 				System.out.println(nom + " est en pleine forme et reste en bonne santé !");
@@ -111,28 +112,51 @@ public class Monstre {
 			return;
 		}
 
-		// Les maladies progressent si elles existent
+		// Progression aléatoire des maladies existantes
 		System.out.println("Les maladies de " + nom + " évoluent...");
-		for (Maladie maladie : listeMaladie) {
-			maladie.setNiveauActuel(maladie.getNiveauActuel() + 1);
+		boolean auMoinsUneMaladieAEvolue = false; // Pour savoir si au moins une maladie a évolué
 
-			// Si une maladie atteint son niveau max, le monstre meurt
-			if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
-				System.out.println(nom + " est mort à cause de " + maladie.getNomComplet() + ".");
-				break;
+		for (Maladie maladie : listeMaladie) {
+			// Décider aléatoirement si cette maladie doit progresser (30 % de chance)
+			int chanceEvoluer = random.nextInt(100); // Nombre entre 0 et 99
+			if (chanceEvoluer < 30) { // 30 % de chance
+				maladie.setNiveauActuel(maladie.getNiveauActuel() + 1);
+				System.out.println("⚠️ La maladie " + maladie.getNomComplet() + RED +" PROGRESSE " + RESET +" chez " + nom + ".");
+				auMoinsUneMaladieAEvolue = true;
+
+				// Vérifier si la maladie atteint son niveau max
+				if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
+					System.out.println("💀 " + nom + " est" + RED +" MORT " + RESET +" à cause de " + maladie.getNomComplet() + ".");
+					return; // Arrêter toute évolution car le monstre est mort
+				}
+			} else {
+				System.out.println("😌 La maladie " + maladie.getNomComplet() + " reste"+ GREEN + " STABLE" + RESET +" chez " + nom + ".");
 			}
+		}
+
+		// Si aucune maladie n'a évolué, le moral diminue
+		if (!auMoinsUneMaladieAEvolue) {
+			diminuerMoral();
 		}
 	}
 
-	// Vérifie si le monstre doit mourir
-	private void verifierMort() {
-		for (Maladie maladie : listeMaladie) {
-			if (maladie.getNiveauActuel() == maladie.getNiveauMax()) {
-				mourir(); // Le monstre meurt si une maladie atteint le niveau maximum
-				break;
-			}
+	// Méthode pour réduire le moral
+	private void diminuerMoral() {
+		int moralActuel = getIndicateurMoral();
+		int reductionMoral = 10; // Réduction de moral en cas de stagnation des maladies
+		int nouveauMoral = Math.max(0, moralActuel - reductionMoral); // Le moral ne peut pas être négatif
+		setIndicateurMoral((byte) nouveauMoral);
+
+		System.out.println("😟 Le moral de " + nom + " diminue de " + reductionMoral + "% (Moral actuel : " + nouveauMoral + "%).");
+
+		// Si le moral atteint 0, jouer un hurlement
+		if (nouveauMoral == 0) {
+			System.out.println("💀 " + nom + " hurle de désespoir !");
+			AudioPlayer.jouerSon("src/sounds/hurlement.wav");
+			AudioPlayer.jouerSon("src/sounds/ambiance_cimetiere.wav");
 		}
 	}
+
 
 	// Action de mourir
 	private void mourir() {
