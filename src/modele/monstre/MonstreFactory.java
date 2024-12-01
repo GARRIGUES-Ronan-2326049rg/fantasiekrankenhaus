@@ -64,8 +64,9 @@ public class MonstreFactory {
                         .anyMatch(m -> m.getNomComplet().equals(finalMaladieAleatoire.getNomComplet()));
             } while (maladieAjoutee); // Réessaye si la maladie est déjà présente
 
-            // Génère un niveau initial pour la maladie
-            int niveauInitial = random.nextInt(maladieAleatoire.getNiveauMax() - 1) + 1;
+            // Génère un niveau initial qui est au moins 3 niveaux inférieur au niveau max
+            int niveauMax = maladieAleatoire.getNiveauMax();
+            int niveauInitial = random.nextInt(Math.max(1, niveauMax - 3)) + 1;
 
             // Crée une copie de la maladie avec le niveau
             Maladie maladieAvecNiveau = new Maladie(

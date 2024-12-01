@@ -153,6 +153,7 @@ public class Monstre {
 		if (nouveauMoral == 0) {
 			System.out.println("💀 " + nom + " hurle de désespoir !");
 			AudioPlayer.jouerSon("src/sounds/hurlement.wav");
+			AudioPlayer.jouerSon("src/sounds/ambiance_cimetiere.wav");
 		}
 	}
 
