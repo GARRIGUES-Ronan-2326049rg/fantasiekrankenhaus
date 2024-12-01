@@ -11,11 +11,18 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * La classe HopitalController gère la logique du jeu pour un hôpital de monstres.
+ * Elle orchestre les interactions entre les joueurs, les médecins, les services et les monstres.
+ */
 public class HopitalController {
     private JoueurController joueur = new JoueurController();
     private Hopital hopital = new Hopital();
     private boolean jeuEnCours = true;
 
+    /**
+     * Démarre le jeu et exécute la boucle principale.
+     */
     public void lancerJeu() {
         initialiserHopital();
         joueur.afficheRegle();
@@ -39,34 +46,39 @@ public class HopitalController {
         }
     }
 
+    /**
+     * Initialise l'hôpital avec des médecins, des services et des monstres.
+     */
     private void initialiserHopital() {
         hopital.initialisationMedecin();
         hopital.initialisationService();
         hopital.initialisationMonstre(80, hopital.getListeService());
     }
 
-
-
+    /**
+     * Affiche l'état actuel de l'hôpital (à implémenter dans JoueurView).
+     */
     private void afficherEtatHopital() {
-        //joueur.afficherEtatHopital(services, medecins);
+        // joueur.afficherEtatHopital(services, medecins);
     }
 
+    /**
+     * Permet au joueur de réaliser des actions avec les médecins disponibles.
+     */
     private void agir() {
-
-        while (hopital.resteAction()){
+        while (hopital.resteAction()) {
             int choixMedecin = joueur.choixTourChoixMedecin(hopital.getListeMedecin());
             if (choixMedecin == 99) {
                 System.out.println("Fin de tours");
                 hopital.nouvelleJournee();
                 return;
-            }
-            else if (choixMedecin > hopital.getListeMedecin().size()) {
+            } else if (choixMedecin > hopital.getListeMedecin().size()) {
                 System.out.println("Médecin invalide.");
                 return;
             }
 
             Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin);
-            if (medecinChoisi.getActionPossible() > 0){
+            if (medecinChoisi.getActionPossible() > 0) {
                 String action = joueur.demandeAction();
                 switch (action.toLowerCase()) {
                     case "soigner":
@@ -85,10 +97,15 @@ public class HopitalController {
                         System.out.println("Action invalide.");
                 }
             }
-            }
+        }
         hopital.nouvelleJournee();
     }
 
+    /**
+     * Permet à un médecin d'examiner un service.
+     *
+     * @param medecin Le médecin réalisant l'examen.
+     */
     private void examiner(Medecin medecin) {
         ServiceMedical service = joueur.choisirService(hopital.getListeService());
         if (service != null) {
@@ -96,6 +113,11 @@ public class HopitalController {
         }
     }
 
+    /**
+     * Permet à un médecin de soigner un patient.
+     *
+     * @param medecin Le médecin réalisant le soin.
+     */
     private void soigner(Medecin medecin) {
         ServiceMedical service = joueur.choisirService(hopital.getListeService());
         if (service != null) {
@@ -110,6 +132,11 @@ public class HopitalController {
         }
     }
 
+    /**
+     * Permet à un médecin de réviser le budget d'un service.
+     *
+     * @param medecin Le médecin réalisant la révision.
+     */
     private void reviserBudget(Medecin medecin) {
         ServiceMedical service = joueur.choisirService(hopital.getListeService());
         if (service != null) {
@@ -120,6 +147,11 @@ public class HopitalController {
         }
     }
 
+    /**
+     * Permet à un médecin de transférer un patient entre deux services.
+     *
+     * @param medecin Le médecin réalisant le transfert.
+     */
     private void transfererPatient(Medecin medecin) {
         ServiceMedical origine = joueur.choisirService(hopital.getListeService());
         if (origine != null && !origine.getListeCreature().isEmpty()) {
@@ -141,6 +173,9 @@ public class HopitalController {
         }
     }
 
+    /**
+     * Effectue des actions automatiques dans chaque service, telles que l'évolution des maladies.
+     */
     private void effectuerActionsServices() {
         for (ServiceMedical service : hopital.getListeService()) {
             ArrayList<Monstre> creatures = service.getListeCreature();

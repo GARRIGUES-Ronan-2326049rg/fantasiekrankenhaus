@@ -1,4 +1,5 @@
 package modele;
+
 import modele.monstre.Monstre;
 import modele.monstre.MonstreFactory;
 import modele.service.CentreQuarantaine;
@@ -7,95 +8,112 @@ import modele.service.ServiceMedical;
 
 import java.util.ArrayList;
 
+/**
+ * La classe Hopital représente un hôpital dédié à la gestion et au traitement des monstres.
+ * Elle gère les services médicaux, les médecins et les patients.
+ */
 public class Hopital {
 	private String nom = "fantasiekrankenhaus";
-	final int maxService = 10;
+	private final int maxService = 10;
 	private ArrayList<ServiceMedical> listeService;
 	private ArrayList<Medecin> listeMedecin;
 
-	public Hopital(){
+	/**
+	 * Constructeur pour initialiser un hôpital vide avec une liste de services et de médecins.
+	 */
+	public Hopital() {
 		this.listeService = new ArrayList<>();
 		this.listeMedecin = new ArrayList<>();
 	}
-	
+
+	/**
+	 * @return Le nom de l'hôpital.
+	 */
 	public String getNom() {
 		return nom;
 	}
+
+	/**
+	 * Modifie le nom de l'hôpital.
+	 *
+	 * @param nom Le nouveau nom de l'hôpital.
+	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	/**
+	 * @return La liste des services médicaux de l'hôpital.
+	 */
 	public ArrayList<ServiceMedical> getListeService() {
 		return listeService;
 	}
+
+	/**
+	 * Modifie la liste des services médicaux de l'hôpital.
+	 *
+	 * @param listeService La nouvelle liste des services.
+	 */
 	public void setListeService(ArrayList<ServiceMedical> listeService) {
 		this.listeService = listeService;
 	}
+
+	/**
+	 * @return La liste des médecins de l'hôpital.
+	 */
 	public ArrayList<Medecin> getListeMedecin() {
 		return listeMedecin;
 	}
+
+	/**
+	 * Modifie la liste des médecins de l'hôpital.
+	 *
+	 * @param listeMedecin La nouvelle liste des médecins.
+	 */
 	public void setListeMedecin(ArrayList<Medecin> listeMedecin) {
 		this.listeMedecin = listeMedecin;
 	}
 
-	public void initialisationMedecin(){
-		Medecin medecin1 = new Medecin("Dr Emmet Brown", 'M', (byte) 59);
-		listeMedecin.add(medecin1);
-
-		Medecin medecin2 = new Medecin("Victor Frankenstein", 'M', (byte) 452);
-		listeMedecin.add(medecin2);
-
-		Medecin medecin3 = new Medecin("Dr Jekyll", 'M', (byte) 80);
-		listeMedecin.add(medecin3);
-
-		Medecin medecin4 = new Medecin("Dr Julia Hoffman", 'F', (byte) 23);
-		listeMedecin.add(medecin4);
-
-		Medecin medecin5 = new Medecin("Dr Harleen Quinzel", 'F', (byte) 19);
-		listeMedecin.add(medecin5);
-
-		Medecin medecin6 = new Medecin("Dr Samantha Grimm", 'F', (byte) 30);
-		listeMedecin.add(medecin6);
-
+	/**
+	 * Initialise une liste prédéfinie de médecins avec des noms, sexes et âges spécifiques.
+	 */
+	public void initialisationMedecin() {
+		listeMedecin.add(new Medecin("Dr Emmet Brown", 'M', (byte) 59));
+		listeMedecin.add(new Medecin("Victor Frankenstein", 'M', (byte) 452));
+		listeMedecin.add(new Medecin("Dr Jekyll", 'M', (byte) 80));
+		listeMedecin.add(new Medecin("Dr Julia Hoffman", 'F', (byte) 23));
+		listeMedecin.add(new Medecin("Dr Harleen Quinzel", 'F', (byte) 19));
+		listeMedecin.add(new Medecin("Dr Samantha Grimm", 'F', (byte) 30));
 	}
 
-	public void initialisationService(){
-		ServiceMedical serviceVampire = new ServiceMedical("Vampire", 1000, "Insuffisant", 100);
-		listeService.add(serviceVampire);
-
-		ServiceMedical serviceOrque = new ServiceMedical("Orque", 2000, "Faible", 100);
-		listeService.add(serviceOrque);
-
-		ServiceMedical serviceLycanthrope = new ServiceMedical("Lycanthrope", 1500, "Insuffisant", 100);
-		listeService.add(serviceLycanthrope);
-
-		ServiceMedical serviceElfe = new ServiceMedical("Elfe",900, "Faible", 100);
-		listeService.add(serviceElfe);
-
-		ServiceMedical serviceNain = new ServiceMedical("Nain", 100, "Insuffisant", 100);
-		listeService.add(serviceNain);
-
-		ServiceMedical serviceZombie = new ServiceMedical("Zombie", 1500, "Mediocre", 100);
-		listeService.add(serviceZombie);
-
-		ServiceMedical serviceReptilien = new ServiceMedical("Reptilien", 700, "Insuffisant", 100);
-		listeService.add(serviceReptilien);
-
-		ServiceMedical serviceHommeBete = new ServiceMedical("HommeBete", 1700, "Inexistant", 100);
-		listeService.add(serviceHommeBete);
-
-		Crypte crypte = new Crypte("Crypte", 870, "mediocre", 100);
-		listeService.add(crypte);
-
-		CentreQuarantaine centreQuarantaine = new CentreQuarantaine("Centre 40", 439, "Faible", 100);
-		listeService.add(centreQuarantaine);
+	/**
+	 * Initialise une liste prédéfinie de services médicaux et leurs caractéristiques.
+	 */
+	public void initialisationService() {
+		listeService.add(new ServiceMedical("Vampire", 1000, "Insuffisant", 100));
+		listeService.add(new ServiceMedical("Orque", 2000, "Faible", 100));
+		listeService.add(new ServiceMedical("Lycanthrope", 1500, "Insuffisant", 100));
+		listeService.add(new ServiceMedical("Elfe", 900, "Faible", 100));
+		listeService.add(new ServiceMedical("Nain", 100, "Insuffisant", 100));
+		listeService.add(new ServiceMedical("Zombie", 1500, "Médiocre", 100));
+		listeService.add(new ServiceMedical("Reptilien", 700, "Insuffisant", 100));
+		listeService.add(new ServiceMedical("HommeBete", 1700, "Inexistant", 100));
+		listeService.add(new Crypte("Crypte", 870, "Médiocre", 100));
+		listeService.add(new CentreQuarantaine("Centre 40", 439, "Faible", 100));
 	}
 
+	/**
+	 * Ajoute un nombre donné de monstres aléatoires à des services spécifiques en fonction de leur type.
+	 *
+	 * @param nombre       Le nombre de monstres à créer.
+	 * @param listeService La liste des services où ajouter les monstres.
+	 */
 	public void initialisationMonstre(int nombre, ArrayList<ServiceMedical> listeService) {
 		for (int i = 0; i < nombre; i++) {
 			Monstre monstre = MonstreFactory.creerMonstreAleatoire();
-			switch (monstre.getType()){
+			switch (monstre.getType()) {
 				case "Vampire":
-					listeService.getFirst().ajouterPatient(monstre);
+					listeService.get(0).ajouterPatient(monstre);
 					break;
 				case "Orque":
 					listeService.get(1).ajouterPatient(monstre);
@@ -122,22 +140,26 @@ public class Hopital {
 		}
 	}
 
-	public void nouvelleJournee(){
-		// Remise à niveau des actions des médecins
-		for (int i = 0; i < getListeMedecin().size(); ++i) {
-			getListeMedecin().get(i).setActionPossible(2);
+	/**
+	 * Réinitialise les actions possibles des médecins pour une nouvelle journée.
+	 */
+	public void nouvelleJournee() {
+		for (Medecin medecin : listeMedecin) {
+			medecin.setActionPossible(2);
 		}
-
 	}
 
-	public boolean resteAction(){
-		for (int i = 0; i < getListeMedecin().size(); ++i) {
-			if (getListeMedecin().get(i).getActionPossible() > 0) {
+	/**
+	 * Vérifie s'il reste des actions possibles pour au moins un médecin.
+	 *
+	 * @return {@code true} s'il reste des actions disponibles, {@code false} sinon.
+	 */
+	public boolean resteAction() {
+		for (Medecin medecin : listeMedecin) {
+			if (medecin.getActionPossible() > 0) {
 				return true;
 			}
 		}
 		return false;
 	}
-
-
 }

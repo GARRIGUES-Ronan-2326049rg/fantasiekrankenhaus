@@ -1,71 +1,135 @@
 package modele;
+
 import controller.Proba;
 import modele.monstre.*;
-import modele.*;
 import modele.service.ServiceMedical;
-
-import java.security.Provider;
-import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * La classe Medecin représente un médecin dans le jeu,
+ * capable de soigner des monstres, de gérer des actions dans les services médicaux,
+ * et d'influencer le gameplay à travers diverses interactions.
+ */
 public class Medecin {
+
 	private String nom;
 	private char sexe;
 	private byte age;
 	private int actionPossible = 2;
 
-    public Medecin(String nom, char sexe, byte age) {
-        this.nom = nom;
-        this.sexe = sexe;
-        this.age = age;
-    }
-	
+	/**
+	 * Constructeur pour initialiser un médecin avec ses informations personnelles.
+	 *
+	 * @param nom  Le nom du médecin.
+	 * @param sexe Le sexe du médecin ('M' pour masculin, 'F' pour féminin).
+	 * @param age  L'âge du médecin.
+	 */
+	public Medecin(String nom, char sexe, byte age) {
+		this.nom = nom;
+		this.sexe = sexe;
+		this.age = age;
+	}
+
+	/**
+	 * @return Le nom du médecin.
+	 */
 	public String getNom() {
 		return nom;
 	}
+
+	/**
+	 * Modifie le nom du médecin.
+	 *
+	 * @param nom Le nouveau nom.
+	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	/**
+	 * @return Le sexe du médecin.
+	 */
 	public char getSexe() {
 		return sexe;
 	}
+
+	/**
+	 * Modifie le sexe du médecin.
+	 *
+	 * @param sexe Le nouveau sexe ('M' ou 'F').
+	 */
 	public void setSexe(char sexe) {
 		this.sexe = sexe;
 	}
+
+	/**
+	 * @return L'âge du médecin.
+	 */
 	public byte getAge() {
 		return age;
 	}
+
+	/**
+	 * Modifie l'âge du médecin.
+	 *
+	 * @param age Le nouvel âge.
+	 */
 	public void setAge(byte age) {
 		this.age = age;
 	}
 
+	/**
+	 * Modifie le nombre d'actions possibles pour ce médecin.
+	 *
+	 * @param actionPossible Le nombre d'actions restantes.
+	 */
 	public void setActionPossible(int actionPossible) {
 		this.actionPossible = actionPossible;
 	}
 
+	/**
+	 * @return Le nombre d'actions possibles restantes pour ce médecin.
+	 */
 	public int getActionPossible() {
 		return actionPossible;
 	}
 
-	public void transfererPatient(Monstre monstre, ServiceMedical serviceDep, ServiceMedical serviceArr){
-
-		if(serviceDep.getListeCreature().contains(monstre) && !serviceArr.getListeCreature().contains(monstre)){
+	/**
+	 * Transfère un monstre d'un service médical à un autre.
+	 *
+	 * @param monstre   Le monstre à transférer.
+	 * @param serviceDep Le service de départ.
+	 * @param serviceArr Le service d'arrivée.
+	 */
+	public void transfererPatient(Monstre monstre, ServiceMedical serviceDep, ServiceMedical serviceArr) {
+		if (serviceDep.getListeCreature().contains(monstre) && !serviceArr.getListeCreature().contains(monstre)) {
 			serviceArr.getListeCreature().add(monstre);
 			serviceDep.getListeCreature().remove(monstre);
 			--actionPossible;
 		}
-
 	}
 
-	public void examineService(ServiceMedical service){
+	/**
+	 * Examine un service médical en affichant des informations sur ses monstres et ses statistiques globales.
+	 *
+	 * @param service Le service médical à examiner.
+	 */
+	public void examineService(ServiceMedical service) {
 		service.trierPatientsParMaladie();
-		System.out.println("Voici la liste des monstres et de leur caractérstisque.");
-		for(int i = 0; i < service.getListeCreature().size(); ++i){
+		System.out.println("Voici la liste des monstres et de leur caractéristique.");
+		for (int i = 0; i < service.getListeCreature().size(); ++i) {
 			System.out.println(service.getListeCreature().get(i) + "\n");
 		}
-		System.out.println("Voici les imformations global du service : " + service.toString());
+		System.out.println("Voici les informations globales du service : " + service.toString());
 	}
 
+	/**
+	 * Tente de soigner une maladie d'un monstre dans un service médical.
+	 * Affiche les chances de réussite basées sur le budget du service et le stade de la maladie.
+	 *
+	 * @param monstre Le monstre à soigner.
+	 * @param service Le service médical où le soin est effectué.
+	 */
 	public void soignePatient(Monstre monstre, ServiceMedical service) {
 		Scanner sc = new Scanner(System.in);
 
@@ -87,9 +151,11 @@ public class Medecin {
 
 		Proba p = new Proba();
 		Maladie maladieImportante = monstre.getMaxMaladie();
-		int chanceDeReussite = (int) (p.calculProba(service.getBudget(), (double) maladieImportante.getNiveauActuel() /maladieImportante.getNiveauMax())*100);
+		int chanceDeReussite = (int) (p.calculProba(service.getBudget(),
+				(double) maladieImportante.getNiveauActuel() / maladieImportante.getNiveauMax()) * 100);
 		System.out.println("🩺 Tentative de soin avec " + GREEN + chanceDeReussite + "%" + RESET + " de chance de réussite.");
 		System.out.println("Choisissez un numéro pour soigner une maladie ou entrez 0 pour passer :");
+
 		int choix;
 		try {
 			choix = Integer.parseInt(sc.nextLine());
@@ -116,11 +182,14 @@ public class Medecin {
 		--actionPossible;
 	}
 
-
-
-	public void reviseBudget(ServiceMedical service, String valeur){
+	/**
+	 * Révise le budget d'un service médical.
+	 *
+	 * @param service Le service médical à modifier.
+	 * @param valeur  La nouvelle valeur du budget.
+	 */
+	public void reviseBudget(ServiceMedical service, String valeur) {
 		service.setBudget(valeur);
 		--actionPossible;
 	}
-
 }
