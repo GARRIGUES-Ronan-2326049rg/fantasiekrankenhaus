@@ -16,7 +16,7 @@ public class MeuteLycanthrope {
     /**
      * @param liste Une liste composée des membres de la meute.
      * */
-    public MeuteLycanthrope(ArrayList<Lycanthrope> liste) throws IllegalArgumentException{
+    public MeuteLycanthrope(String nomMeute, ArrayList<Lycanthrope> liste) throws IllegalArgumentException{
         // Initialisation des variables.
         boolean maleAlphaPresent = false;
         int rangMaleAlpha = 0;
@@ -43,14 +43,22 @@ public class MeuteLycanthrope {
             }
         }
 
+        // Si une des conditions n'est pas respectée, erreur, sinon, on ajoute les variables.
         if (!maleAlphaPresent || !femelleAlphaPresent || !rangOmicronPresent
                 || compteurMaleAlpha > 1 || compteurFemelleAlpha > 1) {
             throw new IllegalArgumentException("La liste doit contenir un seul mâle Alpha, " +
                     "une seule femelle Alpha et au moins un membre de rang ω.");
         } else{
+            this.nomMeute = nomMeute;
             this.maleAlpha = liste.get(rangMaleAlpha);
+            this.maleAlpha.setMeute(nomMeute);
             this.femelleAlpha = liste.get(rangFemelleAlpha);
+            this.femelleAlpha.setMeute(nomMeute);
             this.listeMembres = liste;
+            // On inscrit bien le nom de la meute pour chacun des membres la composant.
+            for(int i = 0; i < this.listeMembres.size(); i++){
+                listeMembres.get(i).setMeute(nomMeute);
+            }
         }
 
     }
