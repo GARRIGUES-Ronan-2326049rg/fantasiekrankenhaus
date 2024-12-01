@@ -18,17 +18,17 @@ public class CaseTestLycantrhope {
 
     @BeforeEach
     void setUp() {
-        lycan = new Lycanthrope("Lycan", 'M', 20, 'α');
-        lycane = new Lycanthrope("Lycane", 'F', 17, 'α');
-        soumis = new Lycanthrope("Soumis", 'M', 20, 'ω');
+        this.lycan = new Lycanthrope("Lycan", 'M', "Adulte", 'α', "test");
+        this.lycane = new Lycanthrope("Lycane", 'F', "Jeune", 'α', "test");
+        this.soumis = new Lycanthrope("Soumis", 'M', "Adulte", 'ω', "test");
 
         ArrayList<Lycanthrope> liste = new ArrayList<>();
         liste.add(lycan);
         liste.add(lycane);
         liste.add(soumis);
 
-        meute = new MeuteLycanthrope(liste);
-        colonie = new ColonieLycanthrope();
+        this.meute = new MeuteLycanthrope(liste);
+        this.colonie = new ColonieLycanthrope();
     }
 
     @Test

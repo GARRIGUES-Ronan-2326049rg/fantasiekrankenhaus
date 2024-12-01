@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class MeuteLycanthrope {
 
+    private String nomMeute;
     private Lycanthrope maleAlpha;
     private Lycanthrope femelleAlpha;
 
@@ -163,7 +164,24 @@ public class MeuteLycanthrope {
         }
     }
 
-    public void devenirSolitaire(){
+    public Lycanthrope devenirSolitaire(){
+        Random random = new Random();
+        Lycanthrope newLycanthrope = null;
+        int num = random.nextInt(listeMembres.size());
+        if(listeMembres.get(num).getRang() == 'ω' || !listeMembres.get(num).isReussiteDomination()){
+            newLycanthrope = listeMembres.get(num);
+            newLycanthrope.setMeute(null);
+            listeMembres.remove(num);
+        }
+        return newLycanthrope;
+    }
 
+    public void reproduction(String[] noms, char[] sexe){
+        Random random = new Random();
+        int nbJeunes = random.nextInt(7);
+        for(int i = 0; i < nbJeunes ; i++){
+            listeMembres.add(new Lycanthrope(noms[random.nextInt(noms.length)], sexe[random.nextInt(sexe.length)],
+                    "Jeune", alphabetGrec.charAt(random.nextInt(alphabetGrec.length())), nomMeute));
+        }
     }
 }

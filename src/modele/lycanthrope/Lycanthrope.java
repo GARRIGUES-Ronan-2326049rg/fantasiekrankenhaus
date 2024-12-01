@@ -4,25 +4,21 @@ public class Lycanthrope{
 
     private String nom;
     private char sexe;
-    private int age;
     private String categorieAge;
     private int force;
     private int facteurDomination;
     private char rang;
     private int niveau;
     private int facteurImpetuosite;
-    private String meute = null;
+    private boolean reussiteDomination = true;
+    private String meute;
 
-    public Lycanthrope(String nom, char sexe, int age, char rang) {
+    public Lycanthrope(String nom, char sexe, String categorieAge, char rang, String meute) {
         this.nom = nom;
         this.sexe = sexe;
-        this.age = age;
+        this.categorieAge = categorieAge;
         this.rang = rang;
-
-        //Attribution de la catégorie d'âge.
-        if(age < 18) this.categorieAge = "Jeune";
-        else if (age < 65) this.categorieAge = "Adulte";
-        else this.categorieAge = "Vieux";
+        this.meute = meute;
     }
 
     public String getNom() {
@@ -39,14 +35,6 @@ public class Lycanthrope{
 
     public void setSexe(char sexe) {
         this.sexe = sexe;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public int getFacteurImpetuosite() {
@@ -113,6 +101,14 @@ public class Lycanthrope{
         this.meute = meute;
     }
 
+    public boolean isReussiteDomination() {
+        return reussiteDomination;
+    }
+
+    public void setReussiteDomination(boolean reussiteDomination) {
+        this.reussiteDomination = reussiteDomination;
+    }
+
     public void transformation(){
         //TODO
     }
@@ -120,7 +116,7 @@ public class Lycanthrope{
     public String afficherCaracteristiques(){
         return this.nom + "a pour caractéristiques : \n"
                 + "Sexe : " + this.sexe + "\n"
-                + "Age : " + this.age + "\n"
+                + "Catégorie d'Âge : " + this.categorieAge + "\n"
                 + "Force : " + this.force + "\n"
                 + "FacteurDomination : " + this.facteurDomination + "\n"
                 + "Rang : " + this.rang + "\n"
@@ -128,4 +124,5 @@ public class Lycanthrope{
                 + "facteurImpetuosite : " + this.facteurImpetuosite + "\n"
                 + "Meute : " + this.meute + "\n";
     }
+
 }
