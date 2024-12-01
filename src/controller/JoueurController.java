@@ -5,6 +5,7 @@ import modele.monstre.Monstre;
 import modele.service.ServiceMedical;
 import view.JoueurView;
 
+import java.util.InputMismatchException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -42,11 +43,24 @@ public class JoueurController {
      * @return L'indice du médecin choisi par le joueur.
      */
     public int choixTourChoixMedecin(ArrayList<Medecin> listeMedecin) {
-        this.view.demandeChoixMedecin(listeMedecin);
-        int choix = sc.nextInt();
-        sc.nextLine(); // Consomme le retour à la ligne restant.
-        return choix;
-    }
+        while (true) {
+            try {
+                this.view.demandeChoixMedecin(listeMedecin);
+                int choix = sc.nextInt();
+                sc.nextLine(); // Consomme le retour à la ligne restant.
+
+                if (choix == 99 || (choix >= 0 && choix < listeMedecin.size())) {
+                    return choix;
+                } else {
+                    System.out.println("❌ Veuillez choisir un numéro valide parmi les options affichées.");
+                }
+
+            } catch (InputMismatchException e) {
+                    System.out.println("❌ Entrée invalide. Veuillez entrer un nombre.");
+                    sc.nextLine(); // Consomme la mauvaise entrée pour éviter une boucle infinie (danger de mort)
+                }
+            }
+        }
 
     /**
      * Demande au joueur l'action qu'il souhaite que le médecin effectue.
