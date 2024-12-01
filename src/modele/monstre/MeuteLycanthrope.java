@@ -127,7 +127,7 @@ public class MeuteLycanthrope {
                 } else if(membre == lycanthrope2){
                     membre.setFacteurDomination(membre.getFacteurDomination() - 5);
                     // On regarde si lycanthrope 1 est le mâle alpha. Si c'est le cas, lycanthrope2 devient le nouveau mâle alpha.
-                    if(lycanthrope2.getSexe() == 'M' && membre == maleAlpha){
+                    if(lycanthrope2.getSexe() == 'M' && lycanthrope1 == maleAlpha){
                         System.out.println(lycanthrope2.getNom() + " devient le nouveau mâle Alpha de la meute !");
                         maleAlpha = membre;
                         // On regarde ensuite si uen femelle a un niveau plus haut que celui de la femelle Alpha.
@@ -146,7 +146,7 @@ public class MeuteLycanthrope {
                         } else {
                             System.out.println(listeMembres.get(rangFemelleForte).getNom() + " devient la nouvelle femelle Alpha !");
                             listeMembres.get(rangFemelleForte).setRang(femelleAlpha.getRang());
-                            listeMembres.get(rangFemelleAlpha).setRang(listeMembres.get(rangFemelleForte).getRang());
+                            listeMembres.get(rangFemelleAlpha).setRang(lycanthrope2.getRang());
                             femelleAlpha = listeMembres.get(rangFemelleForte);
 
                         }
