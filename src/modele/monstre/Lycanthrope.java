@@ -5,13 +5,15 @@ public class Lycanthrope extends Monstre{
     private String categorieAge;
     private int force;
     private int facteurDomination;
-    private int rang;
+    private char rang;
     private int niveau;
-    private int facteruImpetuosite;
+    private int facteurImpetuosite;
     private String meute = null;
 
-    public Lycanthrope(String nom, int age) {
-        super(nom, "Lycanthrope", 'M', (short) 100, (short) 200, age, 100);
+    public Lycanthrope(String nom, char sexe, int age, char rang) {
+        super(nom, "Lycanthrope", sexe, (short) 100, (short) 200, age, 100);
+
+        this.rang = rang;
 
         //Attribution de la catégorie d'âge.
         if(age < 18) this.categorieAge = "Jeune";
@@ -43,11 +45,11 @@ public class Lycanthrope extends Monstre{
         this.facteurDomination = facteurDomination;
     }
 
-    public int getRang() {
+    public char getRang() {
         return rang;
     }
 
-    public void setRang(int rang) {
+    public void setRang(char rang) {
         this.rang = rang;
     }
 
@@ -59,12 +61,12 @@ public class Lycanthrope extends Monstre{
         this.niveau = niveau;
     }
 
-    public int getFacteruImpetuosite() {
-        return facteruImpetuosite;
+    public int getfacteurImpetuosite() {
+        return facteurImpetuosite;
     }
 
-    public void setFacteruImpetuosite(int facteruImpetuosite) {
-        this.facteruImpetuosite = facteruImpetuosite;
+    public void setfacteurImpetuosite(int facteurImpetuosite) {
+        this.facteurImpetuosite = facteurImpetuosite;
     }
 
     public String getMeute() {
@@ -95,7 +97,7 @@ public class Lycanthrope extends Monstre{
                 + "FacteurDomination : " + this.facteurDomination + "\n"
                 + "Rang : " + this.rang + "\n"
                 + "Niveau : " + this.niveau + "\n"
-                + "FacteruImpetuosite : " + this.facteruImpetuosite + "\n"
+                + "facteurImpetuosite : " + this.facteurImpetuosite + "\n"
                 + "Meute : " + this.meute + "\n";
     }
 }
