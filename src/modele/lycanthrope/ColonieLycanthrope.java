@@ -1,4 +1,4 @@
-package modele.monstre;
+package modele.lycanthrope;
 
 import java.util.ArrayList;
 

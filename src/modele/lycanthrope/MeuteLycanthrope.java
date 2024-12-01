@@ -1,4 +1,4 @@
-package modele.monstre;
+package modele.lycanthrope;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -161,5 +161,9 @@ public class MeuteLycanthrope {
                 }
             }
         }
+    }
+
+    public void devenirSolitaire(){
+
     }
 }

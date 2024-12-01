@@ -1,6 +1,6 @@
-import modele.monstre.ColonieLycanthrope;
-import modele.monstre.Lycanthrope;
-import modele.monstre.MeuteLycanthrope;
+import modele.lycanthrope.ColonieLycanthrope;
+import modele.lycanthrope.Lycanthrope;
+import modele.lycanthrope.MeuteLycanthrope;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
