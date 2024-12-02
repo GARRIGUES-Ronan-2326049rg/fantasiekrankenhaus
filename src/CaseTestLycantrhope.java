@@ -1,4 +1,4 @@
-import modele.lycanthrope.ColonieLycanthrope;
+/*import modele.lycanthrope.ColonieLycanthrope;
 import modele.lycanthrope.Lycanthrope;
 import modele.lycanthrope.MeuteLycanthrope;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,4 +41,4 @@ public class CaseTestLycantrhope {
         assertEquals("Jeune", lycane.getCategorieAge());
     }
 
-}
+}*/

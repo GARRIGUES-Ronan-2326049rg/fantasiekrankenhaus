@@ -113,7 +113,7 @@ public class Hopital {
 			Monstre monstre = MonstreFactory.creerMonstreAleatoire();
 			switch (monstre.getType()) {
 				case "Vampire":
-					listeService.get(0).ajouterPatient(monstre);
+					listeService.getFirst().ajouterPatient(monstre);
 					break;
 				case "Orque":
 					listeService.get(1).ajouterPatient(monstre);

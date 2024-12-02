@@ -1,5 +1,6 @@
 package modele.monstre;
 import modele.Maladie;
+import modele.service.ServiceMedical;
 import sounds.AudioPlayer;
 
 import java.util.ArrayList;
@@ -84,8 +85,16 @@ public class Monstre {
 	public void setListeMaladie(ArrayList<Maladie> listeMaladie) {
 		this.listeMaladie = listeMaladie;
 	}
+	private ServiceMedical service; // Référence au service médical
+	public ServiceMedical getService() {
+		return service;
+	}
+	public void setService(ServiceMedical service) {
+		this.service = service;
+	}
 
-	public boolean estMort() {
+
+	public boolean estMort(boolean b) {
 		return this.estMort;
 	}
 
@@ -113,7 +122,7 @@ public class Monstre {
 		}
 
 		// Progression aléatoire des maladies existantes
-		System.out.println("Les maladies de " + nom + " évoluent...");
+		System.out.println("Les maladies de " + nom +" qui est un  "+ type + " évoluent...");
 		boolean auMoinsUneMaladieAEvolue = false; // Pour savoir si au moins une maladie a évolué
 
 		for (Maladie maladie : listeMaladie) {
@@ -149,19 +158,21 @@ public class Monstre {
 
 		System.out.println("😟 Le moral de " + nom + " diminue de " + reductionMoral + "% (Moral actuel : " + nouveauMoral + "%).");
 
-		// Si le moral atteint 0, jouer un hurlement
+		// Si le moral atteint 0, joue un hurlement
 		if (nouveauMoral == 0) {
 			System.out.println("💀 " + nom + " hurle de désespoir !");
 			AudioPlayer.jouerSon("src/sounds/hurlement.wav");
-			AudioPlayer.jouerSon("src/sounds/ambiance_cimetiere.wav");
 		}
 	}
 
 
-	// Action de mourir
+
 	private void mourir() {
 		this.estMort = true;
 		System.out.println("Le monstre " + this.nom + " est mort à cause de ses maladies !");
+		if (this instanceof Vampire) {
+			((Vampire) this).demoraliser(service);
+		}
 	}
 
 	// Soigner une maladie spécifique
@@ -172,12 +183,23 @@ public class Monstre {
 			if (maladie.getNomComplet().equalsIgnoreCase(nomMaladie)) {
 				// Retire la maladie de la liste
 				listeMaladie.remove(i);
-				System.out.println("La maladie " + maladie.getNomComplet() + " a été complètement soignée !");
+				// System.out.println("La maladie " + maladie.getNomComplet() + " a été complètement soignée !");
 				return;
 			}
 		}
-
 		System.out.println("Aucune maladie correspondante trouvée pour " + nomMaladie + ".");
+	}
+
+
+	public Maladie getMaxMaladie() {
+		Maladie maladie = getListeMaladie().getFirst();
+		for (int i = 0; i < getListeMaladie().size(); ++i) {
+			if(getListeMaladie().get(i).getNiveauActuel()/maladie.getNiveauMax() > getListeMaladie().get(i).getNiveauActuel()/maladie.getNiveauMax()){
+				maladie = getListeMaladie().get(i);
+			}
+		}
+		System.out.println(maladie.getNiveauActuel()/maladie.getNiveauMax());
+		return maladie;
 	}
 
 	@Override
@@ -202,17 +224,5 @@ public class Monstre {
 		}
 
 		return sb.toString();
-	}
-
-
-	public Maladie getMaxMaladie() {
-		Maladie maladie = getListeMaladie().getFirst();
-		for (int i = 0; i < getListeMaladie().size(); ++i) {
-			if(getListeMaladie().get(i).getNiveauActuel()/maladie.getNiveauMax() > getListeMaladie().get(i).getNiveauActuel()/maladie.getNiveauMax()){
-				maladie = getListeMaladie().get(i);
-			}
-		}
-		System.out.println(maladie.getNiveauActuel()/maladie.getNiveauMax());
-		return maladie;
 	}
 }
