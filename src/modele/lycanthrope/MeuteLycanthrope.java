@@ -1,6 +1,8 @@
 package modele.lycanthrope;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class MeuteLycanthrope {
@@ -84,7 +86,12 @@ public class MeuteLycanthrope {
         this.listeMembres = listeMembres;
     }
 
-    public void domination(){
+    /**
+     * Permet de trouver deux lycanthropes aptes à exercer une domination sur l'autre.
+     *
+     * @return ArrayList<Lycanthrope> Un array contenant les deux lycanthropes aptes à se soumettre.
+     * */
+    public ArrayList<Lycanthrope> rechercherDeuxLycanthropes() {
         // Création de la variable aléatoire permettant de choisir un loup de la meute.
         Random random = new Random();
 
@@ -96,7 +103,7 @@ public class MeuteLycanthrope {
         int placeRangLy1 = 0;
         int placeRangLy2 = 0;
 
-        // Recherche de l'emplacement de leur rang dans l'alphabet grec
+        // Recherche de l'emplacement de leur rang dans l'alphabet grec.
         for(int i = 0; i < alphabetGrec.length()-1; i++){
             if(alphabetGrec.charAt(i) == rangLy1){
                 placeRangLy1 = i + 1;
@@ -120,6 +127,19 @@ public class MeuteLycanthrope {
                 }
             }
         }
+
+        // Nous créons un array avec les deux Lycanthropes sélectionnés
+
+        ArrayList<Lycanthrope> arrayLycanthropes = new ArrayList<>();
+        arrayLycanthropes.add(lycanthrope1);
+        arrayLycanthropes.add(lycanthrope2);
+        return arrayLycanthropes;
+    }
+
+    public void domination(ArrayList<Lycanthrope> arrayLycanthropes){
+        Lycanthrope lycanthrope1 = arrayLycanthropes.get(0);
+        Lycanthrope lycanthrope2 = arrayLycanthropes.get(1);
+
 
         System.out.println(lycanthrope1.getNom() + " tente une domination contre " + lycanthrope2.getNom() + "!");
 

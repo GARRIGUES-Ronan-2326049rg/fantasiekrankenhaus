@@ -66,7 +66,7 @@ public class ColonieLycanthrope {
     public void evolutionHierarchie(){
         Random random = new Random();
         int idMeute = random.nextInt(this.listeMeutes.size());
-        this.listeMeutes.get(idMeute).domination();
+        this.listeMeutes.get(idMeute)/*.domination()*/;
         this.listeMeutes.get(idMeute).hierarchieLycanthropes();
     }
 
