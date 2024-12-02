@@ -11,6 +11,7 @@ public class Lycanthrope{
     private int niveau;
     private int facteurImpetuosite;
     private boolean reussiteDomination = true;
+    private boolean devenirHumain = false;
     private String meute;
 
     public Lycanthrope(String nom, char sexe, String categorieAge, char rang, String meute) {
@@ -109,8 +110,16 @@ public class Lycanthrope{
         this.reussiteDomination = reussiteDomination;
     }
 
-    public void transformation(){
-        //TODO
+    public boolean isDevenirHumain() {
+        return devenirHumain;
+    }
+
+    public void transformationHumain(){
+        this.devenirHumain = true;
+    }
+
+    public void transformationHLycanthrope(){
+        this.devenirHumain = false;
     }
 
     public String afficherCaracteristiques(){
