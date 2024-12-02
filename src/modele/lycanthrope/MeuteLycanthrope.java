@@ -24,7 +24,6 @@ public class MeuteLycanthrope {
         boolean femelleAlphaPresent = false;
         int rangFemelleAlpha = 0;
         int compteurFemelleAlpha = 0;
-        boolean rangOmicronPresent = false;
 
         // Vérification d'un mâle Alpha, d'une femelle Alpha et d'un membre au moins de niveau Omicron (ω) dans la liste.
         for(int i = 0; i < liste.size(); i++){
@@ -38,16 +37,14 @@ public class MeuteLycanthrope {
                     rangFemelleAlpha = i;
                     compteurFemelleAlpha++;
                 }
-            } else if(liste.get(i).getRang() == 'ω'){
-                rangOmicronPresent = true;
             }
         }
 
         // Si une des conditions n'est pas respectée, erreur, sinon, on ajoute les variables.
-        if (!maleAlphaPresent || !femelleAlphaPresent || !rangOmicronPresent
+        if (!maleAlphaPresent || !femelleAlphaPresent
                 || compteurMaleAlpha > 1 || compteurFemelleAlpha > 1) {
-            throw new IllegalArgumentException("La liste doit contenir un seul mâle Alpha, " +
-                    "une seule femelle Alpha et au moins un membre de rang ω.");
+            throw new IllegalArgumentException("La liste doit contenir un seul mâle Alpha et " +
+                    "une seule femelle Alpha.");
         } else{
             this.nomMeute = nomMeute;
             this.maleAlpha = liste.get(rangMaleAlpha);
@@ -204,6 +201,21 @@ public class MeuteLycanthrope {
         String texte = "La meute " + this.nomMeute + " est constitué de : \n";
         for(Lycanthrope membre : listeMembres){
             texte = texte + membre.afficherCaracteristiques();
+        }
+        return texte;
+    }
+
+    public String hierarchieLycanthropes(){
+        String texte = "La meute " + this.nomMeute + " possède la hiérarchie suivante : \n" +
+                "Le coupe α " + this.maleAlpha.getNom() + " et " + this.femelleAlpha.getNom() + "\n";
+        for(int i = 1; i < alphabetGrec.length(); i++){
+            texte = texte + "Les membres " + alphabetGrec.charAt(i) + "sont : ";
+            for(Lycanthrope membre : listeMembres){
+                if(membre.getRang() == alphabetGrec.charAt(i)){
+                    texte = texte + membre.getNom();
+                }
+            }
+            texte = texte + "\n";
         }
         return texte;
     }

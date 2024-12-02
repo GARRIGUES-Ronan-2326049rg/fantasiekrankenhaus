@@ -118,8 +118,28 @@ public class Lycanthrope{
         this.devenirHumain = true;
     }
 
-    public void transformationHLycanthrope(){
-        this.devenirHumain = false;
+//    public void transformationLycanthrope(){
+//        this.devenirHumain = false;
+//    }
+
+    public String hurlementAppartenanceMeute(){
+        //TODO
+        return "";
+    }
+
+    public String exprimerDomination(){
+        //TODO
+        return "";
+    }
+
+    public String exrpimerSoumission(){
+        //TODO
+        return "";
+    }
+
+    public String exprimerAgressivite(){
+        //TODO
+        return "";
     }
 
     public String afficherCaracteristiques(){
