@@ -123,23 +123,19 @@ public class Lycanthrope{
 //    }
 
     public String hurlementAppartenanceMeute(){
-        //TODO
-        return "";
+        return this.nom + " exprime son apparetenance à la meute " + this.meute + " !";
     }
 
-    public String exprimerDomination(){
-        //TODO
-        return "";
+    public String exprimerDomination(Lycanthrope lycanthrope){
+        return this.nom + " a dominé " + lycanthrope.getNom() + " !";
     }
 
-    public String exrpimerSoumission(){
-        //TODO
-        return "";
+    public String exrpimerSoumission(Lycanthrope lycanthrope){
+        return lycanthrope.getNom() + " a été soumis " + this.nom + " !";
     }
 
-    public String exprimerAgressivite(){
-        //TODO
-        return "";
+    public String exprimerAgressivite(Lycanthrope lycanthrope){
+        return lycanthrope.getNom() + " se montre agressif " + this.nom + " !";
     }
 
     public String afficherCaracteristiques(){
