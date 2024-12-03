@@ -27,9 +27,6 @@ public class Vampire extends Monstre{
         // prend la moitié des monstres
         int nombreAffectes = monstres.size() / 2;
 
-        // Mélange les monstres pour une sélection random
-        Collections.shuffle(monstres, new Random());
-
         // Applique la baisse de moral à la moitié sélectionnée
         for (int i = 0; i < nombreAffectes; i++) {
             Monstre monstre = monstres.get(i);

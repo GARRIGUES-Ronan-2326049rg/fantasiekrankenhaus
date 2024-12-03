@@ -137,6 +137,7 @@ public class Monstre {
 				if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
 					System.out.println("💀 " + nom + " est" + RED +" MORT " + RESET +" à cause de " + maladie.getNomComplet() + ".");
 					mourir();
+					Monstre.this.service.getListeCreature().remove(this);
 					return; // Arrêter toute évolution car le monstre est mort
 				}
 			} else {
@@ -170,10 +171,13 @@ public class Monstre {
 
 	private void mourir() {
 		this.estMort = true;
-		System.out.println("Le monstre " + this.nom + " est mort à cause de ses maladies !");
 		if (this instanceof Vampire) {
 			((Vampire) this).demoraliser(service);
 		}
+	}
+
+	private void regenerer() {
+		System.out.println("Le vampire se régénère.");
 	}
 
 	// Soigner une maladie spécifique
