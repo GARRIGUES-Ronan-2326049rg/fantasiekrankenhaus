@@ -171,6 +171,10 @@ public class Medecin {
 
 			if (Math.random() * 100 < chanceDeReussite) {
 				monstre.soignerMaladie(nomMaladie);
+				if(monstre.getIndicateurMoral() <= 50){
+					monstre.setIndicateurMoral((byte) (monstre.getIndicateurMoral()+50));
+				}
+
 				System.out.println(GREEN + "✅ La maladie " + nomMaladie + " a été soignée avec succès !" + RESET);
 			} else {
 				System.out.println(RED + "❌ La tentative de soigner la maladie " + nomMaladie + " a échoué." + RESET);
