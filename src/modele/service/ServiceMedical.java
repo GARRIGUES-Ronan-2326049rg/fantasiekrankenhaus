@@ -262,11 +262,18 @@ public class ServiceMedical {
 
 		if (!listeCreature.isEmpty()) {
 			sb.append("\n🧟‍♂️ Liste des créatures en soin :\n");
+			boolean vide = true;
 			for (Monstre monstre : listeCreature) {
-				sb.append("      - \u001B[34m").append(monstre.getNom())
-						.append("\u001B[0m (Âge : \u001B[36m").append(monstre.getAge())
-						.append("\u001B[0m, Moral : \u001B[33m").append(monstre.getIndicateurMoral())
-						.append("%\u001B[0m)\n");
+				if(!monstre.getListeMaladie().isEmpty()){
+					sb.append("      - \u001B[34m").append(monstre.getNom())
+							.append("\u001B[0m (Âge : \u001B[36m").append(monstre.getAge())
+							.append("\u001B[0m, Moral : \u001B[33m").append(monstre.getIndicateurMoral())
+							.append("%\u001B[0m)\n");
+					vide = false;
+				}
+			}
+			if (vide) {
+				sb.append("\n✅ \u001B[32mAucun monstre en soin actuellement !\u001B[0m\n");
 			}
 		} else {
 			sb.append("\n✅ \u001B[32mAucun monstre en soin actuellement !\u001B[0m\n");

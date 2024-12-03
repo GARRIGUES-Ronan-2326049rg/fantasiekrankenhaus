@@ -90,7 +90,9 @@ public class JoueurView {
     public void choisirMonstre(ArrayList<Monstre> listeCreature) {
         System.out.println("Sur quel monstre voulez-vous intervenir ? Tapez son nom :\n");
         for (Monstre monstre : listeCreature) {
-            System.out.println("  👹 " + YELLOW + monstre.getNom() + RESET);
+            if (!monstre.getListeMaladie().isEmpty()){
+                System.out.println("  👹 " + YELLOW + monstre.getNom() + RESET);
+            }
         }
     }
 

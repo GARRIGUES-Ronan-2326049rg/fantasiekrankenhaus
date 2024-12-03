@@ -118,7 +118,9 @@ public class Medecin {
 		service.trierPatientsParMaladie();
 		System.out.println("Voici la liste des monstres et de leur caractéristique.");
 		for (int i = 0; i < service.getListeCreature().size(); ++i) {
-			System.out.println(service.getListeCreature().get(i) + "\n");
+			if (!service.getListeCreature().get(i).getListeMaladie().isEmpty()) {
+				System.out.println(service.getListeCreature().get(i) + "\n");
+			}
 		}
 		System.out.println("Voici les informations globales du service : " + service.toString());
 	}
@@ -171,6 +173,10 @@ public class Medecin {
 
 			if (Math.random() * 100 < chanceDeReussite) {
 				monstre.soignerMaladie(nomMaladie);
+				if(monstre.getIndicateurMoral() <= 50){
+					monstre.setIndicateurMoral((byte) (monstre.getIndicateurMoral()+50));
+				}
+
 				System.out.println(GREEN + "✅ La maladie " + nomMaladie + " a été soignée avec succès !" + RESET);
 			} else {
 				System.out.println(RED + "❌ La tentative de soigner la maladie " + nomMaladie + " a échoué." + RESET);
