@@ -52,7 +52,7 @@ public class HopitalController {
     private void initialiserHopital() {
         hopital.initialisationMedecin();
         hopital.initialisationService();
-        hopital.initialisationMonstre(10, hopital.getListeService());
+        hopital.initialisationMonstre(30, hopital.getListeService());
     }
 
     /**

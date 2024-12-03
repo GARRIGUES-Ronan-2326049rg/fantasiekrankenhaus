@@ -106,6 +106,9 @@ public class Monstre {
 
 
 
+
+
+
 	public void evoluerMaladies() {
 		Random random = new Random();
 
@@ -136,8 +139,8 @@ public class Monstre {
 				// Vérifier si la maladie atteint son niveau max
 				if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
 					System.out.println("💀 " + nom + " est" + RED +" MORT " + RESET +" à cause de " + maladie.getNomComplet() + ".");
-					mourir();
-					Monstre.this.service.getListeCreature().remove(this);
+					demoraliser(); // Démoraliser les autres créatures si c'est un Vampire ou un Elfe qui meurt
+					Monstre.this.service.getListeCreature().remove(this); // Retirer le monstre du service quand il meurt
 					return; // Arrêter toute évolution car le monstre est mort
 				}
 			} else {
@@ -169,10 +172,14 @@ public class Monstre {
 
 
 
-	private void mourir() {
+	private void demoraliser() {
 		this.estMort = true;
-		if (this instanceof Vampire) {
-			((Vampire) this).demoraliser(service);
+		if (this instanceof Vampire || this instanceof Elfe) {
+			if (this instanceof Vampire) {
+				((Vampire) this).demoraliser(service);
+			} else {
+				((Elfe) this).demoraliser(service);
+			}
 		}
 	}
 
@@ -188,6 +195,7 @@ public class Monstre {
 			if (maladie.getNomComplet().equalsIgnoreCase(nomMaladie)) {
 				// Retire la maladie de la liste
 				listeMaladie.remove(i);
+				Monstre.this.indicateurMoral += 50;
 				// System.out.println("La maladie " + maladie.getNomComplet() + " a été complètement soignée !");
 				return;
 			}
