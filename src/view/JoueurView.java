@@ -1,5 +1,6 @@
 package view;
 
+import modele.lycanthrope.MeuteLycanthrope;
 import modele.monstre.Monstre;
 
 import modele.Medecin;
@@ -17,9 +18,30 @@ public class JoueurView {
                 "Rappelez-vous : chaque décision compte et chaque monstre a sa propre spécificité. Bonne chance, Directeur !\n";
     }
 
+    public String presentationJeuLycanthrope(){
+        return "Bienvenue jeune lycanthrope solitaire!\n" +
+                "Au cours d'une balade, vosu êtes tombé sur une colonie constitué d'une seule petite meute.\n" +
+                "Pris d'un sentiment de pitié pour vos semblables, vous décidez de venir leur préter un coup de patte dans l'organisation de leur communauté\n" +
+                "Observez votre meute évoluer, changer de hiérarchie, devenir le refuge de nouveau-nés.\n" +
+                "Observez vos semblables se disputer, se soumettre entre eux, quitter leur meute pour peut-être en recréer une ?\n" +
+                "Profitez simplement de vos beaux jours parmi eux !";
+    }
+
+    public void demandeJeu(){
+        System.out.println("Voulez vous :\n" +
+            "Vous occupez d'un hôpital : 'hopital' \n" +
+            "Vous occupez d'une colonie de lycanthropes : 'loups' \n");
+    }
+
     public void demandeChoix(){
         System.out.println( "Voulez vous :\n" +
                 "Agir sur les médecins : 'agir'\n" +
+                "Finir le jeu ? : 'finir'\n");
+    }
+
+    public void demanderChoixLycanthrope(){
+        System.out.println( "Voulez vous :\n" +
+                "Agir sur les lycanthropes : 'agir'\n" +
                 "Finir le jeu ? : 'finir'\n");
     }
 
@@ -41,16 +63,36 @@ public class JoueurView {
                 "Transférer le patient ? Tapez Tranferer\n");
     }
 
+    public void demanderActionLycanthropeMeute(){
+        System.out.println("Pour ce lycanthrope, voulez vous : \n" +
+                "Lui demander de tenter uen domination ? Tapez Dominer\n" +
+                "Lui demander de hurler son appartenance à sa meute ? Tapez Hurler" +
+                "Lui demander de quitter la meute ? Tapez Quitter" +
+                "Revenir en arrière ? Tapez Retour\n");
+    }
+
+    public void demanderActionLycanthropeSolitaire(){
+        System.out.println("Pour ce lycanthrope, voulez vous : \n" +
+                "Lui demander de créer une nouvelle meute ? Tapez Meute\n" +
+                "Revenir en arrière ? Tapez Retour\n");
+    }
+
     public void choisirService(ArrayList<ServiceMedical> listeService) {
-        System.out.println("Sur quel service voulait vous intervenir ? Tapez son nom \n");
+        System.out.println("Sur quel service voulez vous intervenir ? Tapez son nom \n");
         for (ServiceMedical serviceMedical : listeService) {
             System.out.println(serviceMedical.getNom() + "\n");
         }
+    }
 
+    public void choisirMeute(ArrayList<MeuteLycanthrope> listeMeute){
+        System.out.println("Sur quelle meute voulez vous intervenir ? Tapez son nom \n");
+        for (MeuteLycanthrope meute : listeMeute) {
+            System.out.println(meute.getNom() + "\n");
+        }
     }
 
     public void choisirMonstre(ArrayList<Monstre> listeCreature) {
-        System.out.println("Sur quel monstre voulait vous intervenir ? Tapez son nom \n");
+        System.out.println("Sur quel monstre voulez vous intervenir ? Tapez son nom \n");
         for (Monstre monstre : listeCreature) {
             System.out.println(monstre.getNom() + "\n");
         }

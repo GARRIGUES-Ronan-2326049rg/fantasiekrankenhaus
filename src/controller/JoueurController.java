@@ -18,6 +18,11 @@ public class JoueurController {
         System.out.println(view.presentationJeu());
     }
 
+    public void afficheRegleLycanthrope() {
+        JoueurView view = new JoueurView();
+        System.out.println(view.presentationJeuLycanthrope());
+    }
+
     public String choixTour() {
         this.view.demandeChoix();
         return sc.nextLine();

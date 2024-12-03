@@ -2,21 +2,84 @@ package modele.lycanthrope;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class ColonieLycanthrope {
 
-    private String nom;
     private ArrayList<MeuteLycanthrope> listeMeutes;
     private ArrayList<Lycanthrope> listeSolitaire;
     private boolean saisonAmour = false;
+    private static final Random random = new Random();
+    private final String alphabetGrec = "αβγδεζηθικλµνξοπρστυϕχψω";
+    private static final char[] sexe = {'M', 'F'};
+    private static final String[] categorieAge = {"Jeune", "Adulte", "Vieux"};
 
-    public ColonieLycanthrope(ArrayList<MeuteLycanthrope> listeMeutes, String nom) {
+    private static final String[] nomLycanthrope = {
+            //TODO
+    };
+
+    private static final String[] nomMeute = {
+            //TODO
+    };
+
+    public ColonieLycanthrope(ArrayList<MeuteLycanthrope> listeMeutes) {
         this.listeMeutes = listeMeutes;
-        this.nom = nom;
+    }
+
+    public void initialiserColonie(){
+        ArrayList<Lycanthrope> listeLycanthrope = new ArrayList<>();
+
+        IntStream.range(0, 5).forEach(i -> {
+            if (i == 0) {
+                listeLycanthrope.add(new Lycanthrope(
+                        nomLycanthrope[random.nextInt(nomLycanthrope.length)],
+                        'M',
+                        "Adulte",
+                        'α',
+                        null
+                ));
+            } else if (i == 1) {
+                listeLycanthrope.add(new Lycanthrope(
+                        nomLycanthrope[random.nextInt(nomLycanthrope.length)],
+                        'F',
+                        "Adulte",
+                        'α',
+                        null
+                ));
+            } else {
+                listeLycanthrope.add(new Lycanthrope(
+                        nomLycanthrope[random.nextInt(nomLycanthrope.length)],
+                        sexe[random.nextInt(sexe.length)],
+                        categorieAge[random.nextInt(categorieAge.length)],
+                        alphabetGrec.charAt(random.nextInt(alphabetGrec.length())),
+                        null
+                ));
+            }
+        });
+
+        this.listeMeutes.add( new MeuteLycanthrope(
+                nomMeute[random.nextInt(nomMeute.length)],
+                listeLycanthrope));
+    }
+
+    public ArrayList<MeuteLycanthrope> getListeMeutes() {
+        return listeMeutes;
+    }
+
+    public void setListeMeutes(ArrayList<MeuteLycanthrope> listeMeutes) {
+        this.listeMeutes = listeMeutes;
+    }
+
+    public ArrayList<Lycanthrope> getListeSolitaire() {
+        return listeSolitaire;
+    }
+
+    public void setListeSolitaire(ArrayList<Lycanthrope> listeSolitaire) {
+        this.listeSolitaire = listeSolitaire;
     }
 
     public String caracteristiquesColonie() {
-        String texte = "Dans la colonie " + this.nom + ", il y a : \n";
+        String texte = "Dans la colonie, il y a : \n";
         for(MeuteLycanthrope meute: listeMeutes){
             texte = texte + meute.carateristiquesMembre();
             texte = texte + "\n";
@@ -26,7 +89,6 @@ public class ColonieLycanthrope {
 
     public void nouvelleMeute(String nomMeute){
         if(listeSolitaire.size() >= 2){
-            Random random = new Random();
             Lycanthrope lycanthrope1 = listeSolitaire.get(random.nextInt(listeSolitaire.size()));
             Lycanthrope lycanthrope2 = listeSolitaire.get(random.nextInt(listeSolitaire.size()));
             while(lycanthrope1 == lycanthrope2 || lycanthrope1.getSexe() == lycanthrope2.getSexe()){
@@ -56,22 +118,19 @@ public class ColonieLycanthrope {
         this.saisonAmour = saisonAmour;
     }
 
-    public void reproductionSaisonAmour(String[] listeNoms, char[] listeSexes){
+    public void reproductionSaisonAmour(String[] listeNoms){
         if(saisonAmour){
-            Random random = new Random();
-            listeMeutes.get(random.nextInt(listeMeutes.size())).reproduction(listeNoms, listeSexes);
+            listeMeutes.get(random.nextInt(listeMeutes.size())).reproduction(listeNoms,sexe);
         }
     }
 
     public void evolutionHierarchie(){
-        Random random = new Random();
         int idMeute = random.nextInt(this.listeMeutes.size());
         this.listeMeutes.get(idMeute)/*.domination()*/;
         this.listeMeutes.get(idMeute).hierarchieLycanthropes();
     }
 
     public void viellissement(){
-        Random random = new Random();
         int typeListe = random.nextInt(2);
         // Pour les meutes.
         if(typeListe == 0){
@@ -103,7 +162,6 @@ public class ColonieLycanthrope {
     }
 
     public void hurlementMeute(){
-        Random random = new Random();
         int idMeute = random.nextInt(listeMeutes.size());
         MeuteLycanthrope meute = listeMeutes.get(random.nextInt(idMeute));
         int idLycanthrope = random.nextInt(meute.getListeMembres().size());

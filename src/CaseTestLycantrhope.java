@@ -28,7 +28,7 @@ public class CaseTestLycantrhope {
         liste.add(soumis);
 
         this.meute = new MeuteLycanthrope("test", liste);
-        this.colonie = new ColonieLycanthrope(new ArrayList<>(), "colonieTest");
+        this.colonie = new ColonieLycanthrope(new ArrayList<>());
     }
 
     //Test sur la classe Lycanthrope
@@ -74,6 +74,7 @@ public class CaseTestLycantrhope {
     //Tests autres hurlements
 
     //Test sur la classe MeuteLycanthrope
+
 
 
 }

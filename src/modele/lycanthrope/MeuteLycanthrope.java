@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class MeuteLycanthrope {
 
-    private String nomMeute;
+    private String nom;
     private Lycanthrope maleAlpha;
     private Lycanthrope femelleAlpha;
 
@@ -48,7 +48,7 @@ public class MeuteLycanthrope {
             throw new IllegalArgumentException("La liste doit contenir un seul mâle Alpha et " +
                     "une seule femelle Alpha.");
         } else{
-            this.nomMeute = nomMeute;
+            this.nom = nomMeute;
             this.maleAlpha = liste.get(rangMaleAlpha);
             this.maleAlpha.setMeute(nomMeute);
             this.femelleAlpha = liste.get(rangFemelleAlpha);
@@ -64,6 +64,14 @@ public class MeuteLycanthrope {
 
     public Lycanthrope getMaleAlpha() {
         return maleAlpha;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nomMeute) {
+        this.nom = nomMeute;
     }
 
     public void setMaleAlpha(Lycanthrope maleAlpha) {
@@ -206,19 +214,19 @@ public class MeuteLycanthrope {
         int nbJeunes = random.nextInt(7);
         for(int i = 0; i < nbJeunes ; i++){
             listeMembres.add(new Lycanthrope(noms[random.nextInt(noms.length)], sexe[random.nextInt(sexe.length)],
-                    "Jeune", alphabetGrec.charAt(random.nextInt(alphabetGrec.length())), nomMeute));
+                    "Jeune", alphabetGrec.charAt(random.nextInt(alphabetGrec.length())), nom));
         }
     }
 
     public String caractéristiqueMeute() {
-        return "La meute " + this.nomMeute + " a pour caractéristiques : \n"
+        return "La meute " + this.nom + " a pour caractéristiques : \n"
                 + "Mâle α : " + this.maleAlpha.getNom() + "\n"
                 + "Femelle α : " + this.femelleAlpha.getNom() + "\n"
                 + "Nombre de membres : " + this.listeMembres.size() +"\n";
     }
 
     public String carateristiquesMembre(){
-        String texte = "La meute " + this.nomMeute + " est constitué de : \n";
+        String texte = "La meute " + this.nom + " est constitué de : \n";
         for(Lycanthrope membre : listeMembres){
             texte = texte + membre.afficherCaracteristiques();
         }
@@ -226,7 +234,7 @@ public class MeuteLycanthrope {
     }
 
     public String hierarchieLycanthropes(){
-        String texte = "La meute " + this.nomMeute + " possède la hiérarchie suivante : \n" +
+        String texte = "La meute " + this.nom + " possède la hiérarchie suivante : \n" +
                 "Le coupe α " + this.maleAlpha.getNom() + " et " + this.femelleAlpha.getNom() + "\n";
         for(int i = 1; i < alphabetGrec.length(); i++){
             texte = texte + "Les membres " + alphabetGrec.charAt(i) + "sont : ";
