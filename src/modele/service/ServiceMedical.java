@@ -212,6 +212,120 @@ public class ServiceMedical {
 	}
 
 	/**
+	 * @version 1.0
+	 *
+	 * @param patient
+	 *
+	 * Prends un objet de type Monstre et l'ajoute, s'il n'y est pas, dans la liste des patients si elle est vide ou si elle n'est pas complète.
+	 * Si elle n'est pas complète, la fonction utilise un object Random pour savori si elle ajoute ou non ce patient.
+	 */
+	public void ajouterPatient(Monstre patient) {
+		if (!this.listeCreature.contains(patient)) {
+			if (this.nombreCreature == 0) {
+				this.listeCreature.add(patient);
+				patient.setService(this); // Associe le service au monstre
+				++this.nombreCreature;
+			} else if (this.nombreCreature < maxCreature) {
+				Random chanceAjout = new Random();
+				if (chanceAjout.nextInt(100) >= 25) {
+					this.listeCreature.add(patient);
+					patient.setService(this); // Associe le service au monstre
+					++this.nombreCreature;
+				}
+			}
+		}
+	}
+
+	/**
+	 * @version 1.0
+	 *
+	 * @param patient
+	 *
+	 * Prends un objet de type Monstre et le retire de la liste des patients s'il est présent et qu'il ne possède plus de maladies.
+	 */
+	public void retirerPatient(Monstre patient) {
+		if (this.listeCreature.contains(patient) && patient.getListeMaladie().isEmpty()) {
+			this.listeCreature.remove(patient);
+			this.nombreCreature--;
+		}
+	}
+
+	/**
+	 * Modifie le nombre maximum de créatures et le taux de propagation des maladies en
+	 * fonction de l'évolution du budget du service.
+	 *
+	 * @version 1.0
+	 * */
+	public void variationBudget(){
+		switch (this.budget) {
+			case "Inexistant" -> {
+				switch (this.budgetPred) {
+					case "Faible" -> {
+						this.maxCreature /= 8;
+						this.tauxPropagation *= 8;
+					}
+					case "Insuffisant" -> {
+						this.maxCreature /= 4;
+						this.tauxPropagation *= 4;
+					}
+					case "Médiocre" -> {
+						this.maxCreature /= 2;
+						this.tauxPropagation *= 2;
+					}
+				}
+			}
+			case "Médiocre" -> {
+				switch (this.budgetPred) {
+					case "Faible" -> {
+						this.maxCreature /= 4;
+						this.tauxPropagation *= 4;
+					}
+					case "Insuffisant" -> {
+						this.maxCreature /= 2;
+						this.tauxPropagation *= 2;
+					}
+					case "Inexistant" -> {
+						this.maxCreature *= 2;
+						this.tauxPropagation /= 2;
+					}
+				}
+			}
+			case "Insuffisant" -> {
+				switch (this.budgetPred) {
+					case "Faible" -> {
+						this.maxCreature /= 2;
+						this.tauxPropagation *= 2;
+					}
+					case "Médiocre" -> {
+						this.maxCreature *= 2;
+						this.tauxPropagation /= 2;
+					}
+					case "Inexistant" -> {
+						this.maxCreature *= 4;
+						this.tauxPropagation /= 4;
+					}
+				}
+			}
+			case "Faible" -> {
+				switch (this.budgetPred) {
+					case "Insuffisant" -> {
+						this.maxCreature *= 2;
+						this.tauxPropagation /= 2;
+					}
+					case "Médiocre" -> {
+						this.maxCreature *= 4;
+						this.tauxPropagation /= 4;
+					}
+					case "Inexistant" -> {
+						this.maxCreature *= 8;
+						this.tauxPropagation /= 8;
+					}
+				}
+			}
+		}
+	}
+
+	/**
 	 * Trie la liste des monstres par la gravité maximale de leurs maladies.
 	 */
 	public void trierPatientsParMaladie() {
