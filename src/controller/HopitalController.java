@@ -184,11 +184,8 @@ public class HopitalController {
      */
     private void effectuerActionsServices() {
         for (ServiceMedical service : hopital.getListeService()) {
-            ArrayList<Monstre> creatures = service.getListeCreature();
-            Random random = new Random();
-            int actions = Math.min(2, creatures.size());
-            for (int i = 0; i < actions; i++) {
-                Monstre monstre = creatures.get(random.nextInt(creatures.size()));
+            for (int i = 0; i < service.getListeCreature().size(); i++) {
+                Monstre monstre = service.getListeCreature().get(i);
                 monstre.evoluerMaladies();
             }
         }
