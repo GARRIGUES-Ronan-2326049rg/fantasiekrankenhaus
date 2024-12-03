@@ -180,15 +180,19 @@ public class ServiceMedical {
                 }
             }
             case "Médiocre" -> {
-                if (this.budgetPred.equals("Faible")) {
-                    this.maxCreature /= 4;
-                    this.tauxPropagation *= 4;
-                } else if (this.budgetPred.equals("Insuffisant")) {
-                    this.maxCreature /= 2;
-                    this.tauxPropagation *= 2;
-                } else if (this.budgetPred.equals("Inexistant")) {
-                    this.maxCreature *= 2;
-                    this.tauxPropagation /= 2;
+                switch (this.budgetPred) {
+                    case "Faible" -> {
+                        this.maxCreature /= 4;
+                        this.tauxPropagation *= 4;
+                    }
+                    case "Insuffisant" -> {
+                        this.maxCreature /= 2;
+                        this.tauxPropagation *= 2;
+                    }
+                    case "Inexistant" -> {
+                        this.maxCreature *= 2;
+                        this.tauxPropagation /= 2;
+                    }
                 }
             }
             case "Insuffisant" -> {

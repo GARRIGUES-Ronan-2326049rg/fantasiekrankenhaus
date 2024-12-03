@@ -136,6 +136,7 @@ public class Monstre {
 				// Vérifier si la maladie atteint son niveau max
 				if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
 					System.out.println("💀 " + nom + " est" + RED +" MORT " + RESET +" à cause de " + maladie.getNomComplet() + ".");
+					mourir();
 					return; // Arrêter toute évolution car le monstre est mort
 				}
 			} else {
