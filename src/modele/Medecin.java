@@ -118,7 +118,9 @@ public class Medecin {
 		service.trierPatientsParMaladie();
 		System.out.println("Voici la liste des monstres et de leur caractéristique.");
 		for (int i = 0; i < service.getListeCreature().size(); ++i) {
-			System.out.println(service.getListeCreature().get(i) + "\n");
+			if (!service.getListeCreature().get(i).getListeMaladie().isEmpty()) {
+				System.out.println(service.getListeCreature().get(i) + "\n");
+			}
 		}
 		System.out.println("Voici les informations globales du service : " + service.toString());
 	}
