@@ -1,6 +1,7 @@
 package controller;
 
 import modele.Hopital;
+import modele.Recapitulatif;
 import modele.service.ServiceMedical;
 import modele.monstre.Monstre;
 import modele.Medecin;
@@ -38,7 +39,7 @@ public class HopitalController {
                 case "finir":
                     jeuEnCours = false;
                     System.out.println("FIN DU JEU\n");
-                    System.out.println("Récap");
+                    Recapitulatif.getInstance().afficherRecapitulatif();
                     break;
                 default:
                     System.out.println("Choix invalide. Réessayez.");

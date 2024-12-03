@@ -178,6 +178,7 @@ public class Medecin {
 				}
 
 				System.out.println(GREEN + "✅ La maladie " + nomMaladie + " a été soignée avec succès !" + RESET);
+				Recapitulatif.getInstance().incrementerMaladie();
 			} else {
 				System.out.println(RED + "❌ La tentative de soigner la maladie " + nomMaladie + " a échoué." + RESET);
 			}

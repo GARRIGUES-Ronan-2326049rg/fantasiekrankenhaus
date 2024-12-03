@@ -1,5 +1,6 @@
 package modele.monstre;
 import modele.Maladie;
+import modele.Recapitulatif;
 import modele.service.ServiceMedical;
 import sounds.AudioPlayer;
 
@@ -141,6 +142,7 @@ public class Monstre {
 					System.out.println("💀 " + nom + " est" + RED +" MORT " + RESET +" à cause de " + maladie.getNomComplet() + ".");
 					demoraliser(); // Démoraliser les autres créatures si c'est un Vampire ou un Elfe qui meurt
 					Monstre.this.service.getListeCreature().remove(this); // Retirer le monstre du service quand il meurt
+					Recapitulatif.getInstance().incrementerMort();
 					return; // Arrêter toute évolution car le monstre est mort
 				}
 			} else {
