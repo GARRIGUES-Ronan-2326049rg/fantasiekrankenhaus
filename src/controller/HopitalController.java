@@ -52,7 +52,7 @@ public class HopitalController {
     private void initialiserHopital() {
         hopital.initialisationMedecin();
         hopital.initialisationService();
-        hopital.initialisationMonstre(40, hopital.getListeService());
+        hopital.initialisationMonstre(20, hopital.getListeService());
     }
 
     /**
@@ -184,8 +184,11 @@ public class HopitalController {
      */
     private void effectuerActionsServices() {
         for (ServiceMedical service : hopital.getListeService()) {
-            for (int i = 0; i < service.getListeCreature().size(); i++) {
-                Monstre monstre = service.getListeCreature().get(i);
+            ArrayList<Monstre> creatures = service.getListeCreature();
+            Random random = new Random();
+            int actions = Math.min(2, creatures.size());
+            for (int i = 0; i < actions; i++) {
+                Monstre monstre = creatures.get(random.nextInt(creatures.size()));
                 monstre.evoluerMaladies();
             }
         }

@@ -11,7 +11,7 @@ public class MonstreFactory {
     private static final String[] noms = {
             "Gork", "Mork", "Zagreb", "Thranduil", "Balrog", "Fenrir", "Dracula", "Ragnar", "Smeagol", "Azog", "Atreus", "Mevis", "Shrek", "Jlark",
             "Hucle", "Klorlcus", "Doume", "Guglukuss", "Poutikos", "Hitlamus", "Zeukros", "Athos", "Ronalus", "Doriione", "Mannaon", "Flopidus",
-            "Galactrusse", "Frankestrouc", "Jululusse", "Arnaunurding", "Cyrilouxano", "Sorenbapt", "Emedeuxpierre", "Hestelle", "Zackus", "Drackitlos",
+            "Galactrusse", "Frankestrouc", "julius", "Arnaunurding", "Cyrilouxano", "Sorenbapt", "Emedeuxpierre", "Hestelle", "Zackus", "Drackitlos",
             "Thébaro", "Tittit", "Kirolex", "Colayko", "Medhidonc", "Youyou", "Evianzaks", "Thomatopesto", "Leheffe", "Skibididimitri", "Soregrory", "Bibou",
             "Troulaloupe", "Zekromas", "Salabot", "Nashtaul", "Enderlouis", "Cedrifox", "Tahino", "Nevot", "Hadjene", "Davina", "Wagatas", "Casali", "Shirotozor",
             "Cursetieu", "Kevinus", "Arthurus" , "Poupidis", "Jouinax", "Salalou", "Maksadoude", "Flouvix", "Prostas", "Couloute", "Anninis", "Gouillou", "Soufiannoc",
