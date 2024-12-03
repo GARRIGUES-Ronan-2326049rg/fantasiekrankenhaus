@@ -57,7 +57,7 @@ public class HopitalController {
             return;
         }
 
-        Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin - 1);
+        Medecin medecinChoisi = hopital.getListeMedecin().get(choixMedecin);
         while (medecinChoisi.getActionPossible() != 0) {
             String action = joueur.demandeAction();
             switch (action.toLowerCase()) {

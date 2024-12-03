@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class ColonieLycanthrope {
+public class Colonie {
 
-    private ArrayList<MeuteLycanthrope> listeMeutes;
+    private ArrayList<Meute> listeMeutes;
     private ArrayList<Lycanthrope> listeSolitaire;
     private boolean saisonAmour = false;
     private static final Random random = new Random();
@@ -15,14 +15,14 @@ public class ColonieLycanthrope {
     private static final String[] categorieAge = {"Jeune", "Adulte", "Vieux"};
 
     private static final String[] nomLycanthrope = {
-            //TODO
+            "test", "truc", "bidule", "chose", "miam", "coco", "machin"
     };
 
     private static final String[] nomMeute = {
-            //TODO
+            "meute", "groupe", "toto", "tata", "titi",
     };
 
-    public ColonieLycanthrope(ArrayList<MeuteLycanthrope> listeMeutes) {
+    public Colonie(ArrayList<Meute> listeMeutes) {
         this.listeMeutes = listeMeutes;
     }
 
@@ -47,26 +47,28 @@ public class ColonieLycanthrope {
                         null
                 ));
             } else {
-                listeLycanthrope.add(new Lycanthrope(
-                        nomLycanthrope[random.nextInt(nomLycanthrope.length)],
+                Lycanthrope lycanthrope = new Lycanthrope(nomLycanthrope[random.nextInt(nomLycanthrope.length)],
                         sexe[random.nextInt(sexe.length)],
                         categorieAge[random.nextInt(categorieAge.length)],
                         alphabetGrec.charAt(random.nextInt(alphabetGrec.length())),
-                        null
-                ));
+                        null);
+                while(lycanthrope.getRang() == 'α')
+                    lycanthrope.setRang(alphabetGrec.charAt(random.nextInt(alphabetGrec.length())));
+
+                listeLycanthrope.add(lycanthrope);
             }
         });
 
-        this.listeMeutes.add( new MeuteLycanthrope(
+        this.listeMeutes.add( new Meute(
                 nomMeute[random.nextInt(nomMeute.length)],
                 listeLycanthrope));
     }
 
-    public ArrayList<MeuteLycanthrope> getListeMeutes() {
+    public ArrayList<Meute> getListeMeutes() {
         return listeMeutes;
     }
 
-    public void setListeMeutes(ArrayList<MeuteLycanthrope> listeMeutes) {
+    public void setListeMeutes(ArrayList<Meute> listeMeutes) {
         this.listeMeutes = listeMeutes;
     }
 
@@ -80,7 +82,7 @@ public class ColonieLycanthrope {
 
     public String caracteristiquesColonie() {
         String texte = "Dans la colonie, il y a : \n";
-        for(MeuteLycanthrope meute: listeMeutes){
+        for(Meute meute: listeMeutes){
             texte = texte + meute.carateristiquesMembre();
             texte = texte + "\n";
         }
@@ -105,7 +107,7 @@ public class ColonieLycanthrope {
             ArrayList<Lycanthrope> newMeute = new ArrayList<Lycanthrope>();
             newMeute.add(lycanthrope1);
             newMeute.add(lycanthrope2);
-            MeuteLycanthrope nouvelleMeute = new MeuteLycanthrope(nomMeute, newMeute);
+            Meute nouvelleMeute = new Meute(nomMeute, newMeute);
             listeMeutes.add(nouvelleMeute);
         }
     }
@@ -135,7 +137,7 @@ public class ColonieLycanthrope {
         // Pour les meutes.
         if(typeListe == 0){
             int idMeute = random.nextInt(listeMeutes.size());
-            MeuteLycanthrope meute = listeMeutes.get(random.nextInt(idMeute));
+            Meute meute = listeMeutes.get(random.nextInt(idMeute));
             int idLycanthrope = random.nextInt(meute.getListeMembres().size());
             Lycanthrope lycanthrope = meute.getListeMembres().get(random.nextInt(idLycanthrope));
 
@@ -163,7 +165,7 @@ public class ColonieLycanthrope {
 
     public void hurlementMeute(){
         int idMeute = random.nextInt(listeMeutes.size());
-        MeuteLycanthrope meute = listeMeutes.get(random.nextInt(idMeute));
+        Meute meute = listeMeutes.get(random.nextInt(idMeute));
         int idLycanthrope = random.nextInt(meute.getListeMembres().size());
         Lycanthrope lycanthrope = meute.getListeMembres().get(random.nextInt(idLycanthrope));
         lycanthrope.hurlementAppartenanceMeute();

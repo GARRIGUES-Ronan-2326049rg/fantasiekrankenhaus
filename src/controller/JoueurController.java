@@ -1,5 +1,7 @@
 package controller;
 import modele.Medecin;
+import modele.lycanthrope.Lycanthrope;
+import modele.lycanthrope.Meute;
 import modele.monstre.Monstre;
 import modele.service.ServiceMedical;
 import view.JoueurView;
@@ -23,11 +25,27 @@ public class JoueurController {
         System.out.println(view.presentationJeuLycanthrope());
     }
 
+    public void choixJeu(){
+        view.demandeJeu();
+        String jeu = sc.nextLine();
+        if(jeu.equals("Hopital")){
+            HopitalController hopitalController = new HopitalController();
+            hopitalController.lancerJeu();
+        }else if(jeu.equals("Loups")){
+            LycanthropeController lycanthropeController = new LycanthropeController();
+            lycanthropeController.lancerJeu();
+        }
+    }
+
     public String choixTour() {
         this.view.demandeChoix();
         return sc.nextLine();
     }
 
+    public String choixTourLycanthrope() {
+        this.view.demanderChoixLycanthrope();
+        return sc.nextLine();
+    }
 
     public int choixTourChoixMedecin(ArrayList<Medecin> listeMedecin) {
         this.view.demandeChoixMedecin(listeMedecin);
@@ -36,8 +54,20 @@ public class JoueurController {
         return choix;
     }
 
+    public int choixTourChoixMeute(ArrayList<Meute> listeMeute) {
+        this.view.demanderChoixMeute(listeMeute);
+        int choix = sc.nextInt();
+        sc.nextLine(); // Consomme le retour à la ligne restant
+        return choix;
+    }
+
     public String demandeAction(){
         this.view.demandeAction();
+        return sc.nextLine();
+    }
+
+    public String demandeActionLycanthrope(){
+        //this.view.demandeActionLycanthrope();
         return sc.nextLine();
     }
 
@@ -99,6 +129,17 @@ public class JoueurController {
         return null;
     }
 
+    public Meute choisirMeute(ArrayList<Meute> listeMeute) {
+        this.view.choisirMeute(listeMeute);
+        String choix = sc.nextLine();
+        for (Meute meute : listeMeute) {
+            if (choix.equals(meute.getNom())) {
+                return meute;
+            }
+        }
+        return null;
+    }
+
     public String demanderBudget() {
         this.view.demandeBudget();
         return sc.nextLine();
@@ -110,6 +151,17 @@ public class JoueurController {
         for (Monstre monstre : listeCreature) {
             if (choix.equals(monstre.getNom())) {
                 return monstre;
+            }
+        }
+        return null;
+    }
+
+    public Lycanthrope choisirLycanthrope(ArrayList<Lycanthrope> listeLycanthrope) {
+        this.view.choisirLycanthrope(listeLycanthrope);
+        String choix = sc.nextLine();
+        for (Lycanthrope lycanthrope : listeLycanthrope) {
+            if (choix.equals(lycanthrope.getNom())) {
+                return lycanthrope;
             }
         }
         return null;

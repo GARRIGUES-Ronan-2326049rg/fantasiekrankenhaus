@@ -1,6 +1,6 @@
-import modele.lycanthrope.ColonieLycanthrope;
+import modele.lycanthrope.Colonie;
 import modele.lycanthrope.Lycanthrope;
-import modele.lycanthrope.MeuteLycanthrope;
+import modele.lycanthrope.Meute;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +13,8 @@ public class CaseTestLycantrhope {
     private Lycanthrope lycan;
     private Lycanthrope lycane;
     private Lycanthrope soumis;
-    private MeuteLycanthrope meute;
-    private ColonieLycanthrope colonie;
+    private Meute meute;
+    private Colonie colonie;
 
     @BeforeEach
     void setUp() {
@@ -27,8 +27,8 @@ public class CaseTestLycantrhope {
         liste.add(lycane);
         liste.add(soumis);
 
-        this.meute = new MeuteLycanthrope("test", liste);
-        this.colonie = new ColonieLycanthrope(new ArrayList<>());
+        this.meute = new Meute("test", liste);
+        this.colonie = new Colonie(new ArrayList<>());
     }
 
     //Test sur la classe Lycanthrope
@@ -73,7 +73,7 @@ public class CaseTestLycantrhope {
 
     //Tests autres hurlements
 
-    //Test sur la classe MeuteLycanthrope
+    //Test sur la classe Meute
 
 
 

@@ -1,11 +1,9 @@
 package modele.lycanthrope;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
-public class MeuteLycanthrope {
+public class Meute {
 
     private String nom;
     private Lycanthrope maleAlpha;
@@ -18,7 +16,7 @@ public class MeuteLycanthrope {
     /**
      * @param liste Une liste composée des membres de la meute.
      * */
-    public MeuteLycanthrope(String nomMeute, ArrayList<Lycanthrope> liste) throws IllegalArgumentException{
+    public Meute(String nomMeute, ArrayList<Lycanthrope> liste) throws IllegalArgumentException{
         // Initialisation des variables.
         boolean maleAlphaPresent = false;
         int rangMaleAlpha = 0;
