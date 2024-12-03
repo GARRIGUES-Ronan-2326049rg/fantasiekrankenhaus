@@ -118,9 +118,9 @@ public class Lycanthrope{
         this.devenirHumain = true;
     }
 
-//    public void transformationLycanthrope(){
-//        this.devenirHumain = false;
-//    }
+    public void transformationLycanthrope(){
+        this.devenirHumain = false;
+    }
 
     public String hurlementAppartenanceMeute(){
         return this.nom + " exprime son apparetenance à la meute " + this.meute + " !";
@@ -147,6 +147,8 @@ public class Lycanthrope{
                 + "Rang : " + this.rang + "\n"
                 + "Niveau : " + this.niveau + "\n"
                 + "facteurImpetuosite : " + this.facteurImpetuosite + "\n"
+                + "reussiteDomination : " + this.reussiteDomination + "\n"
+                + "devenirHumain :" + this.devenirHumain + "\n"
                 + "Meute : " + this.meute + "\n";
     }
 
