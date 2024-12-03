@@ -20,7 +20,7 @@ public class MonstreFactory {
             "Slimer", "Beetlejuice", "Werewolf", "Harpy", "Banshee", "Manticore", "Roc", "Ogre", "Basilisk", "Leprechaun", "Nessie","Pixie", "Poltergeist",
             "Scarecrow", "Krampus", "Mothman", "Doppelgänger", "Chupacabra", "Basilisk", "Wraith", "Nymph", "Ghast", "Quetzalcoatl", "Tatzelwurm", "Bunyip",
             "Mogwai", "Kitsune", "Aswang", "Jotun", "Hobbit", "Skinwalker", "Tiamat", "Yuki-onna", "Charybdis", "Ymir", "Zoltar", "Salamander", "Fenrir",
-            "Gargoyle", "Kappa", "Grendel", "Charybdis", "Draugr", "Siren", "Manticore", "Poppy","Kaido", "Shapeshifter",
+            "Gargoyle", "Kappa", "Grendel", "Charybdis", "Draugr", "Siren", "Manticore", "Poppy","Kaido", "Shapeshifter", "Thomatopesto",
             "Imp", "Mummy", "Naga", "Lamia", "Pooka", "Cyclops", "Golem", "Basilisk", "Wight","Aizen","Madara","Gorudofazza"
     };
 
