@@ -24,9 +24,12 @@ Ce programme est une simulation de gestion d'hopital pour monstres, vous devrez 
 1. Clonez le dépôt :
    ```bash
    git clone https://github.com/GARRIGUES-Ronan-2326049rg/fantasiekrankenhaus.git
+2.Télécharger le driver pour pouvoir sauvegarder les scores finaux :
+ ```bash
+   https://jdbc.postgresql.org/download/
 
 
-   ## Utilisation
+## Utilisation
 
 1. Lancez l'application.
 2. Simulez des interactions entre créatures et analysez les résultats.
