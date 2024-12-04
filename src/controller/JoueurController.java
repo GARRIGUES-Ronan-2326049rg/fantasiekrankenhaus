@@ -1,12 +1,14 @@
 package controller;
-
 import modele.Medecin;
+import modele.lycanthrope.Lycanthrope;
+import modele.lycanthrope.Meute;
 import modele.monstre.Monstre;
 import modele.service.ServiceMedical;
 import view.JoueurView;
 
 import java.util.InputMismatchException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -31,8 +33,30 @@ public class JoueurController {
      *
      * @return La chaîne de caractères saisie par le joueur.
      */
+    public void afficheRegleLycanthrope() {
+        JoueurView view = new JoueurView();
+        System.out.println(view.presentationJeuLycanthrope());
+    }
+
+    public void choixJeu(){
+        view.demandeJeu();
+        String jeu = sc.nextLine();
+        if(jeu.equals("Hopital")){
+            HopitalController hopitalController = new HopitalController();
+            hopitalController.lancerJeu();
+        }else if(jeu.equals("Loups")){
+            LycanthropeController lycanthropeController = new LycanthropeController();
+            lycanthropeController.lancerJeu();
+        }
+    }
+
     public String choixTour() {
         this.view.demandeChoix();
+        return sc.nextLine();
+    }
+
+    public String choixTourLycanthrope() {
+        this.view.demanderChoixLycanthrope();
         return sc.nextLine();
     }
 
@@ -61,6 +85,18 @@ public class JoueurController {
                 }
             }
         }
+        this.view.demandeChoixMedecin(listeMedecin);
+        int choix = sc.nextInt();
+        sc.nextLine(); // Consomme le retour à la ligne restant
+        return choix;
+    }
+
+    public int choixTourChoixMeute(ArrayList<Meute> listeMeute) {
+        this.view.demanderChoixMeute(listeMeute);
+        int choix = sc.nextInt();
+        sc.nextLine(); // Consomme le retour à la ligne restant
+        return choix;
+    }
 
     /**
      * Demande au joueur l'action qu'il souhaite que le médecin effectue.
@@ -69,6 +105,11 @@ public class JoueurController {
      */
     public String demandeAction() {
         this.view.demandeAction();
+        return sc.nextLine();
+    }
+
+    public String demandeActionLycanthrope(){
+        //this.view.demandeActionLycanthrope();
         return sc.nextLine();
     }
 
@@ -94,6 +135,17 @@ public class JoueurController {
      *
      * @return Le budget sous forme de chaîne de caractères.
      */
+    public Meute choisirMeute(ArrayList<Meute> listeMeute) {
+        this.view.choisirMeute(listeMeute);
+        String choix = sc.nextLine();
+        for (Meute meute : listeMeute) {
+            if (choix.equals(meute.getNom())) {
+                return meute;
+            }
+        }
+        return null;
+    }
+
     public String demanderBudget() {
         this.view.demandeBudget();
         return sc.nextLine();
@@ -111,6 +163,17 @@ public class JoueurController {
         for (Monstre monstre : listeCreature) {
             if (choix.equals(monstre.getNom())) {
                 return monstre;
+            }
+        }
+        return null;
+    }
+
+    public Lycanthrope choisirLycanthrope(ArrayList<Lycanthrope> listeLycanthrope) {
+        this.view.choisirLycanthrope(listeLycanthrope);
+        String choix = sc.nextLine();
+        for (Lycanthrope lycanthrope : listeLycanthrope) {
+            if (choix.equals(lycanthrope.getNom())) {
+                return lycanthrope;
             }
         }
         return null;

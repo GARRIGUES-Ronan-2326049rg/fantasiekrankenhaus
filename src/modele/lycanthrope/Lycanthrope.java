@@ -1,12 +1,14 @@
 package modele.lycanthrope;
 
+import java.util.Random;
+
 public class Lycanthrope{
 
     private String nom;
     private char sexe;
     private String categorieAge;
     private int force;
-    private int facteurDomination;
+    private int facteurDomination = 50;
     private char rang;
     private int niveau;
     private int facteurImpetuosite;
@@ -14,12 +16,17 @@ public class Lycanthrope{
     private boolean devenirHumain = false;
     private String meute;
 
+    private static final Random random = new Random();
+
     public Lycanthrope(String nom, char sexe, String categorieAge, char rang, String meute) {
         this.nom = nom;
         this.sexe = sexe;
         this.categorieAge = categorieAge;
         this.rang = rang;
         this.meute = meute;
+
+        this.niveau = random.nextInt(20);
+        this.facteurImpetuosite = random.nextInt(100);
     }
 
     public String getNom() {
@@ -118,8 +125,24 @@ public class Lycanthrope{
         this.devenirHumain = true;
     }
 
-    public void transformationHLycanthrope(){
+    public void transformationLycanthrope(){
         this.devenirHumain = false;
+    }
+
+    public String hurlementAppartenanceMeute(){
+        return this.nom + " exprime son apparetenance à la meute " + this.meute + " !";
+    }
+
+    public String exprimerDomination(Lycanthrope lycanthrope){
+        return this.nom + " a dominé " + lycanthrope.getNom() + " !";
+    }
+
+    public String exrpimerSoumission(Lycanthrope lycanthrope){
+        return lycanthrope.getNom() + " a été soumis " + this.nom + " !";
+    }
+
+    public String exprimerAgressivite(Lycanthrope lycanthrope){
+        return lycanthrope.getNom() + " se montre agressif " + this.nom + " !";
     }
 
     public String afficherCaracteristiques(){
@@ -131,6 +154,8 @@ public class Lycanthrope{
                 + "Rang : " + this.rang + "\n"
                 + "Niveau : " + this.niveau + "\n"
                 + "facteurImpetuosite : " + this.facteurImpetuosite + "\n"
+                + "reussiteDomination : " + this.reussiteDomination + "\n"
+            + "devenirHumain :" + this.devenirHumain + "\n"
                 + "Meute : " + this.meute + "\n";
     }
 

@@ -1,9 +1,8 @@
-import controller.HopitalController;
+import controller.JoueurController;
 
 public class Main {
     public static void main(String[] args) {
-        HopitalController hopitalController = new HopitalController();
-        hopitalController.lancerJeu();
-
+        JoueurController joueurController = new JoueurController();
+        joueurController.choixJeu();
     }
 }
