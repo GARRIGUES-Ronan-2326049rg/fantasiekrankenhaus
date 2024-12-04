@@ -99,6 +99,20 @@ public class JoueurView {
 
     }
 
+    public void demandeActionLycanthrope(){
+        System.out.println("Que voulez-vous faire avec ce loup ?\n" +
+                "Dominer un autre loup : tapez 'Dominer' \n" +
+                "Le faire hurler : tapez 'Hurler \n" +
+                "Le forcer a quitté la meute : tapez 'Quitter' \n" +
+                "Observer ses caractéristiques : tapez 'Observer'");
+    }
+
+    public void demanderChoixAgir(){
+        System.out.println("Voulez-vous vous occuper : \n" +
+                "D'une meute ? Tapez 'Meute' \n" +
+                "D'un lycanthrope solitaire ? Tapez 'Seul'");
+    }
+
     public void demanderChoixMeute(ArrayList<Meute> listeMeute){
         StringBuilder message = new StringBuilder("Voici les meutes sur lesquels vous pouvez agir.");
         for (int i = 0; i < listeMeute.size(); ++i){
@@ -107,22 +121,13 @@ public class JoueurView {
         System.out.println(message.toString());
     }
 
-
-    public void demandeActionMeute() {
-        System.out.println("Pour cette meute, voulez vous : \n" +
-                "Tenter uen domination ? Tapez Dominer\n" +
-                "Demander à un membre de hurler son appartenance à la meute ? Tapez Hurler" +
-                "Demander à un membr de quitter la meute ? Tapez Quitter" +
-                "Revenir en arrière ? Tapez Retour\n");
-    }
-
-    public void demanderActionLycanthropeMeute(){
-        System.out.println("Pour ce lycanthrope, voulez vous : \n" +
-                "Lui demander de tenter uen domination ? Tapez Dominer\n" +
-                "Lui demander de hurler son appartenance à sa meute ? Tapez Hurler" +
-                "Lui demander de quitter la meute ? Tapez Quitter" +
-                "Revenir en arrière ? Tapez Retour\n");
-    }
+//    public void demandeActionMeute() {
+//        System.out.println("Pour cette meute, voulez vous : \n" +
+//                "Tenter uen domination ? Tapez Dominer\n" +
+//                "Demander à un membre de hurler son appartenance à la meute ? Tapez Hurler" +
+//                "Demander à un membr de quitter la meute ? Tapez Quitter" +
+//                "Revenir en arrière ? Tapez Retour\n");
+//    }
 
     public void demanderActionSolitaire(){
         System.out.println("Pour ce lycanthrope, voulez vous : \n" +

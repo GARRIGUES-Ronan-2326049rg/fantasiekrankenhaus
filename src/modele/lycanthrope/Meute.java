@@ -92,6 +92,44 @@ public class Meute {
         this.listeMembres = listeMembres;
     }
 
+
+    public ArrayList<Lycanthrope> rechercherLycanthrope(Lycanthrope lycanthrope) {
+        // Création de la variable aléatoire permettant de choisir un loup de la meute.
+        Random random = new Random();
+
+        // Choix d'un lycanthrope dans la meute.
+        Lycanthrope lycanthrope1 = listeMembres.get(random.nextInt(listeMembres.size()));
+        char rangLy1 = lycanthrope1.getRang();
+        int placeRangLy1 = 0;
+        int placeRangLy = 0;
+
+        // Recherche de l'emplacement de leur rang dans l'alphabet grec.
+        for (int i = 0; i < alphabetGrec.length() - 1; i++) {
+            if (alphabetGrec.charAt(i) == rangLy1) {
+                placeRangLy1 = i + 1;
+            }else if(alphabetGrec.charAt(i) == lycanthrope.getRang()) {
+                placeRangLy = i + 1;
+            }
+        }
+
+        // Nous vérifions que les deux lycanthropes ne sont pas les mêmes, qu'ils ne sont identiques à la femelle alpha,
+        // que le rang du premier est inférieur au rang du second et que le facteur d'impétuosité du premier et supérieur au second.
+        while (lycanthrope1 == lycanthrope || lycanthrope1.equals(femelleAlpha) || lycanthrope.equals(femelleAlpha)
+                || placeRangLy1 < placeRangLy || lycanthrope1.getfacteurImpetuosite() < lycanthrope.getfacteurImpetuosite()) {
+            lycanthrope1 = listeMembres.get(random.nextInt(listeMembres.size()));
+
+            for (int i = 0; i < alphabetGrec.length() - 1; i++) {
+                if (alphabetGrec.charAt(i) == rangLy1) {
+                    placeRangLy1 = i + 1;
+                }
+            }
+        }
+        ArrayList<Lycanthrope> arrayLycanthropes = new ArrayList<>();
+        arrayLycanthropes.add(lycanthrope);
+        arrayLycanthropes.add(lycanthrope1);
+        return arrayLycanthropes;
+    }
+
     /**
      * Permet de trouver deux lycanthropes aptes à exercer une domination sur l'autre.
      *
@@ -205,6 +243,17 @@ public class Meute {
             listeMembres.remove(num);
         }
         return newLycanthrope;
+    }
+
+    public Lycanthrope devenirSolitaire(Lycanthrope lycanthrope){
+        if(lycanthrope.getRang() == 'ω' || !lycanthrope.isReussiteDomination()){
+            Lycanthrope newLycanthrope = lycanthrope;
+            newLycanthrope.setMeute(null);
+            listeMembres.remove(lycanthrope);
+
+            return newLycanthrope;
+        }
+        return null;
     }
 
     public void reproduction(String[] noms, char[] sexe){

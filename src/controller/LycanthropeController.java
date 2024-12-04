@@ -1,6 +1,7 @@
 package controller;
 
 import modele.lycanthrope.Colonie;
+import modele.lycanthrope.Lycanthrope;
 import modele.lycanthrope.Meute;
 
 import java.util.ArrayList;
@@ -35,32 +36,70 @@ public class LycanthropeController {
     }
 
     private void agir(){
-        int choixMeute = joueur.choixTourChoixMeute(colonie.getListeMeutes());
-        if (choixMeute < 0 || choixMeute > colonie.getListeMeutes().size()) {
-            System.out.println("Meute invalide.");
-            return;
+        String choix = joueur.choixActionLycanthrope();
+        if(choix.equals("Meute")){
+            int choixMeute = joueur.choixTourChoixMeute(colonie.getListeMeutes());
+            if (choixMeute < 0 || choixMeute > colonie.getListeMeutes().size()) {
+                System.out.println("Meute invalide.");
+                return;
+            }
+            Meute meuteChoisi = colonie.getListeMeutes().get(choixMeute);
+
+            Lycanthrope choixLycanthrope = joueur.choisirLycanthrope(meuteChoisi.getListeMembres());
+
+            String action = joueur.demandeActionLycanthrope();
+            switch (action.toLowerCase()){
+                case "dominer" :
+                    dominer(meuteChoisi, choixLycanthrope);
+                    break;
+                case "hurler":
+                    hurler(choixLycanthrope);
+                    break;
+                case "quitter":
+                    quitter(meuteChoisi, choixLycanthrope);
+                    break;
+                case "observer":
+                    System.out.println(choixLycanthrope.afficherCaracteristiques());
+                    break;
+                default:
+                    System.out.println("Choix invalide. Réessayez.");
+            }
+        } else if (choix.equals("Seul")) {
+            Lycanthrope choixLycanthrope = joueur.choisirLycanthrope(colonie.getListeSolitaire());
+
+            String action = joueur.demandeActionLycanthrope(); // À changer.
+            switch (action.toLowerCase()){
+                case "meute":
+                  //TODO
+                    break;
+                case "observer":
+                    System.out.println(choixLycanthrope.afficherCaracteristiques());
+                    break;
+                default:
+                    System.out.println("Choix invalide. Réessayez.");
+            }
         }
+    }
 
-        Meute meuteChoisi = colonie.getListeMeutes().get(choixMeute - 1);
-        String action = joueur.demandeActionLycanthrope();
-        switch (action.toLowerCase()){
-            // --> Provoquer une provocation entre deux loups (limité dans une journée)
-            // --> Demander à un loup de hurler son appartenance à une meute.
-            // --> Forcer un loup ayant rater une domination ou de rang Omicron a quitter la meute (il devient un loup solitaire).
-            // --> Forcer deux loups solitaires à fonder une nouvelle meute (limité entre plusieurs tours).
+    private void dominer(Meute meute, Lycanthrope lycanthrope){
+        ArrayList liste = meute.rechercherLycanthrope(lycanthrope);
+        meute.domination(liste);
+    }
+
+    private void hurler(Lycanthrope lycanthrope){
+        System.out.println(lycanthrope.hurlementAppartenanceMeute());
+    }
+
+    private void quitter(Meute meute, Lycanthrope lycanthrope){
+        Lycanthrope newLycanthrope = meute.devenirSolitaire(lycanthrope);
+        if(newLycanthrope != null){
+            colonie.addSolitaire(newLycanthrope);
+            System.out.println(lycanthrope.getNom() +
+                    " a décidé de quitter sa meute, mort de honte, la queue entre les jambes.");
+        }else{
+            System.out.println(lycanthrope.getNom() +
+                    " ne peut pas quitter la meute, il a tant de choses à accomplire !");
         }
-    }
-
-    private void dominer(){
-        //TODO
-    }
-
-    private void hurler(){
-        //TODO
-    }
-
-    private void quitter(){
-        //TODO
     }
 
     private void meute(){

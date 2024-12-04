@@ -80,6 +80,10 @@ public class Colonie {
         this.listeSolitaire = listeSolitaire;
     }
 
+    public void addSolitaire(Lycanthrope lycanthrope){
+        this.getListeSolitaire().add(lycanthrope);
+    }
+    
     public String caracteristiquesColonie() {
         String texte = "Dans la colonie, il y a : \n";
         for(Meute meute: listeMeutes){
