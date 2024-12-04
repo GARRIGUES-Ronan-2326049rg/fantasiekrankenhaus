@@ -38,13 +38,13 @@ public class JoueurController {
         System.out.println(view.presentationJeuLycanthrope());
     }
 
-    public void choixJeu(){
+    public void choixJeu() {
         view.demandeJeu();
         String jeu = sc.nextLine();
-        if(jeu.equals("Hopital")){
+        if (jeu.equals("Hopital")) {
             HopitalController hopitalController = new HopitalController();
             hopitalController.lancerJeu();
-        }else if(jeu.equals("Loups")){
+        } else if (jeu.equals("Loups")) {
             LycanthropeController lycanthropeController = new LycanthropeController();
             lycanthropeController.lancerJeu();
         }
@@ -80,16 +80,18 @@ public class JoueurController {
                 }
 
             } catch (InputMismatchException e) {
-                    System.out.println("❌ Entrée invalide. Veuillez entrer un nombre.");
-                    sc.nextLine(); // Consomme la mauvaise entrée pour éviter une boucle infinie (danger de mort)
-                }
+                System.out.println("❌ Entrée invalide. Veuillez entrer un nombre.");
+                sc.nextLine(); // Consomme la mauvaise entrée pour éviter une boucle infinie (danger de mort)
             }
         }
-        this.view.demandeChoixMedecin(listeMedecin);
-        int choix = sc.nextInt();
-        sc.nextLine(); // Consomme le retour à la ligne restant
-        return choix;
     }
+
+        /*
+            this.view.demandeChoixMedecin(listeMedecin);
+            int choix = sc.nextInt();
+            sc.nextLine(); // Consomme le retour à la ligne restant
+            return choix;
+    */
 
     public int choixTourChoixMeute(ArrayList<Meute> listeMeute) {
         this.view.demanderChoixMeute(listeMeute);
@@ -108,7 +110,7 @@ public class JoueurController {
         return sc.nextLine();
     }
 
-    public String demandeActionLycanthrope(){
+    public String demandeActionLycanthrope() {
         //this.view.demandeActionLycanthrope();
         return sc.nextLine();
     }
@@ -178,4 +180,5 @@ public class JoueurController {
         }
         return null;
     }
+
 }

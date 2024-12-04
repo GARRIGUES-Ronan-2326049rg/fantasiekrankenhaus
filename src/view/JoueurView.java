@@ -41,25 +41,23 @@ public class JoueurView {
         System.out.println("Que voulez-vous faire ?\n" +
                 "  👉 " + GREEN + "Agir sur les médecins" + RESET + " : tapez 'agir'\n" +
                 "  👉 " + RED + "Mettre fin à la partie" + RESET + " : tapez 'finir'\n");
-    public String presentationJeuLycanthrope(){
+    }
+
+
+    public String presentationJeuLycanthrope() {
         return "Bienvenue jeune lycanthrope solitaire!\n" +
                 "Au cours d'une balade, vosu êtes tombé sur une colonie constitué d'une seule petite meute.\n" +
                 "Pris d'un sentiment de pitié pour vos semblables, vous décidez de venir leur préter un coup de patte dans l'organisation de leur communauté\n" +
                 "Observez votre meute évoluer, changer de hiérarchie, devenir le refuge de nouveau-nés.\n" +
                 "Observez vos semblables se disputer, se soumettre entre eux, quitter leur meute pour peut-être en recréer une ?\n" +
                 "Profitez simplement de vos beaux jours parmi eux !";
+
     }
 
     public void demandeJeu(){
         System.out.println("Voulez vous :\n" +
             "Vous occupez d'un hôpital : 'Hopital' \n" +
             "Vous occupez d'une colonie de lycanthropes : 'Loups' \n");
-    }
-
-    public void demandeChoix(){
-        System.out.println( "Voulez vous :\n" +
-                "Agir sur les médecins : 'agir'\n" +
-                "Finir le jeu ? : 'finir'\n");
     }
 
     public void demanderChoixLycanthrope(){
@@ -84,6 +82,7 @@ public class JoueurView {
                         .append(listeMedecin.get(i).getActionPossible()).append(RESET).append(")\n");
             }
         }
+        message.append("  🔄 " + GREEN + "Passer la journée " + RESET + " : tapez 99 \n");
         System.out.println(message.toString());
     }
 
@@ -95,7 +94,11 @@ public class JoueurView {
                 "  🧐 " + GREEN + "Examiner un service" + RESET + " (ne consomme pas d'action) : tapez 'Examiner'\n" +
                 "  🩺 " + YELLOW + "Soigner un patient" + RESET + " : tapez 'Soigner'\n" +
                 "  💰 " + CYAN + "Réviser le budget" + RESET + " : tapez 'Reviser'\n" +
-                "  🔄 " + MAGENTA + "Transférer un patient" + RESET + " : tapez 'Transferer'\n");
+                "  🔄 " + MAGENTA + "Transférer un patient" + RESET + " : tapez 'Transferer'\n" );
+
+
+    }
+
     public void demanderChoixMeute(ArrayList<Meute> listeMeute){
         StringBuilder message = new StringBuilder("Voici les meutes sur lesquels vous pouvez agir.");
         for (int i = 0; i < listeMeute.size(); ++i){
@@ -104,19 +107,6 @@ public class JoueurView {
         System.out.println(message.toString());
     }
 
-    public void demandeAction(){
-        System.out.println("Pour ce médecin voulez vous : \n" +
-                "Examiner un service ? Ne retire pas d'action. Tapez Examiner\n" +
-                "Soigner un patient ? Tapez Soigner\n" +
-                "Réviser le budget ? Tapez Reviser\n" +
-                "Transférer le patient ? Tapez Tranferer\n");
-    }
-
-    /**
-     * Affiche les services disponibles pour que le joueur puisse en choisir un.
-     *
-     * @param listeService Liste des services disponibles.
-     */
 
     public void demandeActionMeute() {
         System.out.println("Pour cette meute, voulez vous : \n" +
