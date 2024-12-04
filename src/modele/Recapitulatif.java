@@ -16,6 +16,12 @@ public class Recapitulatif {
     private static final String DB_USER = "hopitalfa"; // Remplace par ton identifiant AlwaysData
     private static final String DB_PASSWORD = "ronan22";
 
+    /**
+     * Obtient une connexion à la base de données.
+     *
+     * @return Une connexion à la base de données.
+     * @throws SQLException Si une erreur survient lors de la connexion.
+     */
     public Connection getConnection() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
@@ -26,8 +32,16 @@ public class Recapitulatif {
         return null;
     }
 
-    public void sauvegarderDansBaseDeDonnees( String nom, int nb_morts, int nb_maladie) throws SQLException {
-        try{
+    /**
+     * Sauvegarde les statistiques dans la base de données.
+     *
+     * @param nom Le nom de la partie.
+     * @param nb_morts Le nombre de morts.
+     * @param nb_maladie Le nombre de maladies guéries.
+     * @throws SQLException Si une erreur survient lors de la sauvegarde.
+     */
+    public void sauvegarderDansBaseDeDonnees(String nom, int nb_morts, int nb_maladie) throws SQLException {
+        try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO stat(nom, nb_mort, nb_maladie) VALUES (?, ?, ?)");
             preparedStatement.setString(1, nom);
@@ -37,9 +51,11 @@ public class Recapitulatif {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
+    /**
+     * Affiche tous les récapitulatifs enregistrés dans la base de données.
+     */
     public void afficherTousLesRecaps() {
         try {
             Connection connection = getConnection();
@@ -51,7 +67,6 @@ public class Recapitulatif {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -91,16 +106,18 @@ public class Recapitulatif {
     }
 
     /**
-     * Getter du nombre de maladie
-     * @return nombre de maladie
+     * Getter du nombre de maladies guéries.
+     *
+     * @return Le nombre de maladies guéries.
      */
     public int getNombreMaladies() {
         return nombreMaladies;
     }
 
     /**
-     * Getter du nombre de mort
-     * @return nombre de mort
+     * Getter du nombre de morts.
+     *
+     * @return Le nombre de morts.
      */
     public int getNombreMorts() {
         return nombreMorts;
@@ -121,5 +138,4 @@ public class Recapitulatif {
         System.out.println(RED + "Nombre de Morts : " + nombreMorts + RESET);
         System.out.println(BLUE + "=====================================" + RESET);
     }
-
 }

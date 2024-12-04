@@ -19,14 +19,21 @@ public class Monstre {
 	private ArrayList<Maladie> listeMaladie = new ArrayList<>();
 	private boolean estMort = false;
 
-
 	private static final String RESET = "\u001B[0m";
 	private static final String GREEN = "\u001B[32m";
 	private static final String RED = "\u001B[31m";
 
-
-
-
+	/**
+	 * Constructeur pour la classe Monstre.
+	 *
+	 * @param type Le type du monstre.
+	 * @param nom Le nom du monstre.
+	 * @param sexe Le sexe du monstre.
+	 * @param poids Le poids du monstre.
+	 * @param taille La taille du monstre.
+	 * @param age L'âge du monstre.
+	 * @param indicateurMoral L'indicateur de moral du monstre.
+	 */
 	public Monstre(String type, String nom, char sexe, short poids, short taille, int age, int indicateurMoral) {
 		this.type = type;
 		this.nom = nom;
@@ -37,80 +44,192 @@ public class Monstre {
 		this.indicateurMoral = 100;
 	}
 
+	/**
+	 * Obtient le type du monstre.
+	 *
+	 * @return Le type du monstre.
+	 */
 	public String getType() {
 		return type;
 	}
 
+	/**
+	 * Définit le type du monstre.
+	 *
+	 * @param type Le type à définir.
+	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	/**
+	 * Obtient le nom du monstre.
+	 *
+	 * @return Le nom du monstre.
+	 */
 	public String getNom() {
 		return nom;
 	}
+
+	/**
+	 * Définit le nom du monstre.
+	 *
+	 * @param nom Le nom à définir.
+	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	/**
+	 * Obtient le sexe du monstre.
+	 *
+	 * @return Le sexe du monstre.
+	 */
 	public char getSexe() {
 		return sexe;
 	}
+
+	/**
+	 * Définit le sexe du monstre.
+	 *
+	 * @param sexe Le sexe à définir.
+	 */
 	public void setSexe(char sexe) {
 		this.sexe = sexe;
 	}
+
+	/**
+	 * Obtient le poids du monstre.
+	 *
+	 * @return Le poids du monstre.
+	 */
 	public short getPoids() {
 		return poids;
 	}
+
+	/**
+	 * Définit le poids du monstre.
+	 *
+	 * @param poids Le poids à définir.
+	 */
 	public void setPoids(short poids) {
 		this.poids = poids;
 	}
+
+	/**
+	 * Obtient la taille du monstre.
+	 *
+	 * @return La taille du monstre.
+	 */
 	public short getTaille() {
 		return taille;
 	}
+
+	/**
+	 * Définit la taille du monstre.
+	 *
+	 * @param taille La taille à définir.
+	 */
 	public void setTaille(short taille) {
 		this.taille = taille;
 	}
+
+	/**
+	 * Obtient l'âge du monstre.
+	 *
+	 * @return L'âge du monstre.
+	 */
 	public int getAge() {
 		return age;
 	}
+
+	/**
+	 * Définit l'âge du monstre.
+	 *
+	 * @param age L'âge à définir.
+	 */
 	public void setAge(int age) {
 		this.age = age;
 	}
+
+	/**
+	 * Obtient l'indicateur de moral du monstre.
+	 *
+	 * @return L'indicateur de moral du monstre.
+	 */
 	public byte getIndicateurMoral() {
 		return (byte) indicateurMoral;
 	}
+
+	/**
+	 * Définit l'indicateur de moral du monstre.
+	 *
+	 * @param indicateurMoral L'indicateur de moral à définir.
+	 */
 	public void setIndicateurMoral(byte indicateurMoral) {
 		this.indicateurMoral = indicateurMoral;
 	}
+
+	/**
+	 * Obtient la liste des maladies du monstre.
+	 *
+	 * @return La liste des maladies du monstre.
+	 */
 	public ArrayList<Maladie> getListeMaladie() {
 		return listeMaladie;
 	}
+
+	/**
+	 * Définit la liste des maladies du monstre.
+	 *
+	 * @param listeMaladie La liste des maladies à définir.
+	 */
 	public void setListeMaladie(ArrayList<Maladie> listeMaladie) {
 		this.listeMaladie = listeMaladie;
 	}
+
 	private ServiceMedical service; // Référence au service médical
+
+	/**
+	 * Obtient le service médical du monstre.
+	 *
+	 * @return Le service médical du monstre.
+	 */
 	public ServiceMedical getService() {
 		return service;
 	}
+
+	/**
+	 * Définit le service médical du monstre.
+	 *
+	 * @param service Le service médical à définir.
+	 */
 	public void setService(ServiceMedical service) {
 		this.service = service;
 	}
 
-
+	/**
+	 * Vérifie si le monstre est mort.
+	 *
+	 * @param b Un booléen indiquant si le monstre est mort.
+	 * @return True si le monstre est mort, sinon false.
+	 */
 	public boolean estMort(boolean b) {
 		return this.estMort;
 	}
 
-
-
+	/**
+	 * Ajoute une maladie à la liste des maladies du monstre.
+	 *
+	 * @param maladie La maladie à ajouter.
+	 */
 	public void tomberMalade(Maladie maladie){
 		this.listeMaladie.add(maladie);
 	}
 
-
-
-
-
-
+	/**
+	 * Fait évoluer les maladies du monstre.
+	 */
 	public void evoluerMaladies() {
 		Random random = new Random();
 
@@ -157,7 +276,9 @@ public class Monstre {
 		}
 	}
 
-	// Méthode pour réduire le moral
+	/**
+	 * Réduit le moral du monstre.
+	 */
 	private void diminuerMoral() {
 		int moralActuel = getIndicateurMoral();
 		int reductionMoral = 10; // Réduction de moral en cas de stagnation des maladies
@@ -173,6 +294,11 @@ public class Monstre {
 		}
 	}
 
+	/**
+	 * Effectue des actions spécifiques après la mort du monstre.
+	 *
+	 * @param service Le service médical associé.
+	 */
 	public void agirApresTrepas(ServiceMedical service) {
 		// Groupes des types de monstres par comportement
 		Set<String> demoraliseurs = Set.of("Elfe", "Vampire");
@@ -195,7 +321,11 @@ public class Monstre {
 		}
 	}
 
-
+	/**
+	 * Démoralise les autres créatures du service.
+	 *
+	 * @param service Le service médical associé.
+	 */
 	private void demoraliser(ServiceMedical service) {
 		System.out.println("💔 " + type + " démoralise les autres créatures.");
 		ArrayList<Monstre> monstres = new ArrayList<>(service.getListeCreature());
@@ -208,8 +338,11 @@ public class Monstre {
 		}
 	}
 
-
-
+	/**
+	 * Contamine une autre créature du service avec une maladie.
+	 *
+	 * @param service Le service médical associé.
+	 */
 	private void contaminer(ServiceMedical service) {
 		// Vérifie si le monstre a des maladies à transmettre
 		if (this.getListeMaladie().isEmpty()) {
@@ -246,17 +379,22 @@ public class Monstre {
 				cible.getNom() + ".");
 	}
 
-
-
-
-
+	/**
+	 * Régénère le monstre.
+	 *
+	 * @param service Le service médical associé.
+	 */
 	private void regenerer(ServiceMedical service) {
 		System.out.println("🧟 " + type + " se régénère.");
 		this.estMort = false; // Revient à la vie
 		this.setIndicateurMoral((byte) 80);
 	}
 
-	// Soigner une maladie spécifique
+	/**
+	 * Soigne une maladie spécifique du monstre.
+	 *
+	 * @param nomMaladie Le nom de la maladie à soigner.
+	 */
 	public void soignerMaladie(String nomMaladie) {
 		for (int i = 0; i < listeMaladie.size(); i++) {
 			Maladie maladie = listeMaladie.get(i);
@@ -272,7 +410,11 @@ public class Monstre {
 		System.out.println("Aucune maladie correspondante trouvée pour " + nomMaladie + ".");
 	}
 
-
+	/**
+	 * Obtient la maladie la plus grave du monstre.
+	 *
+	 * @return La maladie la plus grave.
+	 */
 	public Maladie getMaxMaladie() {
 		Maladie maladie = getListeMaladie().get(0);
 		for (int i = 1; i < getListeMaladie().size(); ++i) {
@@ -283,6 +425,11 @@ public class Monstre {
 		return maladie;
 	}
 
+	/**
+	 * Retourne une représentation sous forme de chaîne de caractères du monstre.
+	 *
+	 * @return Une chaîne de caractères représentant le monstre.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

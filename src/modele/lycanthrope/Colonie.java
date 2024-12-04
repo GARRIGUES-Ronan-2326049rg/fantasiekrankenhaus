@@ -23,11 +23,19 @@ public class Colonie {
             "meute", "groupe", "toto", "tata", "titi",
     };
 
+    /**
+     * Constructeur pour la classe Colonie.
+     *
+     * @param listeMeutes Liste des meutes dans la colonie.
+     */
     public Colonie(ArrayList<Meute> listeMeutes) {
         this.listeMeutes = listeMeutes;
         this.listeSolitaire = new ArrayList<>();
     }
 
+    /**
+     * Initialise la colonie avec un ensemble par défaut de lycanthropes.
+     */
     public void initialiserColonie(){
         ArrayList<Lycanthrope> listeLycanthrope = new ArrayList<>();
 
@@ -67,34 +75,74 @@ public class Colonie {
         this.listeSolitaire = new ArrayList<>();
     }
 
+    /**
+     * Obtient la liste des meutes dans la colonie.
+     *
+     * @return Liste des meutes.
+     */
     public ArrayList<Meute> getListeMeutes() {
         return listeMeutes;
     }
 
+    /**
+     * Définit la liste des meutes dans la colonie.
+     *
+     * @param listeMeutes Liste des meutes à définir.
+     */
     public void setListeMeutes(ArrayList<Meute> listeMeutes) {
         this.listeMeutes = listeMeutes;
     }
 
+    /**
+     * Obtient la liste des lycanthropes solitaires dans la colonie.
+     *
+     * @return Liste des lycanthropes solitaires.
+     */
     public ArrayList<Lycanthrope> getListeSolitaire() {
         return listeSolitaire;
     }
 
+    /**
+     * Définit la liste des lycanthropes solitaires dans la colonie.
+     *
+     * @param listeSolitaire Liste des lycanthropes solitaires à définir.
+     */
     public void setListeSolitaire(ArrayList<Lycanthrope> listeSolitaire) {
         this.listeSolitaire = listeSolitaire;
     }
 
+    /**
+     * Obtient le jour actuel dans la colonie.
+     *
+     * @return Jour actuel.
+     */
     public int getJour() {
         return jour;
     }
 
+    /**
+     * Définit le jour actuel dans la colonie.
+     *
+     * @param jour Jour à définir.
+     */
     public void setJour(int jour) {
         this.jour = jour;
     }
 
+    /**
+     * Ajoute un lycanthrope solitaire à la colonie.
+     *
+     * @param lycanthrope Lycanthrope à ajouter.
+     */
     public void addSolitaire(Lycanthrope lycanthrope){
         this.getListeSolitaire().add(lycanthrope);
     }
-    
+
+    /**
+     * Obtient les caractéristiques de la colonie.
+     *
+     * @return Caractéristiques de la colonie sous forme de chaîne de caractères.
+     */
     public String caracteristiquesColonie() {
         String texte = "Dans la colonie, il y a : \n";
         for(Meute meute: listeMeutes){
@@ -104,6 +152,11 @@ public class Colonie {
         return texte;
     }
 
+    /**
+     * Crée une nouvelle meute avec le lycanthrope donné.
+     *
+     * @param lycanthrope Lycanthrope pour former une nouvelle meute.
+     */
     public void nouvelleMeute(Lycanthrope lycanthrope){
         if(listeSolitaire.size() >= 2){
             Lycanthrope lycanthrope1 = listeSolitaire.get(random.nextInt(listeSolitaire.size()));
@@ -124,6 +177,9 @@ public class Colonie {
         }
     }
 
+    /**
+     * Crée une nouvelle meute avec deux lycanthropes solitaires aléatoires.
+     */
     public void nouvelleMeute(){
         if(listeSolitaire.size() >= 2){
             Lycanthrope lycanthrope1 = listeSolitaire.get(random.nextInt(listeSolitaire.size()));
@@ -134,7 +190,6 @@ public class Colonie {
             }
             listeSolitaire.remove(lycanthrope1);
             listeSolitaire.remove(lycanthrope2);
-
 
             lycanthrope1.setRang('α');
             lycanthrope2.setRang('α');
@@ -147,25 +202,44 @@ public class Colonie {
         }
     }
 
+    /**
+     * Vérifie s'il s'agit de la saison des amours.
+     *
+     * @return True si c'est la saison des amours, sinon false.
+     */
     public boolean isSaisonAmour() {
         return saisonAmour;
     }
 
+    /**
+     * Définit le statut de la saison des amours.
+     *
+     * @param saisonAmour True pour définir comme saison des amours, sinon false.
+     */
     public void setSaisonAmour(boolean saisonAmour) {
         this.saisonAmour = saisonAmour;
     }
 
+    /**
+     * Gère la reproduction pendant la saison des amours.
+     */
     public void reproductionSaisonAmour(){
         if(saisonAmour){
             listeMeutes.get(random.nextInt(listeMeutes.size())).reproduction(nomLycanthrope, sexe);
         }
     }
 
+    /**
+     * Fait évoluer la hiérarchie au sein d'une meute aléatoire.
+     */
     public void evolutionHierarchie(){
         int idMeute = random.nextInt(this.listeMeutes.size());
         this.listeMeutes.get(idMeute).domination(listeMeutes.get(idMeute).rechercherDeuxLycanthropes());
     }
 
+    /**
+     * Gère le vieillissement des lycanthropes dans la colonie.
+     */
     public void viellissement(){
         int typeListe = random.nextInt(2);
         // Pour les meutes.
@@ -182,7 +256,7 @@ public class Colonie {
             } else {
                 listeMeutes.get(idMeute).getListeMembres().remove(idLycanthrope);
             }
-        // Pour les solitaires.
+            // Pour les solitaires.
         } else {
             int idSolitaire = random.nextInt(listeSolitaire.size());
             Lycanthrope solitaire = listeSolitaire.get(random.nextInt(idSolitaire));
@@ -197,6 +271,9 @@ public class Colonie {
         }
     }
 
+    /**
+     * Gère le hurlement d'une meute aléatoire.
+     */
     public void hurlementMeute(){
         int idMeute = random.nextInt(listeMeutes.size());
         Meute meute = listeMeutes.get(idMeute);

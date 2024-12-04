@@ -30,15 +30,19 @@ public class JoueurController {
     }
 
     /**
-     * Demande au joueur de choisir l'action qu'il souhaite effectuer au cours du tour.
-     *
-     * @return La chaîne de caractères saisie par le joueur.
+     * Affiche les règles spécifiques aux lycanthropes en utilisant la vue associée.
      */
     public void afficheRegleLycanthrope() {
         JoueurView view = new JoueurView();
         System.out.println(view.presentationJeuLycanthrope());
     }
 
+    /**
+     * Demande au joueur de choisir le jeu auquel il souhaite jouer.
+     * En fonction du choix, lance le jeu correspondant.
+     *
+     * @throws SQLException Si une erreur SQL se produit.
+     */
     public void choixJeu() throws SQLException {
         view.demandeJeu();
         String jeu = sc.nextLine();
@@ -51,16 +55,31 @@ public class JoueurController {
         }
     }
 
+    /**
+     * Demande au joueur de saisir son nom.
+     *
+     * @return Le nom saisi par le joueur.
+     */
     public String demandeNom() {
         this.view.demandeNom();
         return sc.nextLine();
     }
 
+    /**
+     * Demande au joueur de choisir une action pour le tour.
+     *
+     * @return La chaîne de caractères représentant l'action choisie.
+     */
     public String choixTour() {
         this.view.demandeChoix();
         return sc.nextLine();
     }
 
+    /**
+     * Demande au joueur de choisir une action pour le tour des lycanthropes.
+     *
+     * @return La chaîne de caractères représentant l'action choisie.
+     */
     public String choixTourLycanthrope() {
         this.view.demanderChoixLycanthrope();
         return sc.nextLine();
@@ -92,11 +111,22 @@ public class JoueurController {
         }
     }
 
+    /**
+     * Demande au joueur de choisir une action pour les lycanthropes.
+     *
+     * @return La chaîne de caractères représentant l'action choisie.
+     */
     public String choixActionLycanthrope(){
         this.view.demanderChoixAgir();
         return sc.nextLine();
     }
 
+    /**
+     * Demande au joueur de choisir une meute parmi une liste de meutes disponibles.
+     *
+     * @param listeMeute Liste des meutes disponibles.
+     * @return L'indice de la meute choisie par le joueur.
+     */
     public int choixTourChoixMeute(ArrayList<Meute> listeMeute) {
         this.view.demanderChoixMeute(listeMeute);
         int choix = sc.nextInt();
@@ -114,6 +144,11 @@ public class JoueurController {
         return sc.nextLine();
     }
 
+    /**
+     * Demande au joueur l'action qu'il souhaite que le lycanthrope effectue.
+     *
+     * @return La chaîne de caractères représentant l'action choisie.
+     */
     public String demandeActionLycanthrope() {
         this.view.demandeActionLycanthrope();
         return sc.nextLine();
@@ -138,9 +173,10 @@ public class JoueurController {
     }
 
     /**
-     * Demande au joueur de saisir un nouveau budget pour un service.
+     * Permet au joueur de choisir une meute parmi une liste de meutes disponibles.
      *
-     * @return Le budget sous forme de chaîne de caractères.
+     * @param listeMeute Liste des meutes disponibles.
+     * @return La meute choisie par le joueur, ou null si le choix est invalide.
      */
     public Meute choisirMeute(ArrayList<Meute> listeMeute) {
         this.view.choisirMeute(listeMeute);
@@ -153,6 +189,11 @@ public class JoueurController {
         return null;
     }
 
+    /**
+     * Demande au joueur de saisir un nouveau budget pour un service.
+     *
+     * @return Le budget sous forme de chaîne de caractères.
+     */
     public String demanderBudget() {
         this.view.demandeBudget();
         return sc.nextLine();
@@ -176,6 +217,12 @@ public class JoueurController {
         return null;
     }
 
+    /**
+     * Permet au joueur de choisir un lycanthrope parmi une liste de lycanthropes disponibles.
+     *
+     * @param listeLycanthrope Liste des lycanthropes disponibles.
+     * @return Le lycanthrope choisi par le joueur, ou null si le choix est invalide.
+     */
     public Lycanthrope choisirLycanthrope(ArrayList<Lycanthrope> listeLycanthrope) {
         this.view.choisirLycanthrope(listeLycanthrope);
         String choix = sc.nextLine();

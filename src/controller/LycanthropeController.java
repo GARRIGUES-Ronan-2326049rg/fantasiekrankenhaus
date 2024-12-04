@@ -19,6 +19,9 @@ public class LycanthropeController {
     private static final String BLUE = "\u001B[34m";
     private static final String RED = "\u001B[31m";
 
+    /**
+     * Lance le jeu des lycanthropes et gère les interactions du joueur.
+     */
     public void lancerJeu() {
         initialiserColonie();
         joueur.afficheRegleLycanthrope();
@@ -39,10 +42,16 @@ public class LycanthropeController {
         }
     }
 
+    /**
+     * Initialise la colonie de lycanthropes.
+     */
     private void initialiserColonie() {
         colonie.initialiserColonie();
     }
 
+    /**
+     * Gère les actions du joueur pour les lycanthropes.
+     */
     private void agir() {
         String choix = joueur.choixActionLycanthrope();
         if (choix.equals("Meute")) {
@@ -96,16 +105,33 @@ public class LycanthropeController {
         }
     }
 
+    /**
+     * Gère l'action de domination d'un lycanthrope sur un autre.
+     *
+     * @param meute La meute à laquelle appartient le lycanthrope.
+     * @param lycanthrope Le lycanthrope qui effectue l'action de domination.
+     */
     private void dominer(Meute meute, Lycanthrope lycanthrope) {
         ArrayList<Lycanthrope> liste = meute.rechercherLycanthrope(lycanthrope);
         meute.domination(liste);
         System.out.println(YELLOW + "🐺 " + lycanthrope.getNom() + " a dominé un autre lycanthrope !" + RESET);
     }
 
+    /**
+     * Gère l'action de hurlement d'un lycanthrope.
+     *
+     * @param lycanthrope Le lycanthrope qui effectue l'action de hurlement.
+     */
     private void hurler(Lycanthrope lycanthrope) {
         System.out.println(YELLOW + "🎶 " + lycanthrope.hurlementAppartenanceMeute() + RESET);
     }
 
+    /**
+     * Gère l'action de quitter une meute pour un lycanthrope.
+     *
+     * @param meute La meute que le lycanthrope quitte.
+     * @param lycanthrope Le lycanthrope qui quitte la meute.
+     */
     private void quitter(Meute meute, Lycanthrope lycanthrope) {
         Lycanthrope newLycanthrope = meute.devenirSolitaire(lycanthrope);
         if (newLycanthrope != null) {
@@ -116,11 +142,19 @@ public class LycanthropeController {
         }
     }
 
+    /**
+     * Gère l'action de création d'une nouvelle meute par un lycanthrope.
+     *
+     * @param lycanthrope Le lycanthrope qui crée une nouvelle meute.
+     */
     private void meute(Lycanthrope lycanthrope) {
         colonie.nouvelleMeute(lycanthrope);
         System.out.println(YELLOW + "🎉 " + lycanthrope.getNom() + " a créé une nouvelle meute !" + RESET);
     }
 
+    /**
+     * Gère les événements d'une nouvelle journée dans le jeu.
+     */
     private void nouvelleJournee() {
         --nbActions;
         if (nbActions == 0) {
