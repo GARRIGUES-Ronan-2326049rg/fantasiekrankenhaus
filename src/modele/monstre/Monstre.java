@@ -208,6 +208,8 @@ public class Monstre {
 		}
 	}
 
+
+
 	private void contaminer(ServiceMedical service) {
 		// Vérifie si le monstre a des maladies à transmettre
 		if (this.getListeMaladie().isEmpty()) {

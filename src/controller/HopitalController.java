@@ -99,7 +99,7 @@ public class HopitalController {
                     case "reviser":
                         reviserBudget(medecinChoisi);
                         break;
-                    case "transfert":
+                    case "transferer":
                         transfererPatient(medecinChoisi);
                         break;
                     case "examiner":

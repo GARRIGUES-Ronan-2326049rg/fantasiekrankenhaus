@@ -8,6 +8,9 @@ import java.util.Random;
 
 public class MonstreFactory {
 
+    /**
+     * Tableau de noms de monstres
+     */
     private static final String[] noms = {
             "Gork", "Mork", "Zagreb", "Thranduil", "Balrog", "Fenrir", "Dracula", "Ragnar", "Smeagol", "Azog", "Atreus", "Mevis", "Shrek", "Jlark",
             "Hucle", "Klorlcus", "Doume", "Guglukuss", "Poutikos", "Hitlamus", "Zeukros", "Athos", "Ronalus", "Doriione", "Mannaon", "Flopidus",
@@ -24,13 +27,23 @@ public class MonstreFactory {
             "Imp", "Mummy", "Naga", "Lamia", "Pooka", "Cyclops", "Golem", "Basilisk", "Wight","Aizen","Madara","Gorudofazza"
     };
 
+    /**
+     * Tableau de types de monstres
+     */
     private static final String[] types = {
             "Elfe", "Vampire", "Zombie", "Lycanthrope", "Orque", "Nain", "Reptilien"
     };
 
+    /**
+     * Instance de Random pour générer des valeurs aléatoires
+     */
     private static final Random random = new Random();
 
 
+    /**
+     * Crée un monstre aléatoire avec des valeurs aléatoires
+     * @return
+     */
     // Méthode pour créer un monstre aléatoire
     public static Monstre creerMonstreAleatoire() {
         char sexe = random.nextBoolean() ? 'M' : 'F'; // Sexe random
@@ -64,6 +77,11 @@ public class MonstreFactory {
         return monstre;
     }
 
+
+    /**
+     * Ajoute des maladies aléatoires à un monstre donné (entre 1 et 3 maladies)
+     * @param monstre
+     */
     // Méthode privée pour ajouter des maladies aléatoires à un monstre
     static void ajouterMaladiesAleatoires(Monstre monstre) {
         List<Maladie> maladiesDisponibles = ListeMaladies.getMaladies(); // Liste des maladies

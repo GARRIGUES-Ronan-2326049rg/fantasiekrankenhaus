@@ -3,7 +3,13 @@ package modele;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ListeMaladies {
+
+    /**
+     * Méthode permettant de récupérer la liste des maladies
+     * @return
+     */
     public static List<Maladie> getMaladies() {
         List<Maladie> maladies = new ArrayList<>();
 
