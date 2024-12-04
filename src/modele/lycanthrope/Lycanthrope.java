@@ -134,15 +134,15 @@ public class Lycanthrope{
     }
 
     public String exprimerDomination(Lycanthrope lycanthrope){
-        return this.nom + " a dominé " + lycanthrope.getNom() + " !";
+        return this.nom + " hurle sa domination contre " + lycanthrope.getNom() + " !";
     }
 
     public String exrpimerSoumission(Lycanthrope lycanthrope){
-        return lycanthrope.getNom() + " a été soumis " + this.nom + " !";
+        return lycanthrope.getNom() + " hurle de ssoumission face à " + this.nom + " !";
     }
 
     public String exprimerAgressivite(Lycanthrope lycanthrope){
-        return lycanthrope.getNom() + " se montre agressif " + this.nom + " !";
+        return lycanthrope.getNom() + " se hurle de manière agressive à l'égard de " + this.nom + " !";
     }
 
     public String afficherCaracteristiques(){

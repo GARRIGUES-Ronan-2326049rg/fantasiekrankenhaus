@@ -24,12 +24,13 @@ public class Colonie {
 
     public Colonie(ArrayList<Meute> listeMeutes) {
         this.listeMeutes = listeMeutes;
+        this.listeSolitaire = new ArrayList<>();
     }
 
     public void initialiserColonie(){
         ArrayList<Lycanthrope> listeLycanthrope = new ArrayList<>();
 
-        IntStream.range(0, 5).forEach(i -> {
+        IntStream.range(0, 10).forEach(i -> {
             if (i == 0) {
                 listeLycanthrope.add(new Lycanthrope(
                         nomLycanthrope[random.nextInt(nomLycanthrope.length)],
@@ -59,9 +60,10 @@ public class Colonie {
             }
         });
 
-        this.listeMeutes.add( new Meute(
+        this.listeMeutes.add(new Meute(
                 nomMeute[random.nextInt(nomMeute.length)],
                 listeLycanthrope));
+        this.listeSolitaire = new ArrayList<>();
     }
 
     public ArrayList<Meute> getListeMeutes() {
@@ -93,7 +95,27 @@ public class Colonie {
         return texte;
     }
 
-    public void nouvelleMeute(String nomMeute){
+    public void nouvelleMeute(Lycanthrope lycanthrope){
+        if(listeSolitaire.size() >= 2){
+            Lycanthrope lycanthrope1 = listeSolitaire.get(random.nextInt(listeSolitaire.size()));
+            while(lycanthrope1 == lycanthrope || lycanthrope1.getSexe() == lycanthrope.getSexe()){
+                lycanthrope1 = listeSolitaire.get(random.nextInt(listeSolitaire.size()));
+            }
+            listeSolitaire.remove(lycanthrope1);
+            listeSolitaire.remove(lycanthrope);
+
+            lycanthrope1.setRang('α');
+            lycanthrope.setRang('α');
+
+            ArrayList<Lycanthrope> newMeute = new ArrayList<Lycanthrope>();
+            newMeute.add(lycanthrope1);
+            newMeute.add(lycanthrope);
+            Meute nouvelleMeute = new Meute(nomMeute[random.nextInt(nomMeute.length)], newMeute);
+            listeMeutes.add(nouvelleMeute);
+        }
+    }
+
+    public void nouvelleMeute(){
         if(listeSolitaire.size() >= 2){
             Lycanthrope lycanthrope1 = listeSolitaire.get(random.nextInt(listeSolitaire.size()));
             Lycanthrope lycanthrope2 = listeSolitaire.get(random.nextInt(listeSolitaire.size()));
@@ -111,7 +133,7 @@ public class Colonie {
             ArrayList<Lycanthrope> newMeute = new ArrayList<Lycanthrope>();
             newMeute.add(lycanthrope1);
             newMeute.add(lycanthrope2);
-            Meute nouvelleMeute = new Meute(nomMeute, newMeute);
+            Meute nouvelleMeute = new Meute(nomMeute[random.nextInt(nomMeute.length)], newMeute);
             listeMeutes.add(nouvelleMeute);
         }
     }
@@ -132,7 +154,7 @@ public class Colonie {
 
     public void evolutionHierarchie(){
         int idMeute = random.nextInt(this.listeMeutes.size());
-        this.listeMeutes.get(idMeute)/*.domination()*/;
+        this.listeMeutes.get(idMeute).domination(listeMeutes.get(idMeute).rechercherDeuxLycanthropes());
         this.listeMeutes.get(idMeute).hierarchieLycanthropes();
     }
 

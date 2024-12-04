@@ -110,7 +110,8 @@ public class JoueurView {
     public void demanderChoixAgir(){
         System.out.println("Voulez-vous vous occuper : \n" +
                 "D'une meute ? Tapez 'Meute' \n" +
-                "D'un lycanthrope solitaire ? Tapez 'Seul'");
+                "D'un lycanthrope solitaire ? Tapez 'Seul' \n" +
+                "Voir les caractéristiques de la colonie ? Tapez 'Description' \n");
     }
 
     public void demanderChoixMeute(ArrayList<Meute> listeMeute){
@@ -166,7 +167,7 @@ public class JoueurView {
     public void choisirLycanthrope(ArrayList<Lycanthrope> listeLycanthrope) {
         System.out.println("Sur quel lycanthrope voulez vous intervenir ? Tapez son nom \n");
         for (Lycanthrope lycanthrope : listeLycanthrope) {
-            System.out.println(lycanthrope.getNom() + "\n");
+            System.out.println(lycanthrope.getNom());
         }
     }
 

@@ -5,6 +5,7 @@ import modele.lycanthrope.Lycanthrope;
 import modele.lycanthrope.Meute;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class LycanthropeController {
     private JoueurController joueur = new JoueurController();
@@ -65,19 +66,26 @@ public class LycanthropeController {
                     System.out.println("Choix invalide. Réessayez.");
             }
         } else if (choix.equals("Seul")) {
-            Lycanthrope choixLycanthrope = joueur.choisirLycanthrope(colonie.getListeSolitaire());
+            if(!colonie.getListeSolitaire().isEmpty()){
+                Lycanthrope choixLycanthrope = joueur.choisirLycanthrope(colonie.getListeSolitaire());
 
-            String action = joueur.demandeActionLycanthrope(); // À changer.
-            switch (action.toLowerCase()){
-                case "meute":
-                  //TODO
-                    break;
-                case "observer":
-                    System.out.println(choixLycanthrope.afficherCaracteristiques());
-                    break;
-                default:
-                    System.out.println("Choix invalide. Réessayez.");
+                String action = joueur.demandeActionLycanthrope(); // À changer.
+                switch (action.toLowerCase()){
+                    case "meute":
+                        meute(choixLycanthrope);
+                        break;
+                    case "observer":
+                        System.out.println(choixLycanthrope.afficherCaracteristiques());
+                        break;
+                    default:
+                        System.out.println("Choix invalide. Réessayez.");
+                }
+            }else{
+                System.out.println("La colonie ne possède aucun solitaire dans ses rangs !");
             }
+
+        } else if(choix.equals("Description")){
+            System.out.println(colonie.caracteristiquesColonie());
         }
     }
 
@@ -98,11 +106,17 @@ public class LycanthropeController {
                     " a décidé de quitter sa meute, mort de honte, la queue entre les jambes.");
         }else{
             System.out.println(lycanthrope.getNom() +
-                    " ne peut pas quitter la meute, il a tant de choses à accomplire !");
+                    " ne peut pas quitter la meute, il a tant de choses à accomplir !");
         }
     }
 
-    private void meute(){
-        //TODO
+    private void meute(Lycanthrope lycanthrope){
+        colonie.nouvelleMeute(lycanthrope);
+    }
+
+    private void nouvelleJournee(){
+        Random random = new Random();
+
+
     }
 }
