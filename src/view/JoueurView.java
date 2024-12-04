@@ -170,6 +170,10 @@ public class JoueurView {
         }
     }
 
+    public void demandeNom() {
+        System.out.println("Quel est votre nom ? : ");
+    }
+
     /**
      * Demande au joueur de fournir un budget pour un service.
      */

@@ -6,6 +6,7 @@ import modele.monstre.Monstre;
 import modele.service.ServiceMedical;
 import view.JoueurView;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,7 +39,7 @@ public class JoueurController {
         System.out.println(view.presentationJeuLycanthrope());
     }
 
-    public void choixJeu() {
+    public void choixJeu() throws SQLException {
         view.demandeJeu();
         String jeu = sc.nextLine();
         if (jeu.equals("Hopital")) {
@@ -48,6 +49,11 @@ public class JoueurController {
             LycanthropeController lycanthropeController = new LycanthropeController();
             lycanthropeController.lancerJeu();
         }
+    }
+
+    public String demandeNom() {
+        this.view.demandeNom();
+        return sc.nextLine();
     }
 
     public String choixTour() {

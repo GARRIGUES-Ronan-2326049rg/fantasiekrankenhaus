@@ -12,64 +12,46 @@ public class Recapitulatif {
     private int nombreMaladies;
     private int nombreMorts;
 
-    private static final String DB_URL = "jdbc:postgresql://hopitalf.alwaysdata.net:5432/hopitalf";
-    private static final String DB_USER = "hopitalf"; // Remplace par ton identifiant AlwaysData
-    private static final String DB_PASSWORD = "ronanroot";
+    private static final String DB_URL = "jdbc:postgresql://postgresql-hopitalfa.alwaysdata.net:5432/hopitalfa_bd";
+    private static final String DB_USER = "hopitalfa"; // Remplace par ton identifiant AlwaysData
+    private static final String DB_PASSWORD = "ronan22";
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+    public Connection getConnection() throws SQLException {
+        try {
+            Class.forName("org.postgresql.Driver");
+            return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public  void creerTable() {
-        String createTableSQL = """
-            CREATE TABLE IF NOT EXISTS recapitulatif (
-                id SERIAL PRIMARY KEY,
-                date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                nombreMaladies INTEGER NOT NULL,
-                nombreMorts INTEGER NOT NULL,
-            );
-            """;
-
-        try (Connection connection = getConnection();
-
-             Statement statement = connection.createStatement()) {
-            statement.execute(createTableSQL);
-            System.out.println("Table 'recapitulatif' vérifiée/créée avec succès.");
+    public void sauvegarderDansBaseDeDonnees( String nom, int nb_morts, int nb_maladie) throws SQLException {
+        try{
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO stat(nom, nb_mort, nb_maladie) VALUES (?, ?, ?)");
+            preparedStatement.setString(1, nom);
+            preparedStatement.setInt(2, nb_morts);
+            preparedStatement.setInt(3, nb_maladie);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
-    public  void sauvegarderDansBaseDeDonnees() {
-        String insertSQL = "INSERT INTO recapitulatif (nombreMaladies, nombreMorts) VALUES (?, ?)";
-
-        try (Connection connection = getConnection();
-             PreparedStatement ps = connection.prepareStatement(insertSQL)) {
-            ps.setInt(1, nombreMaladies);
-            ps.setInt(2, nombreMorts);
-            ps.executeUpdate();
-            System.out.println("Récapitulatif enregistré avec succès.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public void afficherTousLesRecaps() {
-        String query = "SELECT * FROM recapitulatif";
-
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(query)) {
-            while (rs.next()) {
-                System.out.println("ID : " + rs.getInt("id"));
-                System.out.println("Date : " + rs.getTimestamp("date"));
-                System.out.println("Nombre de Maladies : " + rs.getInt("nombreMaladies"));
-                System.out.println("Nombre de Morts : " + rs.getInt("nombreMorts"));
-                System.out.println("-----------");
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM stat");
+            while (resultSet.next()) {
+                System.out.println("Nom : " + resultSet.getString("nom") + " | Morts : " + resultSet.getInt("nb_mort") + " | Maladies : " + resultSet.getInt("nb_maladie"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     /**

@@ -7,6 +7,8 @@ import modele.monstre.Monstre;
 import modele.Medecin;
 import modele.Maladie;
 import view.JoueurView;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -24,9 +26,10 @@ public class HopitalController {
     /**
      * Démarre le jeu et exécute la boucle principale.
      */
-    public void lancerJeu() {
+    public void lancerJeu() throws SQLException {
         initialiserHopital();
         joueur.afficheRegle();
+        String nomJoueur = joueur.demandeNom();
 
         while (jeuEnCours) {
             afficherEtatHopital();
@@ -39,10 +42,15 @@ public class HopitalController {
                 case "finir":
                     jeuEnCours = false;
                     System.out.println("FIN DU JEU\n");
-                    Recapitulatif.getInstance().afficherRecapitulatif();/*
-                    Recapitulatif.getInstance().creerTable();
-                    Recapitulatif.getInstance().sauvegarderDansBaseDeDonnees();
-                    Recapitulatif.getInstance().afficherTousLesRecaps();*/
+                    try{
+                        Recapitulatif.getInstance().afficherRecapitulatif();
+                        Recapitulatif.getInstance().sauvegarderDansBaseDeDonnees(nomJoueur,Recapitulatif.getInstance().getNombreMorts(), Recapitulatif.getInstance().getNombreMaladies());
+                        Recapitulatif.getInstance().afficherTousLesRecaps();
+                    }
+                    catch (SQLException e){
+                        System.out.println("Le Driver ne doit pas être installé");
+                    }
+
                     break;
                 default:
                     System.out.println("Choix invalide. Réessayez.");

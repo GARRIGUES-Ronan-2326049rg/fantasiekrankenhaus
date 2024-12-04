@@ -272,7 +272,7 @@ public class Monstre {
 
 
 	public Maladie getMaxMaladie() {
-		Maladie maladie = getListeMaladie().getFirst();
+		Maladie maladie = getListeMaladie().get(0);
 		for (int i = 1; i < getListeMaladie().size(); ++i) {
 			if (getListeMaladie().get(i).getNiveauActuel() / maladie.getNiveauMax() < getListeMaladie().get(i).getNiveauActuel() / maladie.getNiveauMax()) {
 				maladie = getListeMaladie().get(i);
