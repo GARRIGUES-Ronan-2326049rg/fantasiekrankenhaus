@@ -45,26 +45,28 @@ public class JoueurView {
 
 
     public String presentationJeuLycanthrope() {
-        return "Bienvenue jeune lycanthrope solitaire!\n" +
-                "Au cours d'une balade, vosu êtes tombé sur une colonie constitué d'une seule petite meute.\n" +
-                "Pris d'un sentiment de pitié pour vos semblables, vous décidez de venir leur préter un coup de patte dans l'organisation de leur communauté\n" +
-                "Observez votre meute évoluer, changer de hiérarchie, devenir le refuge de nouveau-nés.\n" +
-                "Observez vos semblables se disputer, se soumettre entre eux, quitter leur meute pour peut-être en recréer une ?\n" +
-                "Profitez simplement de vos beaux jours parmi eux !";
-
+        return CYAN + "🌕 Bienvenue jeune lycanthrope solitaire !\n" + RESET +
+                "Au cours d'une balade, vous êtes tombé sur une colonie composée d'une petite meute.\n" +
+                "🌟 Pris de compassion pour vos semblables, vous avez décidé de les aider à organiser leur communauté.\n" +
+                GREEN + "Observez votre meute évoluer : les hiérarchies se former, les nouveaux-nés trouver refuge.\n" + RESET +
+                "🔄 Voyez vos compagnons se disputer, se soumettre, ou quitter la meute pour en fonder une nouvelle.\n" +
+                "Profitez pleinement de vos jours parmi eux et de leur incroyable résilience !";
     }
 
-    public void demandeJeu(){
-        System.out.println("Voulez vous :\n" +
-            "Vous occupez d'un hôpital : 'Hopital' \n" +
-            "Vous occupez d'une colonie de lycanthropes : 'Loups' \n");
+
+    public void demandeJeu() {
+        System.out.println(CYAN + "Que souhaitez-vous faire ?\n" + RESET +
+                "  🏥 " + GREEN + "Gérer un hôpital" + RESET + " : tapez 'Hopital'\n" +
+                "  🐺 " + YELLOW + "Prendre soin d'une colonie de lycanthropes" + RESET + " : tapez 'Loups'\n");
     }
 
-    public void demanderChoixLycanthrope(){
-        System.out.println( "Voulez vous :\n" +
-                "Agir sur les lycanthropes : 'agir'\n" +
-                "Finir le jeu ? : 'finir'\n");
+
+    public void demanderChoixLycanthrope() {
+        System.out.println(CYAN + "Que souhaitez-vous faire ?" + RESET + "\n" +
+                "  🐺 " + GREEN + "Agir sur les lycanthropes" + RESET + " : tapez 'agir'\n" +
+                "  🛑 " + RED + "Mettre fin au jeu" + RESET + " : tapez 'finir'\n");
     }
+
 
     /**
      * Affiche une liste des médecins disponibles pour agir,
@@ -99,50 +101,57 @@ public class JoueurView {
 
     }
 
-    public void demandeActionLycanthrope(){
-        System.out.println("Que voulez-vous faire avec ce loup ?\n" +
-                "Dominer un autre loup : tapez 'Dominer' \n" +
-                "Le faire hurler : tapez 'Hurler \n" +
-                "Le forcer a quitté la meute : tapez 'Quitter' \n" +
-                "Observer ses caractéristiques : tapez 'Observer'");
+    public void demandeActionLycanthrope() {
+        System.out.println(CYAN + "Que voulez-vous faire avec ce loup ?" + RESET + "\n" +
+                "  🐾 " + GREEN + "Dominer un autre loup" + RESET + " : tapez 'Dominer'\n" +
+                "  🌕 " + YELLOW + "Le faire hurler" + RESET + " : tapez 'Hurler'\n" +
+                "  ❌ " + RED + "Le forcer à quitter la meute" + RESET + " : tapez 'Quitter'\n" +
+                "  🔍 " + MAGENTA + "Observer ses caractéristiques" + RESET + " : tapez 'Observer'\n");
     }
 
 
-    public void demanderChoixAgir(){
-        System.out.println("Voulez-vous vous occuper : \n" +
-                "D'une meute ? Tapez 'Meute' \n" +
-                "D'un lycanthrope solitaire ? Tapez 'Seul' \n" +
-                "Voir les caractéristiques de la colonie ? Tapez 'Description' \n");
+
+    public void demanderChoixAgir() {
+        System.out.println(CYAN + "Voulez-vous vous occuper :" + RESET + "\n" +
+                "  🐺 " + GREEN + "D'une meute" + RESET + " : tapez 'Meute'\n" +
+                "  🐾 " + YELLOW + "D'un lycanthrope solitaire" + RESET + " : tapez 'Seul'\n" +
+                "  📜 " + MAGENTA + "Voir les caractéristiques de la colonie" + RESET + " : tapez 'Description'\n");
     }
 
 
-    public void demanderChoixMeute(ArrayList<Meute> listeMeute){
-        StringBuilder message = new StringBuilder("Voici les meutes sur lesquels vous pouvez agir.");
-        for (int i = 0; i < listeMeute.size(); ++i){
-            message.append("\n").append(listeMeute.get(i).getNom()).append(" : tapez ").append(String.valueOf(i));
+
+    public void demanderChoixMeute(ArrayList<Meute> listeMeute) {
+        StringBuilder message = new StringBuilder(CYAN + "Voici les meutes sur lesquelles vous pouvez agir :" + RESET);
+        for (int i = 0; i < listeMeute.size(); ++i) {
+            message.append("\n  🐺 ").append(GREEN).append(listeMeute.get(i).getNom()).append(RESET)
+                    .append(" : tapez ").append(i);
         }
         System.out.println(message.toString());
     }
 
-    public void demanderActionSolitaire(){
-        System.out.println("Pour ce lycanthrope, voulez vous : \n" +
-                "Lui demander de créer une nouvelle meute ? Tapez Meute\n" +
-                "Revenir en arrière ? Tapez Retour\n");
+
+    public void demanderActionSolitaire() {
+        System.out.println(GREEN + "Pour ce lycanthrope, voulez-vous :" + RESET + "\n" +
+                "  ✨ Lui demander de créer une nouvelle meute ? Tapez 'Meute'\n" +
+                "  🔙 Revenir en arrière ? Tapez 'Retour'\n");
     }
 
+
     public void choisirService(ArrayList<ServiceMedical> listeService) {
-        System.out.println("Sur quel service voulez vous intervenir ? Tapez son nom \n");
+        System.out.println(CYAN + "Sur quel service voulez-vous intervenir ? Tapez son nom :" + RESET);
         for (ServiceMedical serviceMedical : listeService) {
             System.out.println("  🏥 " + GREEN + serviceMedical.getNom() + RESET);
         }
     }
 
-    public void choisirMeute(ArrayList<Meute> listeMeute){
-        System.out.println("Sur quelle meute voulez vous intervenir ? Tapez son nom \n");
+
+    public void choisirMeute(ArrayList<Meute> listeMeute) {
+        System.out.println(CYAN + "Sur quelle meute voulez-vous intervenir ? Tapez son nom :" + RESET);
         for (Meute meute : listeMeute) {
-            System.out.println(meute.getNom() + "\n");
+            System.out.println("  🐺 " + GREEN + meute.getNom() + RESET);
         }
     }
+
 
     /**
      * Affiche les monstres disponibles pour que le joueur puisse en choisir un.
@@ -159,11 +168,12 @@ public class JoueurView {
     }
 
     public void choisirLycanthrope(ArrayList<Lycanthrope> listeLycanthrope) {
-        System.out.println("Sur quel lycanthrope voulez vous intervenir ? Tapez son nom \n");
+        System.out.println(CYAN + "Sur quel lycanthrope voulez-vous intervenir ? Tapez son nom :" + RESET);
         for (Lycanthrope lycanthrope : listeLycanthrope) {
-            System.out.println(lycanthrope.getNom());
+            System.out.println("  🐺 " + GREEN + lycanthrope.getNom() + RESET);
         }
     }
+
 
     public void demandeNom() {
         System.out.println("Quel est votre nom ? : ");

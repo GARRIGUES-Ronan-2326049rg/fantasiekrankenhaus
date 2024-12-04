@@ -32,7 +32,7 @@ public class HopitalController {
         String nomJoueur = joueur.demandeNom();
 
         while (jeuEnCours) {
-            afficherEtatHopital();
+            //afficherEtatHopital();
             String choix = joueur.choixTour();
             switch (choix.toLowerCase()) {
                 case "agir":
