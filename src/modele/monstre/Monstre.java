@@ -174,13 +174,13 @@ public class Monstre {
 
 
 
-	private void demoraliser() {
+	void demoraliser() {
 		this.estMort = true;
 		if (this instanceof Vampire || this instanceof Elfe) {
 			if (this instanceof Vampire) {
 				((Vampire) this).demoraliser(service);
 			} else {
-				((Elfe) this).demoraliser(service);
+				((Elfe) this).demoraliser();
 			}
 		}
 	}
