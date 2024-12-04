@@ -153,6 +153,7 @@ public class HopitalController {
         ServiceMedical service = joueur.choisirService(hopital.getListeService());
         if (service != null) {
             String nouveauBudget = joueur.demanderBudget();
+            nouveauBudget = nouveauBudget.substring(0, 1).toUpperCase() + nouveauBudget.substring(1).toLowerCase();
             if (service.ameliorer(nouveauBudget)) {
                 medecin.reviseBudget(service, nouveauBudget);
                 service.variationBudget();

@@ -172,6 +172,6 @@ public class JoueurView {
      * Demande au joueur de fournir un budget pour un service.
      */
     public void demandeBudget() {
-        System.out.println("Quel budget souhaitez-vous allouer ? Entrez soit Inexistant / Médiocre / Insuffisant / Faible :");
+        System.out.println("Quel budget souhaitez-vous allouer ? Entrez soit Inexistant -> Mediocre -> Insuffisant -> Faible -> Moyen -> Bon -> Super -> Parfait");
     }
 }
