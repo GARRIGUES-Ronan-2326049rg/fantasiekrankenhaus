@@ -11,6 +11,7 @@ public class LycanthropeController {
     private JoueurController joueur = new JoueurController();
     private boolean jeuEnCours = true;
     private Colonie colonie = new Colonie(new ArrayList<>());
+    private int nbActions = 3;
 
     public void lancerJeu(){
         initialiserColonie();
@@ -52,12 +53,15 @@ public class LycanthropeController {
             switch (action.toLowerCase()){
                 case "dominer" :
                     dominer(meuteChoisi, choixLycanthrope);
+                    nouvelleJournee();
                     break;
                 case "hurler":
                     hurler(choixLycanthrope);
+                    nouvelleJournee();
                     break;
                 case "quitter":
                     quitter(meuteChoisi, choixLycanthrope);
+                    nouvelleJournee();
                     break;
                 case "observer":
                     System.out.println(choixLycanthrope.afficherCaracteristiques());
@@ -73,6 +77,7 @@ public class LycanthropeController {
                 switch (action.toLowerCase()){
                     case "meute":
                         meute(choixLycanthrope);
+                        nouvelleJournee();
                         break;
                     case "observer":
                         System.out.println(choixLycanthrope.afficherCaracteristiques());
@@ -115,8 +120,32 @@ public class LycanthropeController {
     }
 
     private void nouvelleJournee(){
-        Random random = new Random();
+        --nbActions;
+        if(nbActions == 0){
+            Random random = new Random();
+            int action = random.nextInt(5);
+            if(action == 0){
+                colonie.hurlementMeute();
+            } else if (action == 1) {
+                colonie.evolutionHierarchie();
+            } else if (action == 2) {
+                colonie.viellissement();
+            }else if(action == 4){
+                colonie.nouvelleMeute();
+            }
 
 
+            colonie.setJour(colonie.getJour() + 1);
+            if(colonie.getJour()%40 == 0){
+                colonie.setSaisonAmour(true);
+                System.out.println("C'est la saison des amours !");
+            }else if(colonie.isSaisonAmour()){
+                int naissance = random.nextInt(2);
+                if(naissance == 1) {
+                    colonie.reproductionSaisonAmour();
+                }
+            }
+            nbActions = 3;
+        }
     }
 }

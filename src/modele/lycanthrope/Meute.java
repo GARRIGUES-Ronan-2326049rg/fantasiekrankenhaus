@@ -268,8 +268,13 @@ public class Meute {
         Random random = new Random();
         int nbJeunes = random.nextInt(7);
         for(int i = 0; i < nbJeunes ; i++){
-            listeMembres.add(new Lycanthrope(noms[random.nextInt(noms.length)], sexe[random.nextInt(sexe.length)],
-                    "Jeune", alphabetGrec.charAt(random.nextInt(alphabetGrec.length())), nom));
+            Lycanthrope bebe = new Lycanthrope(noms[random.nextInt(noms.length)], sexe[random.nextInt(sexe.length)],
+                    "Jeune", alphabetGrec.charAt(random.nextInt(alphabetGrec.length())), nom);
+            if(bebe.getRang() == 'α'){
+                bebe.setRang(alphabetGrec.charAt(random.nextInt(alphabetGrec.length())));
+            }
+            listeMembres.add(bebe);
+            System.out.println(bebe.getNom() + " est né dans la meute " + this.nom + " !");
         }
     }
 

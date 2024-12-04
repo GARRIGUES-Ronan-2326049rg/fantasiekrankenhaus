@@ -9,6 +9,7 @@ public class Colonie {
     private ArrayList<Meute> listeMeutes;
     private ArrayList<Lycanthrope> listeSolitaire;
     private boolean saisonAmour = false;
+    private int jour = 1;
     private static final Random random = new Random();
     private final String alphabetGrec = "αβγδεζηθικλµνξοπρστυϕχψω";
     private static final char[] sexe = {'M', 'F'};
@@ -82,6 +83,14 @@ public class Colonie {
         this.listeSolitaire = listeSolitaire;
     }
 
+    public int getJour() {
+        return jour;
+    }
+
+    public void setJour(int jour) {
+        this.jour = jour;
+    }
+
     public void addSolitaire(Lycanthrope lycanthrope){
         this.getListeSolitaire().add(lycanthrope);
     }
@@ -146,16 +155,15 @@ public class Colonie {
         this.saisonAmour = saisonAmour;
     }
 
-    public void reproductionSaisonAmour(String[] listeNoms){
+    public void reproductionSaisonAmour(){
         if(saisonAmour){
-            listeMeutes.get(random.nextInt(listeMeutes.size())).reproduction(listeNoms,sexe);
+            listeMeutes.get(random.nextInt(listeMeutes.size())).reproduction(nomLycanthrope, sexe);
         }
     }
 
     public void evolutionHierarchie(){
         int idMeute = random.nextInt(this.listeMeutes.size());
         this.listeMeutes.get(idMeute).domination(listeMeutes.get(idMeute).rechercherDeuxLycanthropes());
-        this.listeMeutes.get(idMeute).hierarchieLycanthropes();
     }
 
     public void viellissement(){
@@ -191,7 +199,7 @@ public class Colonie {
 
     public void hurlementMeute(){
         int idMeute = random.nextInt(listeMeutes.size());
-        Meute meute = listeMeutes.get(random.nextInt(idMeute));
+        Meute meute = listeMeutes.get(idMeute);
         int idLycanthrope = random.nextInt(meute.getListeMembres().size());
         Lycanthrope lycanthrope = meute.getListeMembres().get(random.nextInt(idLycanthrope));
         lycanthrope.hurlementAppartenanceMeute();
