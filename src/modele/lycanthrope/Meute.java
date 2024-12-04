@@ -184,12 +184,15 @@ public class Meute {
         Lycanthrope lycanthrope1 = arrayLycanthropes.get(0);
         Lycanthrope lycanthrope2 = arrayLycanthropes.get(1);
 
+        Random random = new Random();
 
         System.out.println(lycanthrope1.getNom() + " tente une domination contre " + lycanthrope2.getNom() + "!");
 
         // On regarde si lycanthrope1 arrive à dominer lycanthrope2.
         if(lycanthrope1.getNiveau() > lycanthrope2.getNiveau()){
             System.out.println(lycanthrope1.getNom() + " a réussi sa domination contre " + lycanthrope2.getNom() + "!");
+            int hurlement = random.nextInt(2);
+            if(hurlement == 1) lycanthrope1.exprimerDomination(lycanthrope2);
             // On change les rangs des deux Lycanthropes.
             for(Lycanthrope membre : listeMembres){
                 if (membre == lycanthrope1){
@@ -222,9 +225,14 @@ public class Meute {
                         }
                     }
                 }
+                System.out.println("La meute a une nouvelle hiérarchie ! \n" +
+                        hierarchieLycanthropes());
             }
         } else {
             System.out.println(lycanthrope1.getNom() + " a gouté à l'agressivité de " + lycanthrope2.getNom() + "!");
+            int hurlement = random.nextInt(3);
+            if(hurlement == 0) lycanthrope1.exrpimerSoumission(lycanthrope2);
+            else if(hurlement == 1) lycanthrope2.exprimerAgressivite(lycanthrope1);
             for(Lycanthrope membre : listeMembres){
                 if(membre == lycanthrope2){
                     membre.setFacteurDomination(membre.getFacteurDomination() - 5);
@@ -260,12 +268,17 @@ public class Meute {
         Random random = new Random();
         int nbJeunes = random.nextInt(7);
         for(int i = 0; i < nbJeunes ; i++){
-            listeMembres.add(new Lycanthrope(noms[random.nextInt(noms.length)], sexe[random.nextInt(sexe.length)],
-                    "Jeune", alphabetGrec.charAt(random.nextInt(alphabetGrec.length())), nom));
+            Lycanthrope bebe = new Lycanthrope(noms[random.nextInt(noms.length)], sexe[random.nextInt(sexe.length)],
+                    "Jeune", alphabetGrec.charAt(random.nextInt(alphabetGrec.length())), nom);
+            if(bebe.getRang() == 'α'){
+                bebe.setRang(alphabetGrec.charAt(random.nextInt(alphabetGrec.length())));
+            }
+            listeMembres.add(bebe);
+            System.out.println(bebe.getNom() + " est né dans la meute " + this.nom + " !");
         }
     }
 
-    public String caractéristiqueMeute() {
+    public String caracteristiqueMeute() {
         return "La meute " + this.nom + " a pour caractéristiques : \n"
                 + "Mâle α : " + this.maleAlpha.getNom() + "\n"
                 + "Femelle α : " + this.femelleAlpha.getNom() + "\n"
