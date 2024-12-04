@@ -284,9 +284,9 @@ public class Meute {
                         }
                     }
                 }
-                System.out.println("La meute a une nouvelle hiérarchie ! \n" +
-                        hierarchieLycanthropes());
             }
+            System.out.println("La meute a une nouvelle hiérarchie ! \n" +
+                    hierarchieLycanthropes());
         } else {
             System.out.println(lycanthrope1.getNom() + " a goûté à l'agressivité de " + lycanthrope2.getNom() + "!");
             int hurlement = random.nextInt(3);
