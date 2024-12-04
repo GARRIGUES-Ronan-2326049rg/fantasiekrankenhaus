@@ -7,7 +7,6 @@ import modele.monstre.Monstre;
 import modele.Medecin;
 import modele.Maladie;
 import view.JoueurView;
-
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -20,6 +19,7 @@ public class HopitalController {
     private JoueurController joueur = new JoueurController();
     private Hopital hopital = new Hopital();
     private boolean jeuEnCours = true;
+
 
     /**
      * Démarre le jeu et exécute la boucle principale.
@@ -39,7 +39,10 @@ public class HopitalController {
                 case "finir":
                     jeuEnCours = false;
                     System.out.println("FIN DU JEU\n");
-                    Recapitulatif.getInstance().afficherRecapitulatif();
+                    Recapitulatif.getInstance().afficherRecapitulatif();/*
+                    Recapitulatif.getInstance().creerTable();
+                    Recapitulatif.getInstance().sauvegarderDansBaseDeDonnees();
+                    Recapitulatif.getInstance().afficherTousLesRecaps();*/
                     break;
                 default:
                     System.out.println("Choix invalide. Réessayez.");
