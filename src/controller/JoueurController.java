@@ -93,6 +93,11 @@ public class JoueurController {
             return choix;
     */
 
+    public String choixActionLycanthrope(){
+        this.view.demanderChoixAgir();
+        return sc.nextLine();
+    }
+
     public int choixTourChoixMeute(ArrayList<Meute> listeMeute) {
         this.view.demanderChoixMeute(listeMeute);
         int choix = sc.nextInt();
@@ -111,7 +116,7 @@ public class JoueurController {
     }
 
     public String demandeActionLycanthrope() {
-        //this.view.demandeActionLycanthrope();
+        this.view.demandeActionLycanthrope();
         return sc.nextLine();
     }
 
