@@ -135,6 +135,7 @@ public class JoueurController {
     public ServiceMedical choisirService(ArrayList<ServiceMedical> listeService) {
         this.view.choisirService(listeService);
         String choix = sc.nextLine();
+        choix = choix.substring(0, 1).toUpperCase() + choix.substring(1).toLowerCase();
         for (ServiceMedical serviceMedical : listeService) {
             if (choix.equals(serviceMedical.getNom())) {
                 return serviceMedical;
@@ -173,6 +174,7 @@ public class JoueurController {
     public Monstre choisirPatient(ArrayList<Monstre> listeCreature) {
         this.view.choisirMonstre(listeCreature);
         String choix = sc.nextLine();
+        choix = choix.substring(0, 1).toUpperCase() + choix.substring(1).toLowerCase();
         for (Monstre monstre : listeCreature) {
             if (choix.equals(monstre.getNom())) {
                 return monstre;
