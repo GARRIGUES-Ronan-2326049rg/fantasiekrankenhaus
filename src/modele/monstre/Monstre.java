@@ -6,6 +6,7 @@ import sounds.AudioPlayer;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 public class Monstre {
 	private String type;
@@ -140,7 +141,7 @@ public class Monstre {
 				// Vérifier si la maladie atteint son niveau max
 				if (maladie.getNiveauActuel() >= maladie.getNiveauMax()) {
 					System.out.println("💀 " + nom + " est" + RED +" MORT " + RESET +" à cause de " + maladie.getNomComplet() + ".");
-					demoraliser(); // Démoraliser les autres créatures si c'est un Vampire ou un Elfe qui meurt
+					agirApresTrepas(service); // Actions spécifiques après le trépas en suivant le type de monstre
 					Monstre.this.service.getListeCreature().remove(this); // Retirer le monstre du service quand il meurt
 					Recapitulatif.getInstance().incrementerMort();
 					return; // Arrêter toute évolution car le monstre est mort
@@ -172,21 +173,85 @@ public class Monstre {
 		}
 	}
 
+	public void agirApresTrepas(ServiceMedical service) {
+		// Groupes des types de monstres par comportement
+		Set<String> demoraliseurs = Set.of("Elfe", "Vampire");
+		Set<String> contaminateurs = Set.of("Orque", "HommeBete", "Lycanthrope", "Vampire");
+		Set<String> regenerateurs = Set.of("Zombie", "Vampire");
 
+		if (demoraliseurs.contains(type)) {
+			demoraliser(service);
+		}
+		if (contaminateurs.contains(type)) {
+			contaminer(service);
+		}
+		if (regenerateurs.contains(type)) {
+			regenerer(service);
+		}
 
-	void demoraliser() {
-		this.estMort = true;
-		if (this instanceof Vampire || this instanceof Elfe) {
-			if (this instanceof Vampire) {
-				((Vampire) this).demoraliser(service);
-			} else {
-				((Elfe) this).demoraliser();
-			}
+		// Si pas action possible
+		if (!demoraliseurs.contains(type) && !contaminateurs.contains(type) && !regenerateurs.contains(type)) {
+			System.out.println("Aucune action spéciale pour ce type de monstre.");
 		}
 	}
 
-	private void regenerer() {
-		System.out.println("Le vampire se régénère.");
+
+	private void demoraliser(ServiceMedical service) {
+		System.out.println("💔 " + type + " démoralise les autres créatures.");
+		ArrayList<Monstre> monstres = new ArrayList<>(service.getListeCreature());
+		monstres.remove(this);
+		int nombreAffectes = monstres.size() / 2;
+		for (int i = 0; i < nombreAffectes; i++) {
+			Monstre monstre = monstres.get(i);
+			int nouveauMoral = Math.max(0, monstre.getIndicateurMoral() - 10);
+			monstre.setIndicateurMoral((byte) nouveauMoral);
+		}
+	}
+
+	private void contaminer(ServiceMedical service) {
+		// Vérifie si le monstre a des maladies à transmettre
+		if (this.getListeMaladie().isEmpty()) {
+			System.out.println(this.getNom() + " n'a aucune maladie à transmettre.");
+			return;
+		}
+
+		// Récupère une maladie random du monstre
+		Random random = new Random();
+		Maladie maladieOrigine = this.getListeMaladie().get(random.nextInt(this.getListeMaladie().size()));
+
+		// Récupère la liste des créatures du service
+		ArrayList<Monstre> autresMonstres = new ArrayList<>(service.getListeCreature());
+		autresMonstres.remove(this); // Retirer le monstre actuel de la liste
+
+		// Vérifie s'il y a d'autres créatures à contaminer
+		if (autresMonstres.isEmpty()) {
+			System.out.println("Aucune autre créature dans le service pour être contaminée.");
+			return;
+		}
+
+		// Sélectionne une créature aléatoire
+		Monstre cible = autresMonstres.get(random.nextInt(autresMonstres.size()));
+
+		// Réinitialise le niveau de la maladie avant de l'ajouter
+		maladieOrigine.setNiveauActuel(1); // Remet au niveau initial
+
+		// Ajoute la maladie (modifiée) à la liste des maladies de la créature
+		cible.tomberMalade(maladieOrigine);
+
+		// Message de confirmation
+		System.out.println(this.getNom() + " a transmis une maladie " +
+				maladieOrigine.getNomComplet() + " à " +
+				cible.getNom() + ".");
+	}
+
+
+
+
+
+	private void regenerer(ServiceMedical service) {
+		System.out.println("🧟 " + type + " se régénère.");
+		this.estMort = false; // Revient à la vie
+		this.setIndicateurMoral((byte) 80);
 	}
 
 	// Soigner une maladie spécifique

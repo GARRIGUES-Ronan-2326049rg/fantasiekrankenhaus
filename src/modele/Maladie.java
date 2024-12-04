@@ -25,6 +25,7 @@ public class Maladie {
         this.niveauMax = niveauMax;
     }
 
+
     /**
      * @return Le nom complet de la maladie.
      */
