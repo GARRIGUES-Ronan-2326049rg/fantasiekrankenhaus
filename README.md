@@ -43,6 +43,8 @@ Ce programme est une simulation de gestion d'hopital pour monstres, vous devrez 
 
 ## Auteurs
 
-- **[Votre Nom]** - Développeur principal.
+- **[Loeb Dorian]** - Développeur principal.
+- **[VERHILLE Manon]** - Développeur principal.
+- **[Garrigues Ronan ]** - Développeur principal.
 
 
