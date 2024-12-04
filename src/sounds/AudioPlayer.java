@@ -5,6 +5,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class AudioPlayer {
+
+    /**
+     * Méthode permettant de jouer un son
+     * @param cheminFichier
+     */
     public static void jouerSon(String cheminFichier) {
         try {
             File fichierAudio = new File(cheminFichier);

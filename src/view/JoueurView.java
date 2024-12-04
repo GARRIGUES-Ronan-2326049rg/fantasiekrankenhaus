@@ -107,11 +107,13 @@ public class JoueurView {
                 "Observer ses caractéristiques : tapez 'Observer'");
     }
 
+
     public void demanderChoixAgir(){
         System.out.println("Voulez-vous vous occuper : \n" +
                 "D'une meute ? Tapez 'Meute' \n" +
                 "D'un lycanthrope solitaire ? Tapez 'Seul'");
     }
+
 
     public void demanderChoixMeute(ArrayList<Meute> listeMeute){
         StringBuilder message = new StringBuilder("Voici les meutes sur lesquels vous pouvez agir.");
@@ -174,6 +176,6 @@ public class JoueurView {
      * Demande au joueur de fournir un budget pour un service.
      */
     public void demandeBudget() {
-        System.out.println("Quel budget souhaitez-vous allouer ? Entrez une valeur :");
+        System.out.println("Quel budget souhaitez-vous allouer ? Entrez soit Inexistant / Médiocre / Insuffisant / Faible :");
     }
 }
