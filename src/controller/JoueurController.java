@@ -44,16 +44,24 @@ public class JoueurController {
      * @throws SQLException Si une erreur SQL se produit.
      */
     public void choixJeu() throws SQLException {
-        view.demandeJeu();
-        String jeu = sc.nextLine();
-        if (jeu.equals("Hopital")) {
-            HopitalController hopitalController = new HopitalController();
-            hopitalController.lancerJeu();
-        } else if (jeu.equals("Loups")) {
-            LycanthropeController lycanthropeController = new LycanthropeController();
-            lycanthropeController.lancerJeu();
+        String jeu;
+        while (true) {
+            view.demandeJeu();
+            jeu = sc.nextLine();
+            if (jeu.equalsIgnoreCase("Hopital")) {
+                HopitalController hopitalController = new HopitalController();
+                hopitalController.lancerJeu();
+                break;
+            } else if (jeu.equalsIgnoreCase("Loups")) {
+                LycanthropeController lycanthropeController = new LycanthropeController();
+                lycanthropeController.lancerJeu();
+                break;
+            } else {
+                System.out.println("Choix invalide. Veuillez saisir 'Hopital' ou 'Loups'.");
+            }
         }
     }
+
 
     /**
      * Demande au joueur de saisir son nom.
