@@ -155,7 +155,7 @@ public class Lycanthrope{
                 + "Niveau : " + this.niveau + "\n"
                 + "facteurImpetuosite : " + this.facteurImpetuosite + "\n"
                 + "reussiteDomination : " + this.reussiteDomination + "\n"
-            + "devenirHumain :" + this.devenirHumain + "\n"
+                + "devenirHumain : " + this.devenirHumain + "\n"
                 + "Meute : " + this.meute + "\n";
     }
 
