@@ -7,7 +7,6 @@ Ce programme est une simulation de gestion d'hopital pour monstres, vous devrez 
 - [Installation](#installation)
 - [Utilisation](#utilisation)
 - [Architecture du Projet](#architecture-du-projet)
-- [Contribuer](#contribuer)
 - [Auteurs](#auteurs)
 - [Licence](#licence)
 
@@ -22,4 +21,25 @@ Ce programme est une simulation de gestion d'hopital pour monstres, vous devrez 
 
 1. Clonez le dépôt :
    ```bash
-   git clone https://github.com/GARRIGUES-Ronan-2326049rg/fantasiekrankenhaus
+   git clone https://github.com/GARRIGUES-Ronan-2326049rg/fantasiekrankenhaus.git
+
+
+   ## Utilisation
+
+1. Lancez l'application.
+2. Simulez des interactions entre créatures et analysez les résultats.
+3. Consultez les journaux pour suivre les maladies et les transmissions.
+
+
+## Architecture du Projet
+
+- `modele/` : Contient les classes principales comme `Monstre`, `ServiceMedical`, et `Maladie`.
+- `controleur/` : Gestion des interactions utilisateur.
+- `vue/` : Classes liées à l'affichage en mode console.
+- `Main.java` : Point d'entrée de l'application.
+
+## Auteurs
+
+- **[Votre Nom]** - Développeur principal.
+
+
