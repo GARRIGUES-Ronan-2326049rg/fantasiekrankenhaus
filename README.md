@@ -1,5 +1,4 @@
 # fantasiekrankenhaus
-Ce programme est une simulation de gestion d'hopital pour monstres, vous devrez gérer les différents monstres et en soigner le plus possible.
 
 ## Table des Matières
 - [Introduction](#introduction)
@@ -9,6 +8,10 @@ Ce programme est une simulation de gestion d'hopital pour monstres, vous devrez 
 - [Architecture du Projet](#architecture-du-projet)
 - [Auteurs](#auteurs)
 - [Licence](#licence)
+
+## Introduction
+Ce programme est une simulation de gestion d'hopital pour monstres, vous devrez gérer les différents monstres et en soigner le plus possible.
+
 
 ## Fonctionnalités
 - Gestion des monstres (création, mise à jour, et suppression).
