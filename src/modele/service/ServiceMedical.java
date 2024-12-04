@@ -244,9 +244,10 @@ public class ServiceMedical {
 	 * Prends un objet de type Monstre et le retire de la liste des patients s'il est présent et qu'il ne possède plus de maladies.
 	 */
 	public void retirerPatient(Monstre patient) {
-		if (this.listeCreature.contains(patient) && patient.getListeMaladie().isEmpty()) {
+		if (this.listeCreature.contains(patient)) {
 			this.listeCreature.remove(patient);
 			this.nombreCreature--;
+			System.out.println("Le monstre " + patient.getNom() + " a été retiré du service.");
 		}
 	}
 

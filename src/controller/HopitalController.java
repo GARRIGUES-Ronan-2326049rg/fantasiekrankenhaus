@@ -172,6 +172,7 @@ public class HopitalController {
      */
     private void transfererPatient(Medecin medecin) {
         ServiceMedical origine = joueur.choisirService(hopital.getListeService());
+        medecin.setActionPossible(medecin.getActionPossible()-1);
         if (origine != null && !origine.getListeCreature().isEmpty()) {
             Monstre patient = joueur.choisirPatient(origine.getListeCreature());
             if (patient != null) {

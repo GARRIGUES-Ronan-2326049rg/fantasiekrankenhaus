@@ -63,22 +63,6 @@ public class Medecin {
 	}
 
 	/**
-	 * @return L'âge du médecin.
-	 */
-	public byte getAge() {
-		return age;
-	}
-
-	/**
-	 * Modifie l'âge du médecin.
-	 *
-	 * @param age Le nouvel âge.
-	 */
-	public void setAge(byte age) {
-		this.age = age;
-	}
-
-	/**
 	 * Modifie le nombre d'actions possibles pour ce médecin.
 	 *
 	 * @param actionPossible Le nombre d'actions restantes.
@@ -94,20 +78,7 @@ public class Medecin {
 		return actionPossible;
 	}
 
-	/**
-	 * Transfère un monstre d'un service médical à un autre.
-	 *
-	 * @param monstre   Le monstre à transférer.
-	 * @param serviceDep Le service de départ.
-	 * @param serviceArr Le service d'arrivée.
-	 */
-	public void transfererPatient(Monstre monstre, ServiceMedical serviceDep, ServiceMedical serviceArr) {
-		if (serviceDep.getListeCreature().contains(monstre) && !serviceArr.getListeCreature().contains(monstre)) {
-			serviceArr.getListeCreature().add(monstre);
-			serviceDep.getListeCreature().remove(monstre);
-			--actionPossible;
-		}
-	}
+
 
 	/**
 	 * Examine un service médical en affichant des informations sur ses monstres et ses statistiques globales.

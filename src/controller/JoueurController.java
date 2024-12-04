@@ -92,13 +92,6 @@ public class JoueurController {
         }
     }
 
-        /*
-            this.view.demandeChoixMedecin(listeMedecin);
-            int choix = sc.nextInt();
-            sc.nextLine(); // Consomme le retour à la ligne restant
-            return choix;
-    */
-
     public String choixActionLycanthrope(){
         this.view.demanderChoixAgir();
         return sc.nextLine();

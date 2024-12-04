@@ -123,14 +123,6 @@ public class JoueurView {
         System.out.println(message.toString());
     }
 
-//    public void demandeActionMeute() {
-//        System.out.println("Pour cette meute, voulez vous : \n" +
-//                "Tenter uen domination ? Tapez Dominer\n" +
-//                "Demander à un membre de hurler son appartenance à la meute ? Tapez Hurler" +
-//                "Demander à un membr de quitter la meute ? Tapez Quitter" +
-//                "Revenir en arrière ? Tapez Retour\n");
-//    }
-
     public void demanderActionSolitaire(){
         System.out.println("Pour ce lycanthrope, voulez vous : \n" +
                 "Lui demander de créer une nouvelle meute ? Tapez Meute\n" +
